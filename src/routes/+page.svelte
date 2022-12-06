@@ -1,9 +1,19 @@
 <script>
-	import { Alert } from 'flowbite-svelte';
+  import { Card } from "flowbite-svelte";
 </script>
 
-<div class="p-8">
-	<Alert>
-		<span class="font-medium">Info alert!</span> Change a few things up and try submitting again.
-	</Alert>
+<div class="center-container">
+	<Card>
+		<h1 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Coming soon...</h1>
+	</Card>
+	
 </div>
+
+<style>
+	.center-container {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+</style>
