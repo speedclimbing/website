@@ -1,19 +1,33 @@
-<script>
-  import { Card } from "flowbite-svelte";
+<script lang="ts">
+	import { browser } from '$app/environment';
+	import { goto } from '$app/navigation';
+	import { redirect } from '@sveltejs/kit';
+	import { Card, Timeline, TimelineItem } from 'flowbite-svelte';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
+
+	if (!data.ok && browser) {
+		goto('/login');
+	} else if (!data.ok) {
+		redirect(307, '/login');
+	}
 </script>
 
-<div class="center-container">
-	<Card>
-		<h1 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Coming soon...</h1>
+<div class="flex justify-center m-6">
+	<Card img="/images/banner.png" size="md">
+		<h3 class="p-0 text-lg font-semibold text-gray-900 dark:text-white">World record history:</h3>
+		<Timeline>
+			{#each data.data as record}
+				<TimelineItem
+					title={`${record.first_name} ${record.last_name}: ${record.result / 1000}s`}
+					date={record.competition_date}
+				>
+					<p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
+						{record.competition_name}
+					</p>
+				</TimelineItem>
+			{/each}
+		</Timeline>
 	</Card>
-	
 </div>
-
-<style>
-	.center-container {
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, -50%);
-	}
-</style>
