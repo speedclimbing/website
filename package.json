@@ -11,7 +11,8 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write ."
+		"format": "prettier --plugin-search-dir . --write .",
+		"miniflare": "vite build && npx miniflare --debug --modules .svelte-kit/cloudflare/_worker.js"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
@@ -27,6 +28,7 @@
 		"eslint-plugin-svelte3": "^4.0.0",
 		"flowbite": "^1.5.4",
 		"flowbite-svelte": "^0.28.4",
+		"miniflare": "^2.11.0",
 		"postcss": "^8.4.14",
 		"postcss-load-config": "^4.0.1",
 		"prettier": "^2.8.0",
