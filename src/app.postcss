@@ -2,3 +2,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+	font-family: 'Roboto';
+	font-weight: 'medium';
+	src: url('/fonts/Roboto-Medium.ttf');
+}
+
+@font-face {
+	font-family: 'Roboto';
+	font-weight: 'regular';
+	src: url('/fonts/Roboto-Regular.ttf');
+}
+
+@font-face {
+	font-family: 'Raleway';
+	src: url('/fonts/Raleway-VariableFont_wght.ttf');
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: 'Roboto', 'sans-serif';
+	color: '#111827';
+	@apply dark:text-white;
+}
+
+p {
+	font-family: 'Raleway', 'sans-serif';
+	color: '#111827';
+	@apply dark:text-white;
+}
+
+body {
+	margin-top: 80px;
+	@apply dark:bg-dark-grey;
+}
+
+.hero-image {
+	background-image: linear-gradient(rgba(247, 247, 247, 0.2), rgba(247, 247, 247, 0.6)),
+		url('/images/Hero.jpg');
+	background-position: 50% 10%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.dark .hero-image {
+	background-image: linear-gradient(0deg, rgba(17, 24, 39, 0.6), rgba(17, 24, 39, 0.6)),
+		url('/images/Hero.jpg');
+	background-position: 50% 10%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
