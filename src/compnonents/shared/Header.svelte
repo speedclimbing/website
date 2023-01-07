@@ -4,6 +4,7 @@
 	import { browser } from '$app/environment';
 
 	let darkMode: boolean = false;
+	let scrolled: boolean = false;
 
 	$: {
 		if (darkMode && browser) {
@@ -22,13 +23,23 @@
 		const prefersColorSchemeDark = window.matchMedia('(prefers-color-scheme: dark)');
 		prefersColorSchemeDark.addEventListener('change', (e) => (darkMode = e.matches));
 		darkMode = prefersColorSchemeDark.matches;
+
+		scrolled = document.documentElement.scrollTop > 10;
+		window.addEventListener('scroll', () => (scrolled = document.documentElement.scrollTop > 10));
 	}
 </script>
 
 <header
-	class="px-[10%] py-[12px] flex justify-between shadow fixed w-full bg-white dark:bg-black top-0 z-10"
+	class="px-[10%] flex justify-between shadow fixed w-full {scrolled
+		? 'bg-white dark:bg-black'
+		: 'bg-transparent'} top-0 z-10"
 >
-	<Navbar let:hidden let:toggle class="px-0 sm:px-0">
+	<Navbar
+		let:hidden
+		let:toggle
+		color="none"
+		class="text-gray-900 dark:text-gray-200 border-gray-100 dark:border-gray-700 px-2 sm:px-4 py-2.5 w-full px-0 sm:px-0"
+	>
 		<NavBrand id="logo" href="/">
 			<p class="font-bold text-red dark:text-red">Speedclimbing.org</p>
 		</NavBrand>
