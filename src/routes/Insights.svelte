@@ -4,7 +4,10 @@
 	import SecondaryButton from '../compnonents/shared/SecondaryButton.svelte';
 </script>
 
-<section id="insights" class="px-[10%] py-[100px] flex gap-16 flex-col lg:items-center lg:flex-row">
+<section
+	id="insights"
+	class="px-[10%] lg:px-[15%] py-[100px] flex gap-16 flex-col lg:items-center lg:flex-row"
+>
 	<img src="/images/Charts.png" alt="some statistics" class=" lg:w-[350px] xl:w-[500px]" />
 	<div>
 		<h2 class="text-4xl font-bold">Deep Insights</h2>

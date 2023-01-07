@@ -1,5 +1,5 @@
 <footer
-	class="bg-black flex px-[10%] py-[50px] font-Raleway text-white flex-col justify-between gap-14 lg:flex-row"
+	class="bg-black flex px-[10%] lg:px-[15%] py-[50px] font-Raleway text-white flex-col justify-between gap-14 lg:flex-row"
 >
 	<div>
 		<h3 class="text-2xl font-bold mb-[20px]">Speedlcimbing.org</h3>

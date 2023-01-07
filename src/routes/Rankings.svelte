@@ -8,7 +8,7 @@
 
 <section
 	id="rankings"
-	class="bg-grey/5 px-[5%] py-20 flex flex-col gap-10 dark:bg-black md:px-[10%] xl:px-[20%] "
+	class="bg-grey/5 px-[10%] lg:px-[15%] py-20 flex flex-col gap-10 dark:bg-black"
 >
 	<div
 		id="rankings-search"

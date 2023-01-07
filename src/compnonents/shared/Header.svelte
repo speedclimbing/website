@@ -13,7 +13,7 @@
 </script>
 
 <header
-	class="px-[10%] py-[12px] flex justify-between shadow fixed w-full bg-white dark:bg-black top-0 z-10"
+	class="px-[10%] lg:px-[15%] py-[12px] flex justify-between shadow fixed w-full bg-white dark:bg-black top-0 z-10"
 >
 	<Navbar let:hidden let:toggle class="px-0 sm:px-0">
 		<NavBrand id="logo" href="/">
