@@ -4,6 +4,7 @@
 	import { browser } from '$app/environment';
 
 	let darkMode: boolean = false;
+	let scrolled: boolean = false;
 
 	$: {
 		if (darkMode && browser) {
@@ -22,18 +23,33 @@
 		const prefersColorSchemeDark = window.matchMedia('(prefers-color-scheme: dark)');
 		prefersColorSchemeDark.addEventListener('change', (e) => (darkMode = e.matches));
 		darkMode = prefersColorSchemeDark.matches;
+
+		scrolled = document.documentElement.scrollTop > 10;
+		window.addEventListener('scroll', () => (scrolled = document.documentElement.scrollTop > 10));
 	}
 </script>
 
 <header
-	class="px-[10%] lg:px-[15%] py-[12px] flex justify-between shadow fixed w-full bg-white dark:bg-black top-0 z-10"
+	class="px-[10%] flex justify-between fixed w-full {scrolled
+		? 'bg-white dark:bg-black shadow'
+		: 'bg-transparent'} top-0 z-10 transition-colors duration-500"
 >
-	<Navbar let:hidden let:toggle class="px-0 sm:px-0">
+	<Navbar
+		let:hidden
+		let:toggle
+		color="none"
+		class="text-black dark:text-gray-200 border-gray-100 dark:border-gray-700 px-2 sm:px-4 py-2.5 w-full px-0 sm:px-0"
+	>
 		<NavBrand id="logo" href="/">
-			<p class="font-bold text-red dark:text-red">Speedclimbing.org</p>
+			<p class="font-bold text-red dark:text-red text-xl">Speedclimbing.org</p>
 		</NavBrand>
 		<NavHamburger on:click={toggle} />
-		<NavUl id="menu" {hidden} class="font-Raleway sm:items-center">
+		<NavUl
+			id="menu"
+			{hidden}
+			class="font-Raleway sm:items-center"
+			ulClass="flex flex-col p-4 mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-base md:font-bold"
+		>
 			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">Trounaments</NavLi>
 			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">Athletes</NavLi>
 			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">Teams</NavLi>
@@ -41,7 +57,7 @@
 			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">About</NavLi>
 			<NavLi>
 				<button
-					class="dark:text-white hover:text-red dark:hover:text-red"
+					class="md:text-black md:font-bold dark:text-gray-200 hover:text-red dark:hover:text-red"
 					on:click={(e) => handleClick(e)}
 				>
 					{#if darkMode}
