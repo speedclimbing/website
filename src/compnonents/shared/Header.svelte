@@ -14,6 +14,14 @@
 		}
 	}
 
+	$: {
+		if (darkMode && browser) {
+			document.documentElement.classList.add('dark');
+		} else if (browser) {
+			document.documentElement.classList.remove('dark');
+		}
+	}
+
 	function handleClick(e: any) {
 		darkMode = !darkMode;
 	}
