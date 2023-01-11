@@ -46,7 +46,8 @@
 		navDivClass="mx-0 flex flex-wrap justify-between items-center  container"
 	>
 		<NavBrand id="logo" href="/">
-			<p class="font-bold text-red dark:text-red text-xl">Speedclimbing.org</p>
+			<img src="/favicon.png" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
+			<p class="font-bold text-red dark:text-red text-xl">speedclimbing</p>
 		</NavBrand>
 		<NavHamburger on:click={toggle} />
 		<NavUl
