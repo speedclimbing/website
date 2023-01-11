@@ -2,3 +2,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+	font-family: 'Roboto';
+	font-weight: 'medium';
+	src: url('/fonts/Roboto-Medium.ttf');
+}
+
+@font-face {
+	font-family: 'Roboto';
+	font-weight: 'regular';
+	src: url('/fonts/Roboto-Regular.ttf');
+}
+
+@font-face {
+	font-family: 'Raleway';
+	src: url('/fonts/Raleway-VariableFont_wght.ttf');
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: 'Roboto', 'sans-serif';
+	color: '#111827';
+	@apply dark:text-white;
+}
+
+p {
+	font-family: 'Raleway', 'sans-serif';
+	color: '#111827';
+	@apply dark:text-white;
+}
+
+body {
+	@apply dark:bg-dark-grey;
+}
+
+section {
+	@apply px-[10%] lg:px-[15%];
+}
