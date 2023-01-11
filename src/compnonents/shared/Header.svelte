@@ -1,14 +1,27 @@
 <script lang="ts">
 	import { Moon, Sun } from 'svelte-heros-v2';
 	import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte';
+	import { browser } from '$app/environment';
 
 	let darkMode: boolean = false;
 
+	$: {
+		if (darkMode && browser) {
+			document.documentElement.classList.add('dark');
+		} else if (browser) {
+			document.documentElement.classList.remove('dark');
+		}
+	}
+
 	function handleClick(e: any) {
 		darkMode = !darkMode;
-		darkMode
-			? document.documentElement.classList.add('dark')
-			: document.documentElement.classList.remove('dark');
+	}
+
+	if (browser) {
+		// On page load or when changing themes
+		const prefersColorSchemeDark = window.matchMedia('(prefers-color-scheme: dark)');
+		prefersColorSchemeDark.addEventListener('change', (e) => (darkMode = e.matches));
+		darkMode = prefersColorSchemeDark.matches;
 	}
 </script>
 
