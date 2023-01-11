@@ -3,6 +3,9 @@
 	import Line from '../compnonents/shared/Line.svelte';
 	import EventCard from '../compnonents/home/EventCard.svelte';
 	import PrimaryButton from '../compnonents/shared/PrimaryButton.svelte';
+	import type { Competition } from 'src/types/Competition';
+
+	export let competitions: Competition[];
 
 	let selected: string;
 	let countries = [
@@ -21,10 +24,9 @@
 		<Select items={countries} bind:value={selected} />
 	</div>
 	<div class="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10">
-		<EventCard />
-		<EventCard />
-		<EventCard />
-		<EventCard />
+		{#each competitions as competition, index (index)}
+			<EventCard {competition} />
+		{/each}
 	</div>
 
 	<PrimaryButton text="View all Tournaments" style="mx-auto block" />

@@ -1,13 +1,19 @@
 <script lang="ts">
 	let box: HTMLElement;
 	export let style: string = '';
+	export let leftString = 'This';
+	export let rightString = 'That';
+	export let leftClickAction: () => void;
+	export let rightClickAction: () => void;
 
-	function handleClickMale(e: any) {
+	function handleClickLeft(e: any) {
 		box.style.marginLeft = '0';
+		leftClickAction();
 	}
 
-	function handleClickFemale(e: any) {
+	function handleClickRight(e: any) {
 		box.style.marginLeft = '50%';
+		rightClickAction();
 	}
 </script>
 
@@ -21,15 +27,15 @@
 		/>
 		<button
 			class="absolute w-[50%] h-full top-0 left-0 flex justify-center items-center text-[#2268d5] mix-blend-difference"
-			on:click={(e) => handleClickMale(e)}
+			on:click={(e) => handleClickLeft(e)}
 		>
-			Male
+			{leftString}
 		</button>
 		<button
 			class="absolute w-[50%] h-full top-0 left-[50%] flex justify-center items-center text-[#2268d5] mix-blend-difference"
-			on:click={(e) => handleClickFemale(e)}
+			on:click={(e) => handleClickRight(e)}
 		>
-			Female
+			{rightString}
 		</button>
 	</div>
 </div>
