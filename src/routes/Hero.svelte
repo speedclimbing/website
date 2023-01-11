@@ -4,7 +4,7 @@
 	import Line from '../compnonents/shared/Line.svelte';
 </script>
 
-<section id="hero" class="hero-image px-[10%] lg:px-[15%] py-[150px]">
+<section id="hero" class="hero-image py-[150px]">
 	<h1 class="font-Raleway text-[36px] sm:text-[56px] lg:text-[64px] leading-none mb-[30px]">
 		<span class="text-white font-light">Welcome to</span><br />
 		<span class="font-bold  text-black">Speedclimbing</span>

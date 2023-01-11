@@ -12,7 +12,7 @@
 	];
 </script>
 
-<section id="latest-tournaments" class="px-[10%] lg:px-[15%] py-[100px]">
+<section id="latest-tournaments" class="py-[100px]">
 	<h2 class="text-4xl font-bold text-center">Latest Tournaments</h2>
 	<Line style="mx-auto" />
 	<div class="flex justify-between gap-5 flex-col lg:flex-row">
