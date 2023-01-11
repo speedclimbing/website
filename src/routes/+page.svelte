@@ -7,11 +7,9 @@
 	import Hero from './Hero.svelte';
 </script>
 
-<main>
-	<Hero />
-	<WorldRecords />
-	<Rankings />
-	<LatestTournaments />
-	<Insights />
-	<About />
-</main>
+<Hero />
+<WorldRecords />
+<Rankings />
+<LatestTournaments />
+<Insights />
+<About />

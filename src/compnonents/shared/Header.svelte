@@ -30,15 +30,18 @@
 </script>
 
 <header
-	class="px-[10%] flex justify-between fixed w-full {scrolled
+	class="px-[10%] lg:px-[15%] flex justify-between fixed w-full {scrolled
 		? 'bg-white dark:bg-black shadow'
-		: 'bg-transparent'} top-0 z-10 transition-colors duration-500"
+		: 'bg-white/0 dark:bg-white/0'} top-0 z-10 transition-colors duration-500"
 >
 	<Navbar
 		let:hidden
 		let:toggle
 		color="none"
-		class="text-black dark:text-gray-200 border-gray-100 dark:border-gray-700 px-2 sm:px-4 py-2.5 w-full px-0 sm:px-0"
+		class="text-black dark:text-dark-white {scrolled
+			? ''
+			: 'text-dark-white'} border-gray-100 dark:border-gray-700 px-2 sm:px-4 py-2.5 w-full px-0 sm:px-0"
+		navDivClass="mx-0 flex flex-wrap justify-between items-center  container"
 	>
 		<NavBrand id="logo" href="/">
 			<p class="font-bold text-red dark:text-red text-xl">Speedclimbing.org</p>
@@ -57,7 +60,9 @@
 			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">About</NavLi>
 			<NavLi>
 				<button
-					class="md:text-black md:font-bold dark:text-gray-200 hover:text-red dark:hover:text-red"
+					class="text-black font-bold dark:text-gray-200 hover:text-red dark:hover:text-red {scrolled
+						? ''
+						: 'text-dark-white'}"
 					on:click={(e) => handleClick(e)}
 				>
 					{#if darkMode}

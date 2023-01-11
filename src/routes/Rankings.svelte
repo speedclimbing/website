@@ -6,10 +6,7 @@
 	import PrimaryButton from '../compnonents/shared/PrimaryButton.svelte';
 </script>
 
-<section
-	id="rankings"
-	class="bg-grey/5 px-[5%] py-20 flex flex-col gap-10 dark:bg-black md:px-[10%] xl:px-[20%] "
->
+<section id="rankings" class="bg-grey/5 py-20 flex flex-col gap-10 dark:bg-black">
 	<div
 		id="rankings-search"
 		class=" p-10 bg-[white] rounded-md border-grey/20 border-2 dark:bg-dark-grey"
