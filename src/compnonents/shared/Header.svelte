@@ -2,6 +2,7 @@
 	import { Moon, Sun } from 'svelte-heros-v2';
 	import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte';
 	import { browser } from '$app/environment';
+	import { page } from '$app/stores';
 
 	let darkMode: boolean = false;
 	let scrolled: boolean = false;
@@ -30,7 +31,8 @@
 </script>
 
 <header
-	class="px-[10%] lg:px-[15%] flex justify-between fixed w-full {scrolled
+	class="px-[10%] lg:px-[15%] flex justify-between fixed w-full {scrolled ||
+	$page.url.pathname !== '/'
 		? 'bg-white dark:bg-black shadow'
 		: 'bg-white/0 dark:bg-white/0'} top-0 z-10 transition-colors duration-500"
 >
