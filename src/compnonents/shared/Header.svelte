@@ -2,6 +2,7 @@
 	import { Moon, Sun } from 'svelte-heros-v2';
 	import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte';
 	import { browser } from '$app/environment';
+	import { page } from '$app/stores';
 
 	let darkMode: boolean = false;
 	let scrolled: boolean = false;
@@ -30,7 +31,8 @@
 </script>
 
 <header
-	class="px-[10%] lg:px-[15%] flex justify-between fixed w-full {scrolled
+	class="px-[10%] lg:px-[15%] flex justify-between fixed w-full {scrolled ||
+	$page.url.pathname !== '/'
 		? 'bg-white dark:bg-black shadow'
 		: 'bg-white/0 dark:bg-white/0'} top-0 z-10 transition-colors duration-500"
 >
@@ -59,20 +61,18 @@
 			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">Teams</NavLi>
 			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">Stats</NavLi>
 			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">About</NavLi>
-			<NavLi>
-				<button
-					class="text-black font-bold dark:text-gray-200 hover:text-red dark:hover:text-red {scrolled
-						? ''
-						: 'text-dark-white'}"
-					on:click={(e) => handleClick(e)}
-				>
-					{#if darkMode}
-						<Moon />
-					{:else}
-						<Sun />
-					{/if}
-				</button>
-			</NavLi>
+			<NavLi
+				nonActiveClass="text-black font-bold dark:text-gray-200 hover:text-red dark:hover:text-red h-6 cursor-pointer {scrolled
+					? ''
+					: 'text-dark-white'}"
+				on:click={handleClick}
+			>
+				{#if darkMode}
+					<Moon class="h-6" />
+				{:else}
+					<Sun class="h-6" />
+				{/if}</NavLi
+			>
 		</NavUl>
 	</Navbar>
 </header>
