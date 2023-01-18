@@ -28,42 +28,22 @@
 	</TableHead>
 
 	<TableBody>
-		{#if male}
-			{#each worldRankingsMale as ranking, index (index)}
-				<TableBodyRow class="border-t-[1px]">
-					<TableBodyCell>{index + 1}</TableBodyCell>
-					<TableBodyCell
-						>{ranking.last_name.toUpperCase()} {capitalize(ranking.first_name)}</TableBodyCell
-					>
-					<TableBodyCell>{ranking.nation_code}</TableBodyCell>
-					<TableBodyCell
-						>{ranking.date.toLocaleDateString('de-DE', {
-							year: 'numeric',
-							month: 'long',
-							day: '2-digit'
-						})}</TableBodyCell
-					>
-					<TableBodyCell>{(ranking.time / 1000).toFixed(3)}</TableBodyCell>
-				</TableBodyRow>
-			{/each}
-		{:else}
-			{#each worldRankingsFemale as ranking, index (index)}
-				<TableBodyRow class="border-t-[1px]">
-					<TableBodyCell>{index + 1}</TableBodyCell>
-					<TableBodyCell
-						>{ranking.last_name.toUpperCase()} {capitalize(ranking.first_name)}</TableBodyCell
-					>
-					<TableBodyCell>{ranking.nation_code}</TableBodyCell>
-					<TableBodyCell
-						>{ranking.date.toLocaleDateString('de-DE', {
-							year: 'numeric',
-							month: 'long',
-							day: '2-digit'
-						})}</TableBodyCell
-					>
-					<TableBodyCell>{(ranking.time / 1000).toFixed(3)}</TableBodyCell>
-				</TableBodyRow>
-			{/each}
-		{/if}
+		{#each male ? worldRankingsMale : worldRankingsFemale as ranking, index (index)}
+			<TableBodyRow class="border-t-[1px]">
+				<TableBodyCell>{index + 1}</TableBodyCell>
+				<TableBodyCell
+					>{ranking.last_name.toUpperCase()} {capitalize(ranking.first_name)}</TableBodyCell
+				>
+				<TableBodyCell>{ranking.nation_code}</TableBodyCell>
+				<TableBodyCell
+					>{ranking.date.toLocaleDateString('de-DE', {
+						year: 'numeric',
+						month: 'long',
+						day: '2-digit'
+					})}</TableBodyCell
+				>
+				<TableBodyCell>{(ranking.time / 1000).toFixed(3)}</TableBodyCell>
+			</TableBodyRow>
+		{/each}
 	</TableBody>
 </Table>
