@@ -25,7 +25,7 @@
 	<img src={image} alt={name} class="absolute w-full top-[-50px] left-[-50px]" />
 	<div class="relative p-5 rounded-sm bg-white/[0.85]">
 		<p class="dark:text-black">{name}</p>
-		<p class="text-color text-sm font-normal">{subtitle}</p>
+		<p class="text-color text-normal font-normal">{subtitle}</p>
 		<p
 			class="relative xl:absolute xl:top-[50%] xl:translate-x-0 xl:translate-y-[-50%] xl:right-5 font-semibold text-2xl text-color"
 		>

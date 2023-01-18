@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import {
 		Table,
 		TableBody,
@@ -7,6 +7,15 @@
 		TableHead,
 		TableHeadCell
 	} from 'flowbite-svelte';
+	import type { Ranking } from 'src/types/Ranking';
+
+	export let worldRankingsFemale: Ranking[];
+	export let worldRankingsMale: Ranking[];
+	export let male: boolean = true;
+
+	function capitalize(word: string): string {
+		return word.charAt(0).toUpperCase() + word.slice(1);
+	}
 </script>
 
 <Table hoverable={true}>
@@ -14,31 +23,27 @@
 		<TableHeadCell>Rank</TableHeadCell>
 		<TableHeadCell>Full Name</TableHeadCell>
 		<TableHeadCell>Country</TableHeadCell>
-		<TableHeadCell>Points</TableHeadCell>
-		<TableHeadCell>Pers. Best</TableHeadCell>
+		<TableHeadCell>Date</TableHeadCell>
+		<TableHeadCell>Time</TableHeadCell>
 	</TableHead>
 
 	<TableBody>
-		<TableBodyRow class="border-t-[1px]">
-			<TableBodyCell>1</TableBodyCell>
-			<TableBodyCell>Veddriq LEONARDO</TableBodyCell>
-			<TableBodyCell>INA</TableBodyCell>
-			<TableBodyCell>$4450</TableBodyCell>
-			<TableBodyCell>5.68</TableBodyCell>
-		</TableBodyRow>
-		<TableBodyRow class="border-t-[1px]">
-			<TableBodyCell>2</TableBodyCell>
-			<TableBodyCell>Veddriq LEONARDO</TableBodyCell>
-			<TableBodyCell>INA</TableBodyCell>
-			<TableBodyCell>$4450</TableBodyCell>
-			<TableBodyCell>5.68</TableBodyCell>
-		</TableBodyRow>
-		<TableBodyRow class="border-t-[1px]">
-			<TableBodyCell>3</TableBodyCell>
-			<TableBodyCell>Veddriq LEONARDO</TableBodyCell>
-			<TableBodyCell>INA</TableBodyCell>
-			<TableBodyCell>$4450</TableBodyCell>
-			<TableBodyCell>5.68</TableBodyCell>
-		</TableBodyRow>
+		{#each male ? worldRankingsMale : worldRankingsFemale as ranking, index (index)}
+			<TableBodyRow class="border-t-[1px]">
+				<TableBodyCell>{index + 1}</TableBodyCell>
+				<TableBodyCell
+					>{ranking.last_name.toUpperCase()} {capitalize(ranking.first_name)}</TableBodyCell
+				>
+				<TableBodyCell>{ranking.nation_code}</TableBodyCell>
+				<TableBodyCell
+					>{ranking.date.toLocaleDateString('de-DE', {
+						year: 'numeric',
+						month: 'long',
+						day: '2-digit'
+					})}</TableBodyCell
+				>
+				<TableBodyCell>{(ranking.time / 1000).toFixed(3)}</TableBodyCell>
+			</TableBodyRow>
+		{/each}
 	</TableBody>
 </Table>

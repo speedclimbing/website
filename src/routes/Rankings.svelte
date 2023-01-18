@@ -1,9 +1,22 @@
-<script>
+<script lang="ts">
 	import { Input } from 'flowbite-svelte';
 	import Line from '../compnonents/shared/Line.svelte';
 	import RankingsTable from '../compnonents/home/RankingsTable.svelte';
 	import SwitchButton from '../compnonents/home/SwitchButton.svelte';
 	import PrimaryButton from '../compnonents/shared/PrimaryButton.svelte';
+	import type { Ranking } from 'src/types/Ranking';
+
+	export let worldRankingsFemale: Ranking[];
+	export let worldRankingsMale: Ranking[];
+	let male: boolean = true;
+
+	function setFemale() {
+		male = false;
+	}
+
+	function setMale() {
+		male = true;
+	}
 </script>
 
 <section id="rankings" class="bg-grey/5 py-20 flex flex-col gap-10 dark:bg-black">
@@ -39,11 +52,17 @@
 	>
 		<div class="flex gap-5 justify-between flex-col sm:flex-row">
 			<div>
-				<h2 class="text-4xl font-bold">World Rankings</h2>
+				<h2 class="text-4xl font-bold">All Time World Rankings</h2>
 				<Line color="yellow" />
 			</div>
-			<SwitchButton style="mb-10 mt-[-30px] sm:mt-0" />
+			<SwitchButton
+				style="mb-10 mt-[-30px] sm:mt-0"
+				leftClickAction={() => setMale()}
+				rightClickAction={() => setFemale()}
+				leftString="Male"
+				rightString="Female"
+			/>
 		</div>
-		<RankingsTable />
+		<RankingsTable {worldRankingsFemale} {worldRankingsMale} {male} />
 	</div>
 </section>

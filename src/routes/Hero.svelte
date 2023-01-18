@@ -31,4 +31,8 @@
 		background-repeat: no-repeat;
 		background-size: cover;
 	}
+
+	#hero {
+		margin-top: -5rem;
+	}
 </style>
