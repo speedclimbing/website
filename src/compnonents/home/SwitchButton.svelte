@@ -6,12 +6,12 @@
 	export let leftClickAction: () => void;
 	export let rightClickAction: () => void;
 
-	function handleClickLeft(e: any) {
+	function handleClickLeft() {
 		box.style.marginLeft = '0';
 		leftClickAction();
 	}
 
-	function handleClickRight(e: any) {
+	function handleClickRight() {
 		box.style.marginLeft = '50%';
 		rightClickAction();
 	}
@@ -27,13 +27,13 @@
 		/>
 		<button
 			class="absolute w-[50%] h-full top-0 left-0 flex justify-center items-center text-[#2268d5] mix-blend-difference"
-			on:click={(e) => handleClickLeft(e)}
+			on:click={() => handleClickLeft()}
 		>
 			{leftString}
 		</button>
 		<button
 			class="absolute w-[50%] h-full top-0 left-[50%] flex justify-center items-center text-[#2268d5] mix-blend-difference"
-			on:click={(e) => handleClickRight(e)}
+			on:click={(e) => handleClickRight()}
 		>
 			{rightString}
 		</button>

@@ -1,5 +1,6 @@
 import type { Load } from '@sveltejs/kit';
 import type { Competition } from 'src/types/Competition';
+import type { Nation } from 'src/types/Nation';
 
 export const load: Load = async ({ fetch }) => {
 	const competitonResponse = await fetch('https://api.speedclimbing.org/v1/competition');
@@ -10,5 +11,8 @@ export const load: Load = async ({ fetch }) => {
 		competition.to = new Date(competition.to);
 	});
 
-	return { competitions, fetch: fetch };
+	const nationResponse = await fetch('https://api.speedclimbing.org/v1/nation');
+	const nations: Nation[] = await nationResponse.json();
+
+	return { competitions, fetch: fetch, nations };
 };
