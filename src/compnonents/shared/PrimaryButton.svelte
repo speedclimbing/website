@@ -1,7 +1,11 @@
 <script lang="ts">
-	export let text: string;
+	import { goto } from '$app/navigation';
+	export let text: string = 'Click me';
 	export let style: string = '';
-	export let onClick: () => void = () => {};
+	export let link: string = '/';
+	export let onClick: () => void = () => {
+		goto(link);
+	};
 </script>
 
 <button

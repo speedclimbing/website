@@ -56,7 +56,9 @@
 			class="font-Raleway sm:items-center"
 			ulClass="flex flex-col p-4 mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-base md:font-bold"
 		>
-			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">Trounaments</NavLi>
+			<NavLi href="/competition" activeClass="text-red" nonActiveClass="hover:text-red"
+				>Competitions</NavLi
+			>
 			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">Athletes</NavLi>
 			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">Teams</NavLi>
 			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">Stats</NavLi>
