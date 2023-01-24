@@ -22,9 +22,3 @@
 		>{((athlete.personal_best ?? 0) / 1000).toFixed(3)}</span
 	>
 </div>
-
-<style lang="postcss">
-	.athlete-card {
-		margin-top: 2rem;
-	}
-</style>
