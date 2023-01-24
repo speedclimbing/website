@@ -1,56 +1,22 @@
 <script lang="ts">
 	import AthleteCard from './AthleteCard.svelte';
 	import type { Gender } from 'src/types/Gender';
-	import type { Athlete } from 'src/types/Athlete';
 	import { Input, Select, Spinner } from 'flowbite-svelte';
 	import type { PageData } from './$types';
-	export let data: PageData;
-	let { fetch, url } = data;
+	import { _handleSearch } from './+page';
+	import { browser } from '$app/environment';
 
-	let name: string | undefined = url.searchParams.get('name') ?? '';
+	export let data: PageData;
+	let athletesPromise = (data?.athletesPromises ?? [Promise.resolve([])])[0];
+	let atletes = data.athletes ?? [];
+
+	let name: string | undefined = data.url.searchParams.get('name') ?? '';
 	let nation: string | undefined;
 	let gender: Gender | undefined;
 	let personalBest: number | undefined;
 
-	async function handleSearch(
-		name?: string,
-		nation?: string,
-		gender?: Gender,
-		personalBest?: number
-	): Promise<Athlete[]> {
-		await debounce();
-		const response = await fetch(
-			'https://api.speedclimbing.org/v1/athlete?' +
-				new URLSearchParams({
-					name: (name ?? '').toLocaleLowerCase(),
-					nation: nation ?? '',
-					gender: gender ?? '',
-					personal_best: personalBest?.toString() ?? ''
-				})
-		);
-
-		const athletes: Athlete[] = await response.json();
-
-		if (athletes.length == 0) {
-			throw new Error('No athletes found');
-		}
-
-		return athletes;
-	}
-
-	let athletesPromise: Promise<Athlete[]>;
 	$: {
-		athletesPromise = handleSearch(name, nation, gender, personalBest);
-	}
-
-	let timer: NodeJS.Timeout;
-	async function debounce(): Promise<void> {
-		return new Promise((resolve, _) => {
-			clearTimeout(timer);
-			timer = setTimeout(() => {
-				resolve();
-			}, 500);
-		});
+		athletesPromise = _handleSearch(name, nation, gender, personalBest);
 	}
 
 	const genderSelect = [
@@ -85,19 +51,27 @@
 			bind:value={personalBest}
 		/>
 	</div>
-	{#await athletesPromise}
-		<div class="flex justify-center items-center my-10">
-			<Spinner />
-		</div>
-	{:then athletes}
+	{#if browser}
+		{#await athletesPromise}
+			<div class="flex justify-center items-center my-10">
+				<Spinner />
+			</div>
+		{:then athletes}
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10">
+				{#each athletes as athlete, index (index)}
+					<AthleteCard {athlete} />
+				{/each}
+			</div>
+		{:catch error}
+			<div class="flex justify-center items-center my-10">
+				<p class="text-2xl font-semibold">{error.message}</p>
+			</div>
+		{/await}
+	{:else}
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10">
-			{#each athletes as athlete, index (index)}
+			{#each atletes as athlete, index (index)}
 				<AthleteCard {athlete} />
 			{/each}
 		</div>
-	{:catch error}
-		<div class="flex justify-center items-center my-10">
-			<p class="text-2xl font-semibold">{error.message}</p>
-		</div>
-	{/await}
+	{/if}
 </section>
