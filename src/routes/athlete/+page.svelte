@@ -3,21 +3,20 @@
 	import type { Gender } from 'src/types/Gender';
 	import type { Athlete } from 'src/types/Athlete';
 	import { Input, Select, Spinner } from 'flowbite-svelte';
-	import PrimaryButton from '../../compnonents/shared/PrimaryButton.svelte';
 	import type { PageData } from './$types';
 	export let data: PageData;
-	let { fetch } = data;
+	let { fetch, url } = data;
 
-	let name: string;
-	let nation: string;
-	let gender: Gender;
-	let personalBest: number;
+	let name: string | undefined = url.searchParams.get('name') ?? '';
+	let nation: string | undefined;
+	let gender: Gender | undefined;
+	let personalBest: number | undefined;
 
 	async function handleSearch(
-		name: string,
-		nation: string,
-		gender: Gender,
-		personalBest: number
+		name?: string,
+		nation?: string,
+		gender?: Gender,
+		personalBest?: number
 	): Promise<Athlete[]> {
 		await debounce();
 		const response = await fetch(
@@ -57,7 +56,7 @@
 	const genderSelect = [
 		{
 			name: 'male and female',
-			value: undefined
+			value: ''
 		},
 		{
 			name: 'male',
