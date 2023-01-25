@@ -4,19 +4,28 @@
 	import { Input, Select, Spinner } from 'flowbite-svelte';
 	import type { PageData } from './$types';
 	import { _handleSearch } from './+page';
+	import type { Athlete } from 'src/types/Athlete';
 	import { browser } from '$app/environment';
+	import { mounted } from '../../utils/mounted';
 
 	export let data: PageData;
-	let athletesPromise = (data?.athletesPromises ?? [Promise.resolve([])])[0];
-	let atletes = data.athletes ?? [];
+	let athletes: Athlete[] | Promise<Athlete[]> = data.athletes;
 
-	let name: string | undefined = data.url.searchParams.get('name') ?? '';
-	let nation: string | undefined;
-	let gender: Gender | undefined;
-	let personalBest: number | undefined;
+	let name: string | '' = data.url.searchParams.get('name') ?? '';
+	let nation: string | '';
+	let gender: Gender | '' = '';
+	let personalBest: number | '' = '';
 
+	const isMounted = () => $mounted;
 	$: {
-		athletesPromise = _handleSearch(name, nation, gender, personalBest);
+		if (!browser || !isMounted()) break $;
+
+		athletes = _handleSearch(
+			name,
+			nation,
+			gender === '' ? undefined : gender,
+			personalBest === '' ? undefined : personalBest
+		);
 	}
 
 	const genderSelect = [
@@ -51,27 +60,19 @@
 			bind:value={personalBest}
 		/>
 	</div>
-	{#if browser}
-		{#await athletesPromise}
-			<div class="flex justify-center items-center my-10">
-				<Spinner />
-			</div>
-		{:then athletes}
-			<div class="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10">
-				{#each athletes as athlete, index (index)}
-					<AthleteCard {athlete} />
-				{/each}
-			</div>
-		{:catch error}
-			<div class="flex justify-center items-center my-10">
-				<p class="text-2xl font-semibold">{error.message}</p>
-			</div>
-		{/await}
-	{:else}
+	{#await athletes}
+		<div class="flex justify-center items-center my-10">
+			<Spinner />
+		</div>
+	{:then athletes}
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10">
-			{#each atletes as athlete, index (index)}
+			{#each athletes as athlete, index (index)}
 				<AthleteCard {athlete} />
 			{/each}
 		</div>
-	{/if}
+	{:catch error}
+		<div class="flex justify-center items-center my-10">
+			<p class="text-2xl font-semibold">{error.message}</p>
+		</div>
+	{/await}
 </section>

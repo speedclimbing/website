@@ -2,32 +2,15 @@ import { browser } from '$app/environment';
 import type { Load } from '@sveltejs/kit';
 import type { Athlete } from 'src/types/Athlete';
 import type { Gender } from 'src/types/Gender';
+import { debounce } from '../../utils/debounce';
 
-export const load: Load = async ({
-	fetch,
-	url
-}): Promise<{
-	fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>;
-	url: URL;
-	athletesPromises?: [Promise<Athlete[]>];
-	athletes?: Athlete[];
-}> => {
-	let athletesPromise: Promise<Athlete[]> = _handleSearch(
-		url.searchParams.get('name') ?? undefined
-	);
-
-	if (!browser) {
-		return {
-			fetch,
-			url,
-			athletes: await athletesPromise
-		};
-	}
+export const load: Load = async ({ fetch, url }) => {
+	let athletes = await _handleSearch(url.searchParams.get('name') ?? undefined);
 
 	return {
 		fetch,
 		url,
-		athletesPromises: [athletesPromise]
+		athletes
 	};
 };
 
@@ -55,22 +38,4 @@ export async function _handleSearch(
 	}
 
 	return athletes;
-}
-
-let timer: NodeJS.Timeout | undefined = undefined;
-async function debounce(): Promise<void> {
-	return new Promise((resolve, _) => {
-		if (!timer) {
-			timer = setTimeout(() => {
-				timer = undefined;
-			}, 500);
-			resolve();
-			return;
-		}
-
-		clearTimeout(timer);
-		timer = setTimeout(() => {
-			resolve();
-		}, 500);
-	});
 }
