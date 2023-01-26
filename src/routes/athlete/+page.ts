@@ -32,10 +32,5 @@ export async function _handleSearch(
 	);
 
 	const athletes: Athlete[] = await response.json();
-
-	if (athletes.length == 0) {
-		throw new Error('No athletes found');
-	}
-
 	return athletes;
 }

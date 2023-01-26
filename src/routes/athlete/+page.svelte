@@ -1,10 +1,10 @@
 <script lang="ts">
 	import AthleteCard from './AthleteCard.svelte';
-	import type { Gender } from 'src/types/Gender';
+	import type { Gender } from '../../types/Gender';
 	import { Input, Select, Spinner } from 'flowbite-svelte';
 	import type { PageData } from './$types';
 	import { _handleSearch } from './+page';
-	import type { Athlete } from 'src/types/Athlete';
+	import type { Athlete } from '../../types/Athlete';
 	import { browser } from '$app/environment';
 	import { mounted } from '../../utils/mounted';
 
@@ -45,11 +45,11 @@
 </script>
 
 <section id="athletes">
-	<div class="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10">
+	<div class="grid grid-cols-1 lg:grid-cols-2 grid-rows-3 lg:grid-rows-2 gap-5 my-10">
 		<Input
 			type="text"
 			placeholder="Name"
-			class="rounded-sm font-Raleway bg-black/5 col-span-2"
+			class="rounded-sm font-Raleway bg-black/5 lg:col-span-2"
 			bind:value={name}
 		/>
 		<Select items={genderSelect} bind:value={gender} placeholder="Select gender" />
@@ -65,14 +65,21 @@
 			<Spinner />
 		</div>
 	{:then athletes}
+		{#if athletes.length === 0}
+			<div class="flex justify-center items-center my-10">
+				<p class="text-2xl font-semibold">No athletes found</p>
+			</div>
+		{/if}
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10">
 			{#each athletes as athlete, index (index)}
-				<AthleteCard {athlete} />
+				<a href="/athlete/{athlete.id}">
+					<AthleteCard {athlete} />
+				</a>
 			{/each}
 		</div>
 	{:catch error}
 		<div class="flex justify-center items-center my-10">
-			<p class="text-2xl font-semibold">{error.message}</p>
+			<p class="text-2xl font-semibold">Error: {error.message}</p>
 		</div>
 	{/await}
 </section>
