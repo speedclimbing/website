@@ -6,6 +6,7 @@
 
 	let darkMode: boolean = false;
 	let scrolled: boolean = false;
+	let transparent: boolean = false;
 
 	$: {
 		if (darkMode && browser) {
@@ -14,6 +15,8 @@
 			document.documentElement.classList.remove('dark');
 		}
 	}
+
+	$: transparent = !scrolled && $page.url.pathname === '/' && browser;
 
 	function handleClick(e: any) {
 		darkMode = !darkMode;
@@ -31,18 +34,16 @@
 </script>
 
 <header
-	class="px-[10%] lg:px-[15%] flex justify-between fixed w-full {scrolled ||
-	$page.url.pathname !== '/'
-		? 'bg-white dark:bg-black shadow'
-		: 'bg-white/0 dark:bg-white/0'} top-0 z-10 transition-colors duration-500"
+	class="px-[10%] lg:px-[15%] flex justify-between fixed w-full {transparent
+		? 'bg-white/0 dark:bg-white/0'
+		: 'bg-white dark:bg-black shadow'} top-0 z-10 transition-colors duration-500"
 >
 	<Navbar
 		let:hidden
 		let:toggle
 		color="none"
-		class="text-black dark:text-dark-white {scrolled
-			? ''
-			: 'text-dark-white'} border-gray-100 dark:border-gray-700 px-2 sm:px-4 py-2.5 w-full px-0 sm:px-0"
+		class="text-black dark:text-dark-white {transparent &&
+			'text-dark-white'} border-gray-100 dark:border-gray-700 py-2.5 w-full px-0 sm:px-0"
 		navDivClass="mx-0 flex flex-wrap justify-between items-center  container"
 	>
 		<NavBrand id="logo" href="/">
@@ -55,16 +56,23 @@
 			{hidden}
 			class="font-Raleway sm:items-center"
 			ulClass="flex flex-col p-4 mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-base md:font-bold"
+			slideParams={{ delay: 0 }}
 		>
-			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">Trounaments</NavLi>
+			<NavLi
+				href="/"
+				activeClass="text-red"
+				nonActiveClass="hover:text-red"
+				on:click={() => {
+					!hidden && toggle();
+				}}>Trounaments</NavLi
+			>
 			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">Athletes</NavLi>
 			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">Teams</NavLi>
 			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">Stats</NavLi>
 			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">About</NavLi>
 			<NavLi
-				nonActiveClass="text-black font-bold dark:text-gray-200 hover:text-red dark:hover:text-red h-6 cursor-pointer {scrolled
-					? ''
-					: 'text-dark-white'}"
+				nonActiveClass="text-black font-bold dark:text-gray-200 hover:text-red dark:hover:text-red h-6 cursor-pointer {transparent &&
+					'text-dark-white'}"
 				on:click={handleClick}
 			>
 				{#if darkMode}
