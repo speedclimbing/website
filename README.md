@@ -1,5 +1,5 @@
-<h1 style="justify-content: center;align-items: center;display: flex;">
-    <img src="https://github.com/speedclimbing/website/blob/dev/static/favicon.png?raw=true" style="height: 2em;margin-right: .75em"/>
+<h1 align="center">
+    <img src="https://github.com/speedclimbing/website/blob/dev/static/favicon.png?raw=true" height="2em"/>
     <p>speedclimbing.org</p>
 </h1>
 
