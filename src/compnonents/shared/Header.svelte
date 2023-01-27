@@ -18,10 +18,6 @@
 
 	$: transparent = !scrolled && $page.url.pathname === '/' && browser;
 
-	function handleClick(e: any) {
-		darkMode = !darkMode;
-	}
-
 	if (browser) {
 		// On page load or when changing themes
 		const prefersColorSchemeDark = window.matchMedia('(prefers-color-scheme: dark)');
@@ -31,6 +27,14 @@
 		scrolled = document.documentElement.scrollTop > 10;
 		window.addEventListener('scroll', () => (scrolled = document.documentElement.scrollTop > 10));
 	}
+
+	const items = {
+		'/competition': 'Competitions',
+		'/athlete': 'Athletes',
+		'/team': 'Teams',
+		'/stats': 'Stats',
+		'/about': 'About'
+	};
 </script>
 
 <header
@@ -55,25 +59,27 @@
 			id="menu"
 			{hidden}
 			class="font-Raleway sm:items-center"
-			ulClass="flex flex-col p-4 mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-base md:font-bold"
+			ulClass="flex flex-col p-4 mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-base font-bold"
 			slideParams={{ delay: 0 }}
 		>
-			<NavLi
-				href="/"
-				activeClass="text-red"
-				nonActiveClass="hover:text-red"
-				on:click={() => {
-					!hidden && toggle();
-				}}>Trounaments</NavLi
-			>
-			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">Athletes</NavLi>
-			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">Teams</NavLi>
-			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">Stats</NavLi>
-			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">About</NavLi>
+			{#each Object.entries(items) as [path, name]}
+				<NavLi
+					href={path}
+					activeClass="text-red"
+					nonActiveClass="hover:text-red"
+					on:click={() => {
+						!hidden && toggle();
+					}}>{name}</NavLi
+				>
+			{/each}
 			<NavLi
 				nonActiveClass="text-black font-bold dark:text-gray-200 hover:text-red dark:hover:text-red h-6 cursor-pointer {transparent &&
+					hidden &&
 					'text-dark-white'}"
-				on:click={handleClick}
+				on:click={() => {
+					darkMode = !darkMode;
+					!hidden && toggle();
+				}}
 			>
 				{#if darkMode}
 					<Moon class="h-6" />
