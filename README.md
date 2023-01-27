@@ -1,5 +1,6 @@
-<h1 align="center">
-    <img src="https://github.com/speedclimbing/website/blob/dev/static/favicon.png?raw=true" height="45px" /> speedclimbing.org
+<h1 style="justify-content: center;align-items: center;display: flex;">
+    <img src="https://github.com/speedclimbing/website/blob/dev/static/favicon.png?raw=true" style="height: 2em;margin-right: .75em"/>
+    <p>speedclimbing.org</p>
 </h1>
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
