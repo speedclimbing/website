@@ -3,6 +3,12 @@
     <p>speedclimbing.org</p>
 </h1>
 
+<p align="center">
+    <a href="https://codeclimate.com/github/speedclimbing/website/maintainability">
+        <img src="https://api.codeclimate.com/v1/badges/a05c0a1ffdfbe3ad38b4/maintainability" />
+    </a>
+</p>
+
 speedclimbing.org aims to be a central place to get information about speedclimbing for everyone - from newbies to professionals.
 The [main branch](https://github.com/speedclimbing/website/tree/main) is available directly at [speedclimbing.org](https://speedclimbing.org), whereas the [dev branch](https://github.com/speedclimbing/website/tree/dev) is available on [dev.speedclimbing.org](https://dev.speedclimbing.org).
 
