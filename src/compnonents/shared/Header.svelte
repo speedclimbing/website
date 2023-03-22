@@ -42,7 +42,7 @@
 		color="none"
 		class="text-black dark:text-dark-white {scrolled
 			? ''
-			: 'text-dark-white'} border-gray-100 dark:border-gray-700 px-2 sm:px-4 py-2.5 w-full px-0 sm:px-0"
+			: 'text-dark-white'} border-gray-100 dark:border-gray-700  py-2.5 w-full"
 		navDivClass="mx-0 flex flex-wrap justify-between items-center  container"
 	>
 		<NavBrand id="logo" href="/">

@@ -1,6 +1,7 @@
 import type { Load } from '@sveltejs/kit';
 import type { Competition } from 'src/types/Competition';
 import type { Nation } from 'src/types/Nation';
+import type { League } from 'src/types/League';
 
 export const load: Load = async ({ fetch }) => {
 	const competitonResponse = await fetch('https://api.speedclimbing.org/v1/competition');
@@ -14,5 +15,9 @@ export const load: Load = async ({ fetch }) => {
 	const nationResponse = await fetch('https://api.speedclimbing.org/v1/nation');
 	const nations: Nation[] = await nationResponse.json();
 
-	return { competitions, fetch: fetch, nations };
+	let year: number = new Date().getFullYear();
+	const leagueResonse = await fetch(`https://api.speedclimbing.org/v1/league?year=${year - 1}`);
+	const leagues: League[] = await leagueResonse.json();
+
+	return { competitions, fetch, nations, leagues };
 };
