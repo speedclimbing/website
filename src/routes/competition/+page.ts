@@ -2,6 +2,7 @@ import type { Load } from '@sveltejs/kit';
 import type { Competition } from 'src/types/Competition';
 import type { Nation } from 'src/types/Nation';
 import type { League } from 'src/types/League';
+import initializeDates from 'src/utils/InitializeDates';
 
 export const load: Load = async ({ fetch, url }) => {
 	const year = new Date().getFullYear() - 1;
@@ -29,11 +30,7 @@ export async function _loadCompetitions(
 			})
 	);
 	const competitions: Competition[] = await response.json();
-
-	competitions.forEach((competition: Competition) => {
-		competition.from = new Date(competition.from);
-		competition.to = new Date(competition.to);
-	});
+	initializeDates(competitions);
 	return competitions;
 }
 
