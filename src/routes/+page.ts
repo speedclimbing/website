@@ -1,7 +1,7 @@
 import type { Load } from '@sveltejs/kit';
 import type { HomePageData } from 'src/types/Api';
 import type { Ranking } from 'src/types/Ranking';
-import initializeDates from 'src/utils/InitializeDates';
+import initializeDates from '../utils/InitializeDates';
 
 export const load: Load = async ({ fetch }) => {
 	const response = await fetch('https://api.speedclimbing.org/v1/home');

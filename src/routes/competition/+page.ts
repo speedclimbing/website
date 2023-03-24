@@ -2,7 +2,7 @@ import type { Load } from '@sveltejs/kit';
 import type { Competition } from 'src/types/Competition';
 import type { Nation } from 'src/types/Nation';
 import type { League } from 'src/types/League';
-import initializeDates from 'src/utils/InitializeDates';
+import initializeDates from '../../utils/InitializeDates';
 
 export const load: Load = async ({ fetch, url }) => {
 	const year = new Date().getFullYear() - 1;
