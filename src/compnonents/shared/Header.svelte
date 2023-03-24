@@ -4,26 +4,12 @@
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 
-	let darkMode: boolean = false;
 	let scrolled: boolean = false;
 	let transparent: boolean = false;
-
-	$: {
-		if (darkMode && browser) {
-			document.documentElement.classList.add('dark');
-		} else if (browser) {
-			document.documentElement.classList.remove('dark');
-		}
-	}
 
 	$: transparent = !scrolled && $page.url.pathname === '/' && browser;
 
 	if (browser) {
-		// On page load or when changing themes
-		const prefersColorSchemeDark = window.matchMedia('(prefers-color-scheme: dark)');
-		prefersColorSchemeDark.addEventListener('change', (e) => (darkMode = e.matches));
-		darkMode = prefersColorSchemeDark.matches;
-
 		scrolled = document.documentElement.scrollTop > 10;
 		window.addEventListener('scroll', () => (scrolled = document.documentElement.scrollTop > 10));
 	}
@@ -72,21 +58,6 @@
 					}}>{name}</NavLi
 				>
 			{/each}
-			<NavLi
-				nonActiveClass="text-black font-bold dark:text-gray-200 hover:text-red dark:hover:text-red h-6 cursor-pointer {transparent &&
-					hidden &&
-					'text-dark-white'}"
-				on:click={() => {
-					darkMode = !darkMode;
-					!hidden && toggle();
-				}}
-			>
-				{#if darkMode}
-					<Moon class="h-6" />
-				{:else}
-					<Sun class="h-6" />
-				{/if}</NavLi
-			>
 		</NavUl>
 	</Navbar>
 </header>
