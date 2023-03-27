@@ -26,7 +26,7 @@
 	>
 		<div class="flex gap-3 justify-between flex-col md:flex-row">
 			<div>
-				<h2 class="text-4xl font-bold">Player Search</h2>
+				<h2 class="text-4xl font-bold">Athlete Search</h2>
 				<Line />
 			</div>
 			<p class="text-sm font-light max-w-[300px] md:text-right mb-5 mt-[-30px] md:mt-0">
@@ -35,16 +35,16 @@
 			</p>
 		</div>
 
-		<div class="flex gap-5 flex-col md:flex-row">
+		<form action="/athlete" class="flex gap-5 flex-col md:flex-row">
 			<Input
 				type="text"
-				id="name"
+				name="name"
 				placeholder="Ahtlete Name"
 				required
 				class="rounded-sm font-Raleway bg-black/5"
 			/>
-			<PrimaryButton text="View all Athletes" />
-		</div>
+			<PrimaryButton text="Search" />
+		</form>
 	</div>
 	<div
 		id="rankings-table"

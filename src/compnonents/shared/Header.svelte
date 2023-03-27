@@ -1,48 +1,38 @@
 <script lang="ts">
-	import { Moon, Sun } from 'svelte-heros-v2';
 	import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte';
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 
-	let darkMode: boolean = false;
 	let scrolled: boolean = false;
+	let transparent: boolean = false;
 
-	$: {
-		if (darkMode && browser) {
-			document.documentElement.classList.add('dark');
-		} else if (browser) {
-			document.documentElement.classList.remove('dark');
-		}
-	}
-
-	function handleClick(e: any) {
-		darkMode = !darkMode;
-	}
+	$: transparent = !scrolled && $page.url.pathname === '/' && browser;
 
 	if (browser) {
-		// On page load or when changing themes
-		const prefersColorSchemeDark = window.matchMedia('(prefers-color-scheme: dark)');
-		prefersColorSchemeDark.addEventListener('change', (e) => (darkMode = e.matches));
-		darkMode = prefersColorSchemeDark.matches;
-
 		scrolled = document.documentElement.scrollTop > 10;
 		window.addEventListener('scroll', () => (scrolled = document.documentElement.scrollTop > 10));
 	}
+
+	const items = {
+		'/competition': 'Competitions',
+		'/athlete': 'Athletes',
+		'/team': 'Teams',
+		'/stats': 'Stats',
+		'/about': 'About'
+	};
 </script>
 
 <header
-	class="px-[10%] lg:px-[15%] flex justify-between fixed w-full {scrolled ||
-	$page.url.pathname !== '/'
-		? 'bg-white dark:bg-black shadow'
-		: 'bg-white/0 dark:bg-white/0'} top-0 z-10 transition-colors duration-500"
+	class="px-[10%] lg:px-[15%] flex justify-between fixed w-full {transparent
+		? 'bg-white/0 dark:bg-white/0'
+		: 'bg-white dark:bg-black shadow'} top-0 z-10 transition-colors duration-500"
 >
 	<Navbar
 		let:hidden
 		let:toggle
 		color="none"
-		class="text-black dark:text-dark-white {scrolled
-			? ''
-			: 'text-dark-white'} border-gray-100 dark:border-gray-700  py-2.5 w-full"
+		class="text-black dark:text-dark-white {transparent &&
+			'text-dark-white'} border-gray-100 dark:border-gray-700 py-2.5 w-full px-0 sm:px-0"
 		navDivClass="mx-0 flex flex-wrap justify-between items-center  container"
 	>
 		<NavBrand id="logo" href="/">
@@ -54,27 +44,19 @@
 			id="menu"
 			{hidden}
 			class="font-Raleway sm:items-center"
-			ulClass="flex flex-col p-4 mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-base md:font-bold"
+			ulClass="flex flex-col p-4 mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-base font-bold"
+			slideParams={{ delay: 0 }}
 		>
-			<NavLi href="/competition" activeClass="text-red" nonActiveClass="hover:text-red"
-				>Competitions</NavLi
-			>
-			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">Athletes</NavLi>
-			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">Teams</NavLi>
-			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">Stats</NavLi>
-			<NavLi href="/" activeClass="text-red" nonActiveClass="hover:text-red">About</NavLi>
-			<NavLi
-				nonActiveClass="text-black font-bold dark:text-gray-200 hover:text-red dark:hover:text-red h-6 cursor-pointer {scrolled
-					? ''
-					: 'text-dark-white'}"
-				on:click={handleClick}
-			>
-				{#if darkMode}
-					<Moon class="h-6" />
-				{:else}
-					<Sun class="h-6" />
-				{/if}</NavLi
-			>
+			{#each Object.entries(items) as [path, name]}
+				<NavLi
+					href={path}
+					activeClass="text-red"
+					nonActiveClass="hover:text-red"
+					on:click={() => {
+						!hidden && toggle();
+					}}>{name}</NavLi
+				>
+			{/each}
 		</NavUl>
 	</Navbar>
 </header>
