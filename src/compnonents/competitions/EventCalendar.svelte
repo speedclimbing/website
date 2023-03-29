@@ -3,8 +3,9 @@
 	import { Calendar } from 'fullcalendar';
 	import dayGridPlugin from '@fullcalendar/daygrid';
 	import { onMount } from 'svelte';
+	import { isPromise } from '../../utils/typeguards';
 
-	export let competitions: Competition[];
+	export let competitions: Competition[] | Promise<Competition[]>;
 	export let viewCalendar: boolean;
 	let calendar: Calendar | null = null;
 
@@ -25,6 +26,9 @@
 				return { domNodes: arrayOfDomNodes };
 			}
 		});
+		if (!isPromise(competitions)) {
+			updateCalendarEvents(competitions);
+		}
 	});
 
 	function handleToggleCalendar(viewCalendar: boolean) {
@@ -48,13 +52,16 @@
 		});
 		if (competitions.length) calendar.gotoDate(competitions[0].from);
 	}
-
 	$: {
-		updateCalendarEvents(competitions);
-	}
-
-	$: {
-		handleToggleCalendar(viewCalendar);
+		if (isPromise(competitions) && viewCalendar) {
+			handleToggleCalendar(false);
+			competitions.then((comps) => {
+				updateCalendarEvents(comps);
+				handleToggleCalendar(comps.length != 0);
+			});
+		} else {
+			handleToggleCalendar(viewCalendar);
+		}
 	}
 </script>
 

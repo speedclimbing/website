@@ -1,4 +1,3 @@
-import { browser } from '$app/environment';
 import type { Load } from '@sveltejs/kit';
 import type { Athlete } from 'src/types/Athlete';
 import type { Gender } from 'src/types/Gender';

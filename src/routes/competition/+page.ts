@@ -3,22 +3,25 @@ import type { Competition } from 'src/types/Competition';
 import type { Nation } from 'src/types/Nation';
 import type { League } from 'src/types/League';
 import initializeDates from '../../utils/InitializeDates';
+import { debounce } from '../../utils/debounce';
 
 export const load: Load = async ({ fetch, url }) => {
-	const year = new Date().getFullYear() - 1;
-	const competitions = await _loadCompetitions(year, '', '', '');
-	const nations = await _loadNations();
-	const leagues = await _loadLeagues(year);
+	const year = new Date().getFullYear();
+	const competitions = await _loadCompetitions(fetch, year, '', '', '');
+	const nations = await _loadNations(fetch);
+	const leagues = await _loadLeagues(fetch, year);
 
 	return { competitions, fetch, nations, leagues, url };
 };
 
 export async function _loadCompetitions(
+	fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>,
 	year: number,
 	name: string,
 	nation: string,
 	leagueId: string
 ): Promise<Competition[]> {
+	await debounce();
 	const response = await fetch(
 		'https://api.speedclimbing.org/v1/competition?' +
 			new URLSearchParams({
@@ -34,7 +37,10 @@ export async function _loadCompetitions(
 	return competitions;
 }
 
-export async function _loadLeagues(year: number): Promise<League[]> {
+export async function _loadLeagues(
+	fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>,
+	year: number
+): Promise<League[]> {
 	const response = await fetch(
 		'https://api.speedclimbing.org/v1/league?' +
 			new URLSearchParams({
@@ -46,13 +52,10 @@ export async function _loadLeagues(year: number): Promise<League[]> {
 	return leagues;
 }
 
-export async function _loadNations(): Promise<Nation[]> {
+export async function _loadNations(
+	fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>
+): Promise<Nation[]> {
 	const response = await fetch('https://api.speedclimbing.org/v1/nation');
 	const nations: Nation[] = await response.json();
-
-	nations.sort((a, b) => {
-		return a.name < b.name ? 1 : -1;
-	});
-
 	return nations;
 }

@@ -3,13 +3,16 @@
 	import type { League } from 'src/types/League';
 	import type { PageData } from './$types';
 	import EventCard from '../../compnonents/home/EventCard.svelte';
-	import { Input } from 'flowbite-svelte';
+	import { Input, Spinner } from 'flowbite-svelte';
 	import { _loadCompetitions, _loadLeagues } from './+page';
 	import EventCalendar from '../../compnonents/competitions/EventCalendar.svelte';
 	import SwitchButton from '../../compnonents/shared/SwitchButton.svelte';
+	import { debounce } from '../../utils/debounce';
+	import { mounted } from '../../utils/mounted';
+	import { browser } from '$app/environment';
 
 	export let data: PageData;
-	let competitions: Competition[] = data.competitions;
+	let competitions: Competition[] | Promise<Competition[]> = data.competitions;
 	let leagues: League[] = data.leagues;
 	let name: string = '';
 	let nation: string = '';
@@ -19,21 +22,15 @@
 	let viewCalendar: boolean = false;
 
 	async function handleSearch(year: number, name: string, nation: string, leagueId: string) {
-		competitions = await _loadCompetitions(year, name, nation, leagueId);
-		leagues = await _loadLeagues(year);
+		competitions = _loadCompetitions(data.fetch, year, name, nation, leagueId);
+		leagues = await _loadLeagues(data.fetch, year);
 	}
 
+	const isMounted = () => $mounted;
 	$: {
+		if (!browser || !isMounted()) break $;
 		handleSearch(year, name, nation, leagueId);
 	}
-
-	let timer: NodeJS.Timeout;
-	const debounce = (newValue: string) => {
-		clearTimeout(timer);
-		timer = setTimeout(() => {
-			name = newValue;
-		}, 500);
-	};
 </script>
 
 <section id="competitions">
@@ -44,8 +41,11 @@
 			placeholder="Competition Name"
 			required
 			class="rounded-sm font-Raleway bg-black/5"
-			on:keyup={({ target }) => {
-				if (target instanceof HTMLInputElement) debounce(target.value);
+			on:keyup={async ({ target }) => {
+				if (target instanceof HTMLInputElement) {
+					await debounce();
+					name = target.value;
+				}
 			}}
 		/>
 		<select
@@ -78,12 +78,27 @@
 			rightString="Calendar"
 		/>
 	</div>
-	{#if !viewCalendar}
-		<div class="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10">
-			{#each competitions as competition, index (index)}
-				<EventCard {competition} />
-			{/each}
+
+	{#await competitions}
+		<div class="flex justify-center items-center my-10">
+			<Spinner />
 		</div>
-	{/if}
+	{:then comps}
+		{#if comps.length === 0}
+			<div class="flex justify-center items-center my-10">
+				<p class="text-2xl font-semibold">No athletes found</p>
+			</div>
+		{:else if !viewCalendar}
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10">
+				{#each comps as competition, index (index)}
+					<EventCard {competition} />
+				{/each}
+			</div>
+		{/if}
+	{:catch error}
+		<div class="flex justify-center items-center my-10">
+			<p class="text-2xl font-semibold">Error: {error.message}</p>
+		</div>
+	{/await}
 	<EventCalendar {competitions} {viewCalendar} />
 </section>
