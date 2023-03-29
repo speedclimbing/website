@@ -4,14 +4,16 @@ import type { Nation } from 'src/types/Nation';
 import type { League } from 'src/types/League';
 import initializeDates from '../../utils/InitializeDates';
 import { debounce } from '../../utils/debounce';
+import type { Season } from 'src/types/Season';
 
 export const load: Load = async ({ fetch, url }) => {
 	const year = new Date().getFullYear();
 	const competitions = await _loadCompetitions(fetch, year, '', '', '');
 	const nations = await _loadNations(fetch);
 	const leagues = await _loadLeagues(fetch, year);
+	const seasons = await _loadSeaons(fetch);
 
-	return { competitions, fetch, nations, leagues, url };
+	return { competitions, nations, leagues, url, seasons, fetch };
 };
 
 export async function _loadCompetitions(
@@ -58,4 +60,12 @@ export async function _loadNations(
 	const response = await fetch('https://api.speedclimbing.org/v1/nation');
 	const nations: Nation[] = await response.json();
 	return nations;
+}
+
+async function _loadSeaons(
+	fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>
+) {
+	const response = await fetch('https://api.speedclimbing.org/v1/season');
+	const seasons: Season[] = await response.json();
+	return seasons;
 }

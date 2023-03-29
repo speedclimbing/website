@@ -54,8 +54,8 @@
 				leagueId = '';
 			}}
 		>
-			{#each [...Array(10).keys()] as number}
-				<option>{currentDate.getFullYear() - number}</option>
+			{#each data.seasons as season}
+				<option>{season.year}</option>
 			{/each}
 		</select>
 		<select bind:value={leagueId}>
@@ -100,5 +100,5 @@
 			<p class="text-2xl font-semibold">Error: {error.message}</p>
 		</div>
 	{/await}
-	<EventCalendar {competitions} {viewCalendar} />
+	<EventCalendar {competitions} {viewCalendar} bind:year />
 </section>

@@ -4,9 +4,11 @@
 	import dayGridPlugin from '@fullcalendar/daygrid';
 	import { onMount } from 'svelte';
 	import { isPromise } from '../../utils/typeguards';
+	import { stringToHex } from '../../utils/stringToHex';
 
 	export let competitions: Competition[] | Promise<Competition[]>;
 	export let viewCalendar: boolean;
+	export let year: number;
 	let calendar: Calendar | null = null;
 
 	onMount(() => {
@@ -15,6 +17,10 @@
 			plugins: [dayGridPlugin],
 			initialView: 'dayGridMonth',
 			displayEventTime: false,
+			datesSet: (info) => {
+				if (info.view.currentStart.getFullYear() != year)
+					year = info.view.currentStart.getFullYear();
+			},
 			eventClick: (info) => {
 				console.log(info.el);
 			},
@@ -44,6 +50,8 @@
 				title: c.name,
 				start: c.from,
 				end: c.to,
+				backgroundColor: stringToHex(c.name),
+				borderColor: 'transparent',
 				extendedProps: {
 					location: c.location,
 					nation: c.nation_code
