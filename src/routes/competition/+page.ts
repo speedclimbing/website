@@ -7,13 +7,30 @@ import { debounce } from '../../utils/debounce';
 import type { Season } from 'src/types/Season';
 
 export const load: Load = async ({ fetch, url }) => {
-	const year = new Date().getFullYear();
-	const competitions = await _loadCompetitions(fetch, year, '', '', '');
+	const year = Number(url.searchParams.get('year')) ?? new Date().getFullYear();
+	const name = url.searchParams.get('name') ?? '';
+	const nation = url.searchParams.get('natino') ?? '';
+	const league = url.searchParams.get('league') ?? '';
+
+	const competitions = await _loadCompetitions(fetch, year, name, nation, league);
 	const nations = await _loadNations(fetch);
 	const leagues = await _loadLeagues(fetch, year);
 	const seasons = await _loadSeaons(fetch);
 
-	return { competitions, nations, leagues, url, seasons, fetch };
+	return {
+		competitions,
+		nations,
+		leagues,
+		seasons,
+		url,
+		fetch,
+		params: {
+			year,
+			name,
+			nation,
+			league
+		}
+	};
 };
 
 export async function _loadCompetitions(
@@ -21,7 +38,7 @@ export async function _loadCompetitions(
 	year: number,
 	name: string,
 	nation: string,
-	leagueId: string
+	league: string
 ): Promise<Competition[]> {
 	await debounce();
 	const response = await fetch(
@@ -31,7 +48,7 @@ export async function _loadCompetitions(
 				to: new Date(year, 11, 31).toISOString().substring(0, 10),
 				name: name,
 				nation: nation,
-				league: leagueId
+				league: league
 			})
 	);
 	const competitions: Competition[] = await response.json();
