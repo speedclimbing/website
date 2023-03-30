@@ -40,14 +40,7 @@ export async function _loadCompetitions(
 ): Promise<Competition[]> {
 	await debounce();
 	const response = await fetch(
-		'https://api.speedclimbing.org/v1/competition?' +
-			new URLSearchParams({
-				from: new Date(params.year, 0, 1).toISOString().substring(0, 10),
-				to: new Date(params.year, 11, 31).toISOString().substring(0, 10),
-				name: params.name,
-				nation: params.nation,
-				league: params.league
-			})
+		'https://api.speedclimbing.org/v1/competition?' + _paramsToUrlSearchParams(params)
 	);
 	const competitions: Competition[] = await response.json();
 	initializeDates(competitions);
@@ -65,7 +58,6 @@ export async function _loadLeagues(
 			})
 	);
 	const leagues: League[] = await response.json();
-
 	return leagues;
 }
 
@@ -83,4 +75,19 @@ async function _loadSeaons(
 	const response = await fetch('https://api.speedclimbing.org/v1/season');
 	const seasons: Season[] = await response.json();
 	return seasons;
+}
+
+function _paramsToUrlSearchParams(params: {
+	year: number;
+	name: string;
+	nation: string;
+	league: string;
+}): URLSearchParams {
+	return new URLSearchParams({
+		from: new Date(params.year, 0, 1).toISOString().substring(0, 10),
+		to: new Date(params.year, 11, 31).toISOString().substring(0, 10),
+		name: params.name,
+		nation: params.nation,
+		league: params.league
+	});
 }

@@ -27,13 +27,13 @@
 		/>
 		<button
 			class="absolute w-[50%] h-full top-0 left-0 flex justify-center items-center text-[#2268d5] mix-blend-difference"
-			on:click={() => handleClickLeft()}
+			on:click={handleClickLeft}
 		>
 			{leftString}
 		</button>
 		<button
 			class="absolute w-[50%] h-full top-0 left-[50%] flex justify-center items-center text-[#2268d5] mix-blend-difference"
-			on:click={(e) => handleClickRight()}
+			on:click={handleClickRight}
 		>
 			{rightString}
 		</button>
