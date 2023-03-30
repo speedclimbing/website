@@ -102,4 +102,4 @@
 	}
 </script>
 
-<div id="calendar" />
+<div id="calendar" class="py-10 text-black dark:text-white" />

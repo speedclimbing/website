@@ -7,7 +7,7 @@ import { debounce } from '../../utils/debounce';
 import type { Season } from 'src/types/Season';
 
 export const load: Load = async ({ fetch, url }) => {
-	const year = Number(url.searchParams.get('year')) ?? new Date().getFullYear();
+	const year = Number(url.searchParams.get('year') ?? new Date().getFullYear());
 	const name = url.searchParams.get('name') ?? '';
 	const nation = url.searchParams.get('natino') ?? '';
 	const league = url.searchParams.get('league') ?? '';

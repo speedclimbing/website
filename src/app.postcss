@@ -47,3 +47,21 @@ section {
 nav > div {
 	max-width: unset !important;
 }
+
+.fc-customnext-button.fc-button.fc-button-primary,
+.fc-customprev-button.fc-button.fc-button-primary {
+	@apply bg-red;
+	border: none;
+}
+
+.fc-customnext-button.fc-button.fc-button-primary:active,
+.fc-customprev-button.fc-button.fc-button-primary:active {
+	@apply bg-red/80;
+}
+
+.fc-customnext-button.fc-button.fc-button-primary:focus,
+.fc-customprev-button.fc-button.fc-button-primary:focus,
+.fc-customnext-button.fc-button.fc-button-primary:active:focus,
+.fc-customprev-button.fc-button.fc-button-primary:active:focus {
+	box-shadow: 0 0 0 0.2rem rgba(218, 60, 43, 0.5);
+}
