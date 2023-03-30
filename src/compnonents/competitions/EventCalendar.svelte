@@ -50,7 +50,7 @@
 				title: c.name,
 				start: c.from,
 				end: c.to,
-				backgroundColor: stringToHex(c.name),
+				backgroundColor: stringToHex(c.league_id),
 				borderColor: 'transparent',
 				extendedProps: {
 					location: c.location,
