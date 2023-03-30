@@ -2,8 +2,7 @@
 	import type { Competition } from 'src/types/Competition';
 	import type { League } from 'src/types/League';
 	import type { PageData } from './$types';
-	import EventCard from '../../compnonents/home/EventCard.svelte';
-	import { Input, Spinner } from 'flowbite-svelte';
+	import { Input } from 'flowbite-svelte';
 	import { _loadCompetitions, _loadLeagues } from './+page';
 	import EventCalendar from '../../compnonents/competitions/EventCalendar.svelte';
 	import SwitchButton from '../../compnonents/shared/SwitchButton.svelte';
@@ -11,6 +10,8 @@
 	import { mounted } from '../../utils/mounted';
 	import { browser } from '$app/environment';
 	import { updateSearchParams } from '../../utils/updateSearchParams';
+	import SelectFilter from '../../compnonents/competitions/SelectFilter.svelte';
+	import CompetitionGrid from '../../compnonents/competitions/CompetitionGrid.svelte';
 
 	export let data: PageData;
 	let competitions: Competition[] | Promise<Competition[]> = data.competitions;
@@ -35,9 +36,7 @@
 	<div class="flex gap-[10px] mt-10">
 		<Input
 			type="text"
-			id="name"
 			placeholder="Competition Name"
-			required
 			class="rounded-sm font-Raleway bg-black/5"
 			value={name}
 			on:keyup={async ({ target }) => {
@@ -47,36 +46,29 @@
 				}
 			}}
 		/>
-		<select
+		<SelectFilter
 			bind:value={year}
-			class="block w-full text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-sm p-2.5"
-			on:change={() => {
+			options={data.seasons}
+			textProperty="year"
+			valueProperty="year"
+			onChange={() => {
 				league = '';
 			}}
-		>
-			{#each data.seasons as season}
-				<option>{season.year}</option>
-			{/each}
-		</select>
-		<select
+		/>
+		<SelectFilter
 			bind:value={league}
-			class="block w-full text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-sm p-2.5"
-		>
-			<option value="">All Leagues</option>
-			{#each leagues as l}
-				<option value={l.id}>{l.name}</option>
-			{/each}
-		</select>
-
-		<select
+			options={leagues}
+			textProperty="name"
+			valueProperty="id"
+			defaultText="All Leagues"
+		/>
+		<SelectFilter
 			bind:value={nation}
-			class="block w-full text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-sm p-2.5"
-		>
-			<option value="">All nations</option>
-			{#each data.nations as n}
-				<option value={n.id}>{n.code}</option>
-			{/each}
-		</select>
+			options={data.nations}
+			textProperty="code"
+			valueProperty="id"
+			defaultText="All Leagues"
+		/>
 		<SwitchButton
 			leftClickAction={() => (viewCalendar = false)}
 			rightClickAction={() => (viewCalendar = true)}
@@ -85,26 +77,6 @@
 		/>
 	</div>
 
-	{#await competitions}
-		<div class="flex justify-center items-center my-10">
-			<Spinner />
-		</div>
-	{:then comps}
-		{#if comps.length === 0}
-			<div class="flex justify-center items-center my-10">
-				<p class="text-2xl font-semibold">No competitions found</p>
-			</div>
-		{:else if !viewCalendar}
-			<div class="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10">
-				{#each comps as competition, index (index)}
-					<EventCard {competition} />
-				{/each}
-			</div>
-		{/if}
-	{:catch error}
-		<div class="flex justify-center items-center my-10">
-			<p class="text-2xl font-semibold">Error: {error.message}</p>
-		</div>
-	{/await}
+	<CompetitionGrid {competitions} {viewCalendar} />
 	<EventCalendar {competitions} {viewCalendar} bind:year />
 </section>
