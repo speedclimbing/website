@@ -20,7 +20,7 @@
 	let viewCalendar: boolean = false;
 
 	async function handleSearch(year: number, name: string, nation: string, league: string) {
-		competitions = _loadCompetitions(data.fetch, year, name, nation, league);
+		competitions = _loadCompetitions(data.fetch, { year, name, nation, league });
 		leagues = await _loadLeagues(data.fetch, year);
 	}
 

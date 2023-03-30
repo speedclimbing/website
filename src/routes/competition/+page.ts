@@ -11,8 +11,14 @@ export const load: Load = async ({ fetch, url }) => {
 	const name = url.searchParams.get('name') ?? '';
 	const nation = url.searchParams.get('natino') ?? '';
 	const league = url.searchParams.get('league') ?? '';
+	const params = {
+		year,
+		name,
+		nation,
+		league
+	};
 
-	const competitions = await _loadCompetitions(fetch, year, name, nation, league);
+	const competitions = await _loadCompetitions(fetch, params);
 	const nations = await _loadNations(fetch);
 	const leagues = await _loadLeagues(fetch, year);
 	const seasons = await _loadSeaons(fetch);
@@ -24,31 +30,23 @@ export const load: Load = async ({ fetch, url }) => {
 		seasons,
 		url,
 		fetch,
-		params: {
-			year,
-			name,
-			nation,
-			league
-		}
+		params
 	};
 };
 
 export async function _loadCompetitions(
 	fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>,
-	year: number,
-	name: string,
-	nation: string,
-	league: string
+	params: { year: number; name: string; nation: string; league: string }
 ): Promise<Competition[]> {
 	await debounce();
 	const response = await fetch(
 		'https://api.speedclimbing.org/v1/competition?' +
 			new URLSearchParams({
-				from: new Date(year, 0, 1).toISOString().substring(0, 10),
-				to: new Date(year, 11, 31).toISOString().substring(0, 10),
-				name: name,
-				nation: nation,
-				league: league
+				from: new Date(params.year, 0, 1).toISOString().substring(0, 10),
+				to: new Date(params.year, 11, 31).toISOString().substring(0, 10),
+				name: params.name,
+				nation: params.nation,
+				league: params.league
 			})
 	);
 	const competitions: Competition[] = await response.json();
