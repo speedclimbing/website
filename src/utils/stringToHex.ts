@@ -17,13 +17,11 @@ export function stringToHex(str: string): string {
 		'#795548',
 		'#607d8b'
 	];
-
 	var hash = 0;
 	if (str.length === 0) return hash.toString();
 	for (var i = 0; i < str.length; i++) {
 		hash = str.charCodeAt(i) + ((hash << 5) - hash);
 		hash = hash & hash;
 	}
-	hash = ((hash % colors.length) + colors.length) % colors.length;
-	return colors[hash];
+	return colors[((hash % colors.length) + colors.length) % colors.length];
 }

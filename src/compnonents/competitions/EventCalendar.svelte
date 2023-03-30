@@ -20,6 +20,9 @@
 				left: 'title',
 				right: 'customprev,customnext'
 			},
+			footerToolbar: {
+				right: 'subscribeToCalendar'
+			},
 			initialView: 'dayGridMonth',
 			displayEventTime: false,
 			eventClick: (info) => {
@@ -53,6 +56,12 @@
 							calendarYearChanged = true;
 							year = calendar.getDate().getFullYear();
 						}
+					}
+				},
+				subscribeToCalendar: {
+					text: 'Copy calendar link for subscription',
+					click: function () {
+						navigator.clipboard.writeText('http://ics.speedclimbing.org/');
 					}
 				}
 			}
