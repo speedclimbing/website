@@ -10,17 +10,18 @@
 	export let viewCalendar: boolean;
 	export let year: number;
 	let calendar: Calendar | null = null;
+	var calendarYearChanged = false;
 
 	onMount(() => {
 		let calendarEl: HTMLElement = document.getElementById('calendar')!;
 		calendar = new Calendar(calendarEl, {
 			plugins: [dayGridPlugin],
+			headerToolbar: {
+				left: 'title',
+				right: 'customprev,customnext'
+			},
 			initialView: 'dayGridMonth',
 			displayEventTime: false,
-			datesSet: (info) => {
-				if (info.view.currentStart.getFullYear() != year)
-					year = info.view.currentStart.getFullYear();
-			},
 			eventClick: (info) => {
 				console.log(info.el);
 			},
@@ -30,6 +31,30 @@
 				p1.style.overflow = 'clip';
 				let arrayOfDomNodes = [p1];
 				return { domNodes: arrayOfDomNodes };
+			},
+			customButtons: {
+				customprev: {
+					icon: 'chevron-left',
+					click: function () {
+						if (!calendar) return;
+						calendar.prev();
+						if (calendar.getDate().getFullYear() != year) {
+							calendarYearChanged = true;
+							year = calendar.getDate().getFullYear();
+						}
+					}
+				},
+				customnext: {
+					icon: 'chevron-right',
+					click: function () {
+						if (!calendar) return;
+						calendar.next();
+						if (calendar.getDate().getFullYear() != year) {
+							calendarYearChanged = true;
+							year = calendar.getDate().getFullYear();
+						}
+					}
+				}
 			}
 		});
 		if (!isPromise(competitions)) {
@@ -58,7 +83,11 @@
 				}
 			});
 		});
-		if (competitions.length) calendar.gotoDate(competitions[0].from);
+		if (competitions.length && !calendarYearChanged) {
+			calendar.gotoDate(competitions[0].from);
+		} else {
+			calendarYearChanged = false;
+		}
 	}
 	$: {
 		if (isPromise(competitions) && viewCalendar) {
