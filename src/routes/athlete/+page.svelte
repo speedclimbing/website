@@ -25,7 +25,7 @@
 	) => {
 		if (!(await debounce())) return;
 
-		athletes = _handleSearch(name, nation, gender, personalBest);
+		athletes = _handleSearch(data.fetch, name, nation, gender, personalBest);
 	};
 
 	const isMounted = () => $mounted;
