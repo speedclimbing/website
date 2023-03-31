@@ -64,7 +64,11 @@
 			class="rounded-sm font-Raleway bg-black/5 lg:col-span-2"
 			bind:value={name}
 		/>
-		<Select items={genderSelect} bind:value={gender} placeholder="Select gender" />
+		<Select bind:value={gender} placeholder="">
+			{#each genderSelect as { value, name }}
+				<option {value}>{name}</option>
+			{/each}
+		</Select>
 		<Input
 			type="number"
 			placeholder="PB lower than"
