@@ -1,7 +1,7 @@
 import type { Load } from '@sveltejs/kit';
 import type { Athlete } from '../../types/Athlete';
 import type { Gender } from '../../types/Gender';
-import type { Fetch } from '../../types/fetch';
+import type { Fetch } from '../../types/Fetch';
 
 export const load: Load = async ({ fetch, url }) => {
 	let athletes = await _handleSearch(fetch, { name: url.searchParams.get('name') ?? undefined });
