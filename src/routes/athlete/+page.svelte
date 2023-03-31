@@ -7,6 +7,7 @@
 	import type { Athlete } from '../../types/Athlete';
 	import { browser } from '$app/environment';
 	import { mounted } from '../../utils/mounted';
+	import { debounce } from '../../utils/debounce';
 
 	export let data: PageData;
 	let athletes: Athlete[] | Promise<Athlete[]> = data.athletes;
@@ -16,11 +17,22 @@
 	let gender: Gender | '' = '';
 	let personalBest: number | '' = '';
 
+	const handleSearch = async (
+		name: string,
+		nation: string,
+		gender?: Gender,
+		personalBest?: number
+	) => {
+		if (!(await debounce())) return;
+
+		athletes = _handleSearch(name, nation, gender, personalBest);
+	};
+
 	const isMounted = () => $mounted;
 	$: {
 		if (!browser || !isMounted()) break $;
 
-		athletes = _handleSearch(
+		handleSearch(
 			name,
 			nation,
 			gender === '' ? undefined : gender,

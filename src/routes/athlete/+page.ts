@@ -20,7 +20,6 @@ export async function _handleSearch(
 	gender?: Gender,
 	personalBest?: number
 ): Promise<Athlete[]> {
-	await debounce();
 	const response = await fetch(
 		'https://api.speedclimbing.org/v1/athlete?' +
 			new URLSearchParams({

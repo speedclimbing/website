@@ -1,17 +1,22 @@
 let timer: NodeJS.Timeout | undefined = undefined;
-export async function debounce(): Promise<void> {
+let previousResolve: ((res: boolean) => void) | undefined = undefined;
+
+export async function debounce(): Promise<boolean> {
 	return new Promise((resolve, _) => {
 		if (!timer) {
 			timer = setTimeout(() => {
 				timer = undefined;
 			}, 500);
-			resolve();
+			resolve(true);
 			return;
 		}
 
 		clearTimeout(timer);
+		previousResolve?.(false);
+		previousResolve = resolve;
+
 		timer = setTimeout(() => {
-			resolve();
+			resolve(true);
 		}, 500);
 	});
 }
