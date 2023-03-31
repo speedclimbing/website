@@ -3,16 +3,11 @@ let previousResolve: ((res: boolean) => void) | undefined = undefined;
 
 export async function debounce(): Promise<boolean> {
 	return new Promise((resolve, _) => {
-		if (!timer) {
-			timer = setTimeout(() => {
-				timer = undefined;
-			}, 500);
-			resolve(true);
-			return;
+		if (timer) {
+			clearTimeout(timer);
+			previousResolve?.(false);
 		}
 
-		clearTimeout(timer);
-		previousResolve?.(false);
 		previousResolve = resolve;
 
 		timer = setTimeout(() => {
