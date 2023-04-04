@@ -3,6 +3,14 @@
 	import { Clipboard } from 'svelte-heros-v2';
 
 	export let showModal: boolean;
+	let params: URLSearchParams;
+
+	$: {
+		if (showModal) {
+			params = new URL(document.location.toString()).searchParams;
+			params.delete('year');
+		}
+	}
 </script>
 
 <Modal
@@ -20,15 +28,17 @@
 	>
 	<button
 		id="copy"
-		class=" border-light-grey dark:border-grey border-2 rounded-[10px] flex items-center overflow-hidden"
+		class=" border-light-grey dark:border-grey border-2 rounded-[10px] flex items-center overflow-hidden w-full"
 		on:click={() => {
-			navigator.clipboard.writeText('https://ics.speedclimbing.org/');
+			navigator.clipboard.writeText(`https://ics.speedclimbing.org/?${params.toString()}`);
 		}}
 	>
 		<div class="inline-block bg-light-grey dark:bg-grey p-2">
 			<Clipboard class="text-white dark:text-light-grey" />
 		</div>
-		<p class="inline-block px-3 hover:text-light-grey">https://ics.speedclimbing.org/</p>
+		<p class="inline-block px-3 hover:text-light-grey whitespace-nowrap">
+			https://ics.speedclimbing.org/?{params.toString()}
+		</p>
 	</button>
 
 	<div>

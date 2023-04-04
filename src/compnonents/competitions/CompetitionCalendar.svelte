@@ -58,7 +58,7 @@
 					}
 				},
 				subscribeToCalendar: {
-					text: 'Copy calendar link for subscription',
+					text: 'Subscribe to calendar',
 					click: () => (showModal = true)
 				}
 			}

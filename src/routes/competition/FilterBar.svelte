@@ -52,7 +52,7 @@
 		options={nations}
 		textProperty="code"
 		valueProperty="id"
-		defaultText="All Leagues"
+		defaultText="All Nations"
 	/>
 	<SwitchButton
 		leftClickAction={() => (viewCalendar = false)}
