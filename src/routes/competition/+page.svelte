@@ -65,5 +65,7 @@
 			<p class="text-2xl font-semibold">Error: {error.message}</p>
 		</div>
 	{/await}
-	<CompetitionCalendar {competitions} {viewCalendar} bind:year />
+	{#if viewCalendar}
+		<CompetitionCalendar {competitions} bind:year />
+	{/if}
 </section>

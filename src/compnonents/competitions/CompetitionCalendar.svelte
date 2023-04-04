@@ -10,7 +10,6 @@
 
 	export let competitions: Competition[] | Promise<Competition[]>;
 	export let year: number;
-	export let viewCalendar: boolean;
 	let calendarEl: HTMLElement;
 	let calendar: Calendar;
 	let showModal: boolean;
@@ -101,7 +100,7 @@
 		handleToggleCalendar(false);
 		competitions.then((comps) => {
 			updateCalendarEvents(comps);
-			handleToggleCalendar(viewCalendar && comps.length != 0);
+			handleToggleCalendar(comps.length != 0);
 		});
 	}
 </script>
