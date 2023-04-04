@@ -5,11 +5,15 @@
 	import { onMount } from 'svelte';
 	import { stringToHex } from '../../utils/stringToHex';
 	import { mounted } from '../../utils/mounted';
+	import { isPromise } from '../../utils/typeguards';
+	import CalendarSubscriptionModal from './CalendarSubscriptionModal.svelte';
 
-	export let competitions: Competition[];
+	export let competitions: Competition[] | Promise<Competition[]>;
 	export let year: number;
+	export let viewCalendar: boolean;
 	let calendarEl: HTMLElement;
 	let calendar: Calendar;
+	let showModal: boolean;
 	var calendarYearChanged = false;
 	const isMounted = () => $mounted;
 
@@ -55,15 +59,21 @@
 				},
 				subscribeToCalendar: {
 					text: 'Copy calendar link for subscription',
-					click: function () {
-						navigator.clipboard.writeText('http://ics.speedclimbing.org/');
-					}
+					click: () => (showModal = true)
 				}
 			}
 		});
-		updateCalendarEvents(competitions);
+		if (isPromise(competitions)) {
+			competitions.then((comps) => {
+				updateCalendarEvents(comps);
+			});
+		}
 		calendar.render();
 	});
+
+	function handleToggleCalendar(viewCalendar: boolean) {
+		viewCalendar ? calendar.render() : calendar.destroy();
+	}
 
 	function updateCalendarEvents(competitions: Competition[]) {
 		calendar.removeAllEvents();
@@ -81,15 +91,20 @@
 			});
 		});
 		if (competitions.length && !calendarYearChanged) {
-			calendar.gotoDate(competitions[0]?.from);
+			calendar.gotoDate(competitions[0].from);
 		} else {
 			calendarYearChanged = false;
 		}
 	}
 	$: {
-		if (!isMounted()) break $;
-		updateCalendarEvents(competitions);
+		if (!isMounted() || !isPromise(competitions)) break $;
+		handleToggleCalendar(false);
+		competitions.then((comps) => {
+			updateCalendarEvents(comps);
+			handleToggleCalendar(viewCalendar && comps.length != 0);
+		});
 	}
 </script>
 
 <div id="calendar" class="py-10 text-black dark:text-white" bind:this={calendarEl} />
+<CalendarSubscriptionModal bind:showModal />
