@@ -5,7 +5,6 @@
 	import { onMount } from 'svelte';
 	import { stringToHex } from '../../utils/stringToHex';
 	import { mounted } from '../../utils/mounted';
-	import { isPromise } from '../../utils/typeguards';
 	import CalendarSubscriptionModal from './CalendarSubscriptionModal.svelte';
 
 	export let competitions: Competition[] | Promise<Competition[]>;
@@ -63,11 +62,15 @@
 				}
 			}
 		});
-		if (isPromise(competitions)) {
+
+		if (competitions instanceof Promise) {
 			competitions.then((comps) => {
 				updateCalendarEvents(comps);
 			});
+		} else {
+			updateCalendarEvents(competitions);
 		}
+
 		calendar.render();
 	});
 
@@ -97,7 +100,7 @@
 		}
 	}
 	$: {
-		if (!isMounted() || !isPromise(competitions)) break $;
+		if (!isMounted() || !(competitions instanceof Promise)) break $;
 		handleToggleCalendar(false);
 		competitions.then((comps) => {
 			updateCalendarEvents(comps);
