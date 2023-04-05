@@ -28,7 +28,7 @@
 	<Tooltip trigger="click" triggeredBy="#copy" arrow placement="top" style="auto">Copied!</Tooltip>
 	<button
 		id="copy"
-		class=" border-light-grey dark:border-grey border-2 rounded-[10px] flex items-center max-w-full"
+		class=" border-light-grey dark:border-grey border-2 rounded-[10px] flex items-center w-full"
 		on:click={() => {
 			navigator.clipboard.writeText(url + params.toString());
 		}}
@@ -37,7 +37,7 @@
 			<Clipboard class="text-white dark:text-light-grey" />
 		</div>
 		<p
-			class="inline-block px-3 hover:text-light-grey whitespace-nowrap overflow-hidden text-ellipsis"
+			class="inline-block px-3 hover:text-light-grey whitespace-nowrap overflow-hidden text-ellipsis w-full"
 		>
 			{url + params.toString()}
 		</p>
@@ -55,9 +55,3 @@
 		</ul>
 	</div>
 </Modal>
-
-<style>
-	#calendar-modal {
-		overflow: hidden;
-	}
-</style>

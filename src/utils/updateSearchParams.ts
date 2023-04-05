@@ -1,4 +1,9 @@
-export function updateSearchParams(params: Object, url: URL): void {
+import { browser } from '$app/environment';
+
+export function updateSearchParams(params: Object): void {
+	if (!browser) return;
+
+	const url = new URL(document.location.toString());
 	Object.entries(params).forEach((value) => {
 		if (value[1] == '') {
 			url.searchParams.get(value[0]) && url.searchParams.delete(value[0]);
