@@ -24,12 +24,13 @@
 	};
 
 	$: {
+		handleYearChange(year);
+	}
+
+	$: {
 		if (!browser || !isMounted()) break $;
 		handleSearch(year, name, nation, league);
 		updateSearchParams({ year, name, nation, league }, data.url);
-	}
-	$: {
-		handleYearChange(year);
 	}
 </script>
 

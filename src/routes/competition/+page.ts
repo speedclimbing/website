@@ -3,7 +3,6 @@ import type { Competition } from 'src/types/Competition';
 import type { Nation } from 'src/types/Nation';
 import type { League } from 'src/types/League';
 import initializeDates from '../../utils/InitializeDates';
-import { debounce } from '../../utils/debounce';
 import type { Season } from 'src/types/Season';
 
 export const load: Load = async ({ fetch, url }) => {
@@ -38,7 +37,6 @@ export async function _loadCompetitions(
 	fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>,
 	params: { year: number; name: string; nation: string; league: string }
 ): Promise<Competition[]> {
-	await debounce();
 	const response = await fetch(
 		'https://api.speedclimbing.org/v1/competition?' + _paramsToUrlSearchParams(params)
 	);

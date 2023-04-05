@@ -27,6 +27,7 @@
 				right: 'subscribeToCalendar'
 			},
 			initialView: 'dayGridMonth',
+			height: 'auto',
 			displayEventTime: false,
 			eventClick: (info) => {
 				console.log(info.el);
@@ -106,4 +107,4 @@
 </script>
 
 <div id="calendar" class="py-10 text-black dark:text-white" bind:this={calendarEl} />
-<CalendarSubscriptionModal bind:showModal />
+<CalendarSubscriptionModal bind:open={showModal} />
