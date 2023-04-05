@@ -18,7 +18,7 @@
 
 	const handleKeyup = async (target: EventTarget | null) => {
 		if (!(target instanceof HTMLInputElement)) return;
-		await debounce();
+		if (!(await debounce())) return;
 		name = target.value;
 	};
 </script>
