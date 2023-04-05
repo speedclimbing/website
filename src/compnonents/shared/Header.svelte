@@ -52,7 +52,7 @@
 				<NavLi
 					href={path}
 					activeClass="text-red"
-					nonActiveClass="hover:text-red"
+					nonActiveClass="hover:text-red text-white"
 					on:click={() => {
 						!hidden && toggle();
 					}}>{name}</NavLi

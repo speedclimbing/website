@@ -4,9 +4,11 @@
 	import TheRules from './TheRules.svelte';
 	import TheSport from './TheSport.svelte';
 	import TheWall from './TheWall.svelte';
+	import History from './History.svelte';
 </script>
 
 <TheSport />
-<TheWall />
 <TheRules />
+<TheWall />
+<History />
 <Faq />

@@ -1,17 +1,39 @@
 <script>
 	import { P } from 'flowbite-svelte';
 	import Line from '../../compnonents/shared/Line.svelte';
+	import Keyword from '../../compnonents/about/Keyword.svelte';
 </script>
 
 <section class="py-6">
-	<h2 class="text-4xl font-bold" id="the-rules">The rules</h2>
+	<h2 class="text-4xl font-bold" id="the-rules">How does the competition work?</h2>
 	<Line color="red" />
 
-	<P firstupper class="pb-6">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu convallis ligula. Fusce semper
-		finibus eros at hendrerit. Duis vitae leo sem. Sed id mollis turpis. Suspendisse ante lacus,
-		egestas sit amet luctus ut, maximus id ante. Vestibulum elementum urna nec nisi pellentesque, et
-		cursus est interdum. Integer scelerisque arcu a sapien laoreet, sit amet fringilla nisl
-		vulputate. Etiam id mauris eget sem pretium placerat.
+	<P
+		>A speedclimbing competition consists of two parts:
+		<Keyword color="blue-500">training</Keyword>,
+		<Keyword color="yellow">qualification</Keyword>
+		and
+		<Keyword color="red">final</Keyword>.
+		<br />
+		<br />
+		In the <Keyword uppercase color="blue-500">training</Keyword>, the athletes have to runs which
+		have no meaning for the result. They are used to check out the wall and to get used to the
+		conditions.
+		<br />
+		In the <Keyword uppercase color="yellow">qualification</Keyword>, all athletes climb the wall
+		twice, once on lane A and once on lane B. Only the better attempt is used for the result. The
+		best 16, 8 or 4 athletes will qualify for the final, depending on how many athletes compete. In
+		this stage,
+		<b>it does not matter if the athletes win or lose the race, only the time counts</b>. False
+		starts lead to immideate disqualification, even when the athlete has already a valid result from
+		the previous run.
+		<br />
+		The <Keyword uppercase color="red">final</Keyword> consists of multiple elimination stages. This
+		is where it gets exciting! In the final, the time does not matter anymore, it's only about being
+		the first one at the top. In every round, the first place competes against the last place, the second
+		place competes against the second last place and so on. The winner of each round advances to the
+		next round. The loser is eliminated. When only four athletes are left, it's called the semi-final.
+		The losers of the semi-final compete again, in the so-called small-final, for the third place. The
+		winners proceed to the final to determine who wins the competition.
 	</P>
 </section>
