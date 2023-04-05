@@ -19,6 +19,6 @@
 		"beta") until they are absolutely perfect. This is the reason why it is even possible to climb
 		that 15 meter wall in five seconds.
 		<br />
-		This is what makes speedclimbing so exciting: the
+		This is what makes speedclimbing so exciting!
 	</P>
 </section>
