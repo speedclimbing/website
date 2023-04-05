@@ -7,6 +7,7 @@
 	import type { Athlete } from '../../types/Athlete';
 	import { browser } from '$app/environment';
 	import { mounted } from '../../utils/mounted';
+	import { debounce } from '../../utils/debounce';
 
 	export let data: PageData;
 	let athletes: Athlete[] | Promise<Athlete[]> = data.athletes;
@@ -16,11 +17,22 @@
 	let gender: Gender | '' = '';
 	let personalBest: number | '' = '';
 
+	const handleSearch = async (
+		name: string,
+		nation: string,
+		gender?: Gender,
+		personalBest?: number
+	) => {
+		if (!(await debounce())) return;
+
+		athletes = _handleSearch(data.fetch, { name, nation, gender, personalBest });
+	};
+
 	const isMounted = () => $mounted;
 	$: {
 		if (!browser || !isMounted()) break $;
 
-		athletes = _handleSearch(
+		handleSearch(
 			name,
 			nation,
 			gender === '' ? undefined : gender,
@@ -52,7 +64,11 @@
 			class="rounded-sm font-Raleway bg-black/5 lg:col-span-2"
 			bind:value={name}
 		/>
-		<Select items={genderSelect} bind:value={gender} placeholder="Select gender" />
+		<Select bind:value={gender} placeholder="">
+			{#each genderSelect as { value, name }}
+				<option {value}>{name}</option>
+			{/each}
+		</Select>
 		<Input
 			type="number"
 			placeholder="PB lower than"
