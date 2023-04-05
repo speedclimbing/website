@@ -100,7 +100,7 @@
 		}
 	}
 	$: {
-		if (!isMounted() || !isPromise(competitions)) break $;
+		if (!isMounted() || !(competitions instanceof Promise)) break $;
 		handleToggleCalendar(false);
 		competitions.then((comps) => {
 			updateCalendarEvents(comps);
