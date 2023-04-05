@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { Moon, Sun } from 'svelte-heros-v2';
 	import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte';
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';

@@ -4,4 +4,5 @@ export type Competition = {
 	from: Date;
 	to: Date;
 	nation_code: string | null;
+	league_id: string;
 };
