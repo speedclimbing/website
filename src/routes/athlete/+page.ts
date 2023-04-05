@@ -1,10 +1,10 @@
 import type { Load } from '@sveltejs/kit';
-import type { Athlete } from 'src/types/Athlete';
-import type { Gender } from 'src/types/Gender';
-import { debounce } from '../../utils/debounce';
+import type { Athlete } from '../../types/Athlete';
+import type { Gender } from '../../types/Gender';
+import type { Fetch } from '../../types/Fetch';
 
 export const load: Load = async ({ fetch, url }) => {
-	let athletes = await _handleSearch(url.searchParams.get('name') ?? undefined);
+	let athletes = await _handleSearch(fetch, { name: url.searchParams.get('name') ?? undefined });
 
 	return {
 		fetch,
@@ -14,12 +14,15 @@ export const load: Load = async ({ fetch, url }) => {
 };
 
 export async function _handleSearch(
-	name?: string,
-	nation?: string,
-	gender?: Gender,
-	personalBest?: number
+	fetch: Fetch,
+	params: {
+		name?: string;
+		nation?: string;
+		gender?: Gender;
+		personalBest?: number;
+	}
 ): Promise<Athlete[]> {
-	await debounce();
+	const { name, nation, gender, personalBest } = params;
 	const response = await fetch(
 		'https://api.speedclimbing.org/v1/athlete?' +
 			new URLSearchParams({
