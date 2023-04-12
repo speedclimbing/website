@@ -15,7 +15,7 @@
 		for yourself!
 	</p>
 	<div class="flex gap-3 flex-col sm:flex-row">
-		<PrimaryButton text="Latest Tournaments" />
+		<PrimaryButton text="Latest Competitions" link="/competition" />
 		<button
 			class={`py-3 w-[200px] border-2 text-white border-white bg-white/10 rounded-[3px] font-semibold`}
 			>Top Climbers</button

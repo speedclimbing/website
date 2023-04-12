@@ -17,7 +17,7 @@
 			eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
 		</p>
 		<div class="flex gap-3 flex-col px-[auto] sm:flex-row">
-			<PrimaryButton text="Latest Tournaments" />
+			<PrimaryButton text="Latest Competitions" link="/competition" />
 			<SecondaryButton text="Top Climbers" />
 		</div>
 	</div>

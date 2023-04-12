@@ -16,7 +16,7 @@
 </script>
 
 <section id="latest-tournaments" class="py-[100px]">
-	<h2 class="text-4xl font-bold text-center">Latest Tournaments</h2>
+	<h2 class="text-4xl font-bold text-center">Latest Competitions</h2>
 	<Line style="mx-auto" />
 	<div class="flex justify-between gap-5 flex-col lg:flex-row">
 		<Select items={countries} bind:value={selected} />
@@ -29,5 +29,5 @@
 		{/each}
 	</div>
 
-	<PrimaryButton text="View all Tournaments" style="mx-auto block" />
+	<PrimaryButton text="View all Competitions" link="/competition" style="mx-auto block" />
 </section>
