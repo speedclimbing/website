@@ -7,7 +7,7 @@
 		TableHead,
 		TableHeadCell
 	} from 'flowbite-svelte';
-	import type { Ranking } from 'src/types/Ranking';
+	import type { Ranking } from '../../types/Ranking';
 
 	export let worldRankingsFemale: Ranking[];
 	export let worldRankingsMale: Ranking[];
