@@ -11,37 +11,42 @@
 	}
 </script>
 
-<Table color="custom" noborder divClass="relative overflow-x-auto my-5">
+<Table noborder divClass="relative overflow-x-auto my-5 text-[18px]">
 	<TableBody>
 		{#each new Array(5) as n, i}
-			<TableBodyRow>
-				<TableBodyCell tdClass="px-6 py-2 whitespace-nowrap font-medium text-md"
+			<TableBodyRow color="custom">
+				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium text-md text-[18px]"
 					>{i + 1}</TableBodyCell
 				>
-				<TableBodyCell tdClass="px-6 py-2 whitespace-nowrap font-medium text-[25px]"
+				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium text-[25px]"
 					>{getFlagEmoji('de')}</TableBodyCell
 				>
-				<TableBodyCell tdClass="px-6 py-2 whitespace-nowrap font-medium ">Germany</TableBodyCell>
-				<TableBodyCell tdClass="px-6 py-2 whitespace-nowrap font-medium "
+				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium text-[18px]"
+					>Germany</TableBodyCell
+				>
+				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium text-[18px]"
 					><div
-						class="rounded-[50%] aspect-square h-9 bg-yellow flex items-center justify-center text-[18px]"
+						class="rounded-[50%] aspect-square h-9 bg-yellow flex items-center justify-center text-white"
 					>
 						10
 					</div></TableBodyCell
 				>
-				<TableBodyCell tdClass="px-6 py-2 whitespace-nowrap font-medium"
+				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium text-[18px]"
 					><div
-						class="rounded-[50%] aspect-square h-9 bg-light-grey flex items-center justify-center text-[18px]"
+						class="rounded-[50%] aspect-square h-9 bg-light-grey flex items-center justify-center text-white"
 					>
 						12
 					</div></TableBodyCell
 				>
-				<TableBodyCell tdClass="px-6 py-2 whitespace-nowrap font-medium "
+				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium text-[18px]"
 					><div
-						class="rounded-[50%] aspect-square h-9 bg-bronze flex items-center justify-center text-[18px]"
+						class="rounded-[50%] aspect-square h-9 bg-bronze flex items-center justify-center text-white"
 					>
 						7
 					</div></TableBodyCell
+				>
+				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium text-[18px]"
+					>29</TableBodyCell
 				>
 			</TableBodyRow>
 		{/each}

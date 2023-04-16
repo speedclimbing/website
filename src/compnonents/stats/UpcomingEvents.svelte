@@ -31,7 +31,9 @@
 	];
 </script>
 
-<div class="bg-grey px-[5vw] py-10 rounded-md border-white/5 border-2 col-span-1">
+<div
+	class="bg-white dark:bg-grey px-[5vw] py-10 rounded-md dark:border-white/5 border-2 col-span-2"
+>
 	<div class="flex justify-between mb-5">
 		<h2 class="text-3xl">Upcoming Events</h2>
 		<AlternativeButton />

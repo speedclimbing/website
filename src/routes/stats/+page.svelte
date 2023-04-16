@@ -16,8 +16,8 @@
 </script>
 
 <Hero />
-<section class="bg-black self ">
-	<div class="grid grid-cols-3 items-center justify-items-center text-xl py-4 text-white">
+<section class="bg-white dark:bg-black self ">
+	<div class="grid grid-cols-3 items-center justify-items-center text-xl py-4 dark:text-white">
 		<button class="cursor-pointer" on:click={handleClickSeasonStats}>Season Stats</button>
 		<button class="cursor-pointer" on:click={handleClickAllTimeStats}>All time Stats</button>
 		<SwitchButton leftClickAction={() => {}} rightClickAction={() => {}} />
