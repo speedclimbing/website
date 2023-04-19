@@ -1,4 +1,5 @@
 <script>
+	// colors: bg-red/10 bg-yellow/10
 	import AlternativeButton from './AlternativeButton.svelte';
 	import { Trophy } from 'svelte-heros-v2';
 	export let color = 'yellow';

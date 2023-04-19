@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Table, TableBody, TableBodyCell, TableBodyRow } from 'flowbite-svelte';
-	import AlternativeButton from '../shared/AlternativeButton.svelte';
 
 	function getFlagEmoji(countryCode: string) {
 		const codePoints = countryCode
@@ -11,34 +10,32 @@
 	}
 </script>
 
-<Table noborder divClass="relative overflow-x-auto my-5 text-[18px]">
+<Table noborder divClass="relative overflow-x-auto my-5 ">
 	<TableBody>
 		{#each new Array(5) as n, i}
 			<TableBodyRow color="custom">
-				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium text-md text-[18px]"
+				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium text-md "
 					>{i + 1}</TableBodyCell
 				>
 				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium text-[25px]"
 					>{getFlagEmoji('de')}</TableBodyCell
 				>
-				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium text-[18px]"
-					>Germany</TableBodyCell
-				>
-				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium text-[18px]"
+				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium ">Germany</TableBodyCell>
+				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium "
 					><div
 						class="rounded-[50%] aspect-square h-9 bg-yellow flex items-center justify-center text-white"
 					>
 						10
 					</div></TableBodyCell
 				>
-				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium text-[18px]"
+				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium "
 					><div
 						class="rounded-[50%] aspect-square h-9 bg-light-grey flex items-center justify-center text-white"
 					>
 						12
 					</div></TableBodyCell
 				>
-				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium text-[18px]"
+				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium "
 					><div
 						class="rounded-[50%] aspect-square h-9 bg-bronze flex items-center justify-center text-white"
 					>
@@ -52,7 +49,6 @@
 		{/each}
 	</TableBody>
 </Table>
-<AlternativeButton />
 
 <style>
 	.bg-bronze {

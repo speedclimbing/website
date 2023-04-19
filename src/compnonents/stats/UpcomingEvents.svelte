@@ -32,11 +32,14 @@
 </script>
 
 <div
-	class="bg-white dark:bg-grey px-[5vw] py-10 rounded-md dark:border-white/5 border-2 col-span-2"
+	class="bg-white dark:bg-grey px-[5vw] py-10 rounded-md dark:border-white/5 border-2 xl:col-span-4 col-span-10"
 >
-	<div class="flex justify-between mb-5">
-		<h2 class="text-3xl">Upcoming Events</h2>
-		<AlternativeButton />
+	<div class="flex justify-between flex-wrap gap-5 mb-5">
+		<h2 class="text-3xl">Upcoming</h2>
+		<AlternativeButton
+			style="dark:bg-red dark:border-red bg-red border-red !text-white shrink-0"
+			text="All competitons"
+		/>
 	</div>
 	<div class="flex flex-col gap-2">
 		<EventCard competition={competitions[0]} />
