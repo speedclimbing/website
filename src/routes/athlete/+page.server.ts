@@ -5,7 +5,7 @@ import type { Fetch } from 'types/Fetch';
 import { API_URL } from 'utils/constants';
 import { fetchEndpoint } from 'utils/api';
 
-export const load: ServerLoad = async ({ fetch, url }) => {
+export const load: ServerLoad = async ({ fetch, platform, url }) => {
 	let name: string | '' = url.searchParams.get('name') ?? '';
 	let nation: string | '' = url.searchParams.get('nation') ?? '';
 	let gender: Gender | '' = (url.searchParams.get('gender') as Gender) ?? '';
@@ -20,6 +20,7 @@ export const load: ServerLoad = async ({ fetch, url }) => {
 
 	let athletes: Athlete[] = await fetchEndpoint(
 		fetch,
+		platform,
 		'athlete',
 		new URLSearchParams({
 			name: name.toLocaleLowerCase(),

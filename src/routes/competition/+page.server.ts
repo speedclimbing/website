@@ -6,7 +6,7 @@ import type { Season } from 'types/Season';
 import initializeDates from 'utils/InitializeDates';
 import { fetchEndpoint } from 'utils/api';
 
-export const load: ServerLoad = async ({ fetch, url }) => {
+export const load: ServerLoad = async ({ fetch, platform, url }) => {
 	const year = Number(url.searchParams.get('year') ?? new Date().getFullYear());
 	const name = url.searchParams.get('name') ?? '';
 	const nation = url.searchParams.get('natino') ?? '';
@@ -20,15 +20,16 @@ export const load: ServerLoad = async ({ fetch, url }) => {
 
 	const competitions: Competition[] = await fetchEndpoint(
 		fetch,
+		platform,
 		'/competition',
 		_paramsToUrlSearchParams(params)
 	);
 	initializeDates(competitions);
-	const nations: Nation[] = await fetchEndpoint(fetch, '/nation');
-	const leagues: League[] = await fetchEndpoint(fetch, '/league', {
+	const nations: Nation[] = await fetchEndpoint(fetch, platform, '/nation');
+	const leagues: League[] = await fetchEndpoint(fetch, platform, '/league', {
 		year: year.toString()
 	});
-	const seasons: Season[] = await fetchEndpoint(fetch, '/season');
+	const seasons: Season[] = await fetchEndpoint(fetch, platform, '/season');
 
 	return {
 		competitions,

@@ -3,6 +3,7 @@ import { API_URL } from './constants';
 
 export const fetchEndpoint = async <T>(
 	fetch: Fetch,
+	platform: Readonly<App.Platform> | undefined,
 	path: string,
 	params?: URLSearchParams | Record<string, string>
 ): Promise<T> => {
@@ -12,7 +13,14 @@ export const fetchEndpoint = async <T>(
 		path += `?${new URLSearchParams(params).toString()}`;
 	}
 
-	const response = await fetch(`${API_URL}/${path}`);
-	const nations: T = await response.json();
-	return nations;
+	let headers: Record<string, string> = {};
+	if (platform?.env?.API_TOKEN) {
+		headers['Authorization'] = `Bearer ${process.env.API_TOKEN}`;
+	}
+
+	const response = await fetch(`${API_URL}/${path}`, {
+		headers: headers
+	});
+
+	return response.json();
 };
