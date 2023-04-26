@@ -3,7 +3,7 @@ import type { Athlete } from 'types/Athlete';
 import type { Gender } from 'types/Gender';
 import type { Fetch } from 'types/Fetch';
 import { API_URL } from 'utils/constants';
-import { fetchEntities } from 'utils/api';
+import { fetchEndpoint } from 'utils/api';
 
 export const load: ServerLoad = async ({ fetch, url }) => {
 	let name: string | '' = url.searchParams.get('name') ?? '';
@@ -18,7 +18,7 @@ export const load: ServerLoad = async ({ fetch, url }) => {
 		personalBest
 	};
 
-	let athletes = await fetchEntities<Athlete>(
+	let athletes: Athlete[] = await fetchEndpoint(
 		fetch,
 		'athlete',
 		new URLSearchParams({
