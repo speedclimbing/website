@@ -1,14 +1,13 @@
 <script lang="ts">
 	import AthleteCard from './AthleteCard.svelte';
 	import type { Gender } from 'types/Gender';
-	import { Select, Skeleton, Spinner } from 'flowbite-svelte';
+	import { Select, Spinner } from 'flowbite-svelte';
 	import type { PageData } from './$types';
 	import { browser } from '$app/environment';
 	import { mounted } from 'utils/mounted';
 	import { updateSearchParams } from 'utils/updateSearchParams';
 	import DebouncedInput from 'compnonents/shared/DebouncedInput.svelte';
 	import { navigating } from '$app/stores';
-	import AthleteCardPlaceholder from './AthleteCardPlaceholder.svelte';
 
 	export let data: PageData;
 	let params = data.params;
@@ -65,15 +64,14 @@
 			bind:value={params.personalBest}
 		/>
 	</div>
-	{#if data.athletes.length === 0}
+
+	{#if $navigating}
+		<div class="flex justify-center items-center my-10">
+			<Spinner />
+		</div>
+	{:else if data.athletes.length === 0}
 		<div class="flex justify-center items-center my-10">
 			<p class="text-2xl font-semibold">No athletes found</p>
-		</div>
-	{:else if $navigating}
-		<div class="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10">
-			{#each new Array(10) as _}
-				<AthleteCardPlaceholder />
-			{/each}
 		</div>
 	{:else}
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10">

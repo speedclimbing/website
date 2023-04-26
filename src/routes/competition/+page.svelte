@@ -7,6 +7,8 @@
 	import FilterBar from './FilterBar.svelte';
 	import CompetitionCalendar from 'compnonents/competitions/CompetitionCalendar.svelte';
 	import EventCard from 'compnonents/home/EventCard.svelte';
+	import { Spinner } from 'flowbite-svelte';
+	import { navigating } from '$app/stores';
 
 	export let data: PageData;
 	let competitions: Competition[] = data.competitions;
@@ -35,7 +37,11 @@
 	nations={data.nations}
 />
 <section id="competitions">
-	{#if data.competitions.length === 0}
+	{#if $navigating}
+		<div class="flex justify-center items-center my-10">
+			<Spinner />
+		</div>
+	{:else if data.competitions.length === 0}
 		<div class="flex justify-center items-center my-10">
 			<p class="text-2xl font-semibold">No competitions found</p>
 		</div>
@@ -45,8 +51,7 @@
 				<EventCard {competition} />
 			{/each}
 		</div>
-	{/if}
-	{#if viewCalendar}
+	{:else if viewCalendar}
 		<CompetitionCalendar {competitions} bind:year />
 	{/if}
 </section>
