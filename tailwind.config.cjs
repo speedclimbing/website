@@ -18,6 +18,21 @@ const config = {
 			fontFamily: {
 				Roboto: ['Roboto', 'sans-serif'],
 				Raleway: ['Raleway', 'sans-serif']
+			},
+			animation: {
+				blink: 'blink 4s linear infinite',
+				eyes: 'eyes 10s ease-in-out infinite'
+			},
+			keyframes: {
+				blink: {
+					'0%, 96%': { transform: 'scaleY(1)' },
+					'98%': { transform: 'scaleY(0.1)' }
+				},
+				eyes: {
+					'0%, 25%, 50%, 75%': { transform: 'translate(0, 0)'},
+					'30%, 45%': { transform: 'translate(-10px, 0)'},
+					'80%, 95%': { transform: 'translate(10px, 0)'}
+				}
 			}
 		}
 	},
