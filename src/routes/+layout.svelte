@@ -20,7 +20,6 @@
 
 		wholePageLoading = true;
 	}
-	$: console.log(wholePageLoading, $navigating?.type, $navigating?.from, $navigating?.to);
 </script>
 
 <Header />
