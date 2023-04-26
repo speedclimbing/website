@@ -17,9 +17,7 @@ export const fetchEndpoint = async <T>(
 		headers = { Authorization: `Bearer ${process.env.API_TOKEN}` };
 	}
 
-	const response = await fetch(`${API_URL}/${path}`, {
-		headers: headers
-	});
+	const response = await fetch(`${API_URL}/${path}`);
 	const nations: T = await response.json();
 	return nations;
 };
