@@ -1,45 +1,30 @@
 <script lang="ts">
 	import AthleteCard from './AthleteCard.svelte';
 	import type { Gender } from 'types/Gender';
-	import { Input, Select, Spinner } from 'flowbite-svelte';
+	import { Select } from 'flowbite-svelte';
 	import type { PageData } from './$types';
-	import type { Athlete } from 'types/Athlete';
 	import { browser } from '$app/environment';
 	import { mounted } from 'utils/mounted';
-	import { debounce } from 'utils/debounce';
-	import { page } from '$app/stores';
 	import { updateSearchParams } from 'utils/updateSearchParams';
+	import DebouncedInput from 'compnonents/shared/DebouncedInput.svelte';
 
 	export let data: PageData;
-
-	let name: string | '' = $page.url.searchParams.get('name') ?? '';
-	let nation: string | '';
-	let gender: Gender | '' = '';
-	let personalBest: number | '' = '';
+	let params = data.params;
 
 	const handleSearch = async (
 		name: string,
 		nation: string,
-		gender?: Gender,
-		personalBest?: number
+		gender: Gender | '',
+		personalBest: number | ''
 	) => {
-		if (!(await debounce())) return;
-		//$page.url.searchParams.set('name', name);
-		updateSearchParams({ name: name });
-
-		//athletes = _handleSearch(data.fetch, { name, nation, gender, personalBest });
+		updateSearchParams({ name, nation, gender, personalBest });
 	};
 
 	const isMounted = () => $mounted;
 	$: {
 		if (!browser || !isMounted()) break $;
 
-		handleSearch(
-			name,
-			nation,
-			gender === '' ? undefined : gender,
-			personalBest === '' ? undefined : personalBest
-		);
+		handleSearch(params.name, params.nation, params.gender, params.personalBest);
 	}
 
 	const genderSelect = [
@@ -60,22 +45,22 @@
 
 <section id="athletes">
 	<div class="grid grid-cols-1 lg:grid-cols-2 grid-rows-3 lg:grid-rows-2 gap-5 my-10">
-		<Input
+		<DebouncedInput
 			type="text"
 			placeholder="Name"
-			class="rounded-sm font-Raleway bg-black/5 lg:col-span-2"
-			bind:value={name}
+			inputClass="rounded-sm font-Raleway bg-black/5 lg:col-span-2"
+			bind:value={params.name}
 		/>
-		<Select bind:value={gender} placeholder="">
+		<Select bind:value={params.gender} placeholder="">
 			{#each genderSelect as { value, name }}
 				<option {value}>{name}</option>
 			{/each}
 		</Select>
-		<Input
+		<DebouncedInput
 			type="number"
 			placeholder="PB lower than"
-			class="rounded-sm font-Raleway bg-black/5"
-			bind:value={personalBest}
+			inputClass="rounded-sm font-Raleway bg-black/5"
+			bind:value={params.personalBest}
 		/>
 	</div>
 	{#if data.athletes.length === 0}
