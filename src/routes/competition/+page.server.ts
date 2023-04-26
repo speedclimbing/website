@@ -1,4 +1,9 @@
 import type { ServerLoad } from '@sveltejs/kit';
+import type { Competition } from 'types/Competition';
+import type { League } from 'types/League';
+import type { Nation } from 'types/Nation';
+import type { Season } from 'types/Season';
+import initializeDates from 'utils/InitializeDates';
 import { fetchEntities } from 'utils/api';
 
 export const load: ServerLoad = async ({ fetch, url }) => {
@@ -13,12 +18,17 @@ export const load: ServerLoad = async ({ fetch, url }) => {
 		league
 	};
 
-	const competitions = await fetchEntities(fetch, '/competition', _paramsToUrlSearchParams(params));
-	const nations = await fetchEntities(fetch, '/nation');
-	const leagues = await fetchEntities(fetch, '/league', {
+	const competitions = await fetchEntities<Competition>(
+		fetch,
+		'/competition',
+		_paramsToUrlSearchParams(params)
+	);
+	initializeDates(competitions);
+	const nations = await fetchEntities<Nation>(fetch, '/nation');
+	const leagues = await fetchEntities<League>(fetch, '/league', {
 		year: year.toString()
 	});
-	const seasons = await fetchEntities(fetch, '/season');
+	const seasons = await fetchEntities<Season>(fetch, '/season');
 
 	return {
 		competitions,
