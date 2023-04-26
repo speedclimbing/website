@@ -7,7 +7,7 @@
 		TableHead,
 		TableHeadCell
 	} from 'flowbite-svelte';
-	import type { Ranking } from 'src/types/Ranking';
+	import type { Ranking } from 'types/Ranking';
 
 	export let worldRankingsFemale: Ranking[];
 	export let worldRankingsMale: Ranking[];
@@ -36,7 +36,7 @@
 				>
 				<TableBodyCell>{ranking.nation_code}</TableBodyCell>
 				<TableBodyCell
-					>{ranking.date.toLocaleDateString('de-DE', {
+					>{ranking.competition_date.toLocaleDateString('de-DE', {
 						year: 'numeric',
 						month: 'long',
 						day: '2-digit'

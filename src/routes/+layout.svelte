@@ -1,6 +1,6 @@
 <script>
-	import Header from '../compnonents/shared/Header.svelte';
-	import Footer from '../compnonents/shared/Footer.svelte';
+	import Header from 'compnonents/shared/Header.svelte';
+	import Footer from 'compnonents/shared/Footer.svelte';
 	import '../app.postcss';
 	import { navigating } from '$app/stores';
 	import { Spinner } from 'flowbite-svelte';

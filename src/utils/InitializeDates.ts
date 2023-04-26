@@ -1,4 +1,4 @@
-import type { Competition } from 'src/types/Competition';
+import type { Competition } from 'types/Competition';
 
 export default function initializeDates(competitions: Competition[]) {
 	competitions.forEach((competition: Competition) => {

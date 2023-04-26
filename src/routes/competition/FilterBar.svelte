@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { Input } from 'flowbite-svelte';
-	import { debounce } from '../../utils/debounce';
-	import type { League } from '../../types/League';
-	import type { Nation } from '../../types/Nation';
-	import type { Season } from '../../types/Season';
-	import SwitchButton from '../../compnonents/shared/SwitchButton.svelte';
-	import SelectFilter from '../../compnonents/competitions/SelectFilter.svelte';
+	import { debounce } from 'utils/debounce';
+	import type { League } from 'types/League';
+	import type { Nation } from 'types/Nation';
+	import type { Season } from 'types/Season';
+	import SwitchButton from 'compnonents/shared/SwitchButton.svelte';
+	import SelectFilter from 'compnonents/competitions/SelectFilter.svelte';
 
 	export let viewCalendar: boolean;
 	export let name: string;

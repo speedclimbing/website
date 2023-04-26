@@ -1,18 +1,18 @@
 <script lang="ts">
 	import AthleteCard from './AthleteCard.svelte';
-	import type { Gender } from '../../types/Gender';
+	import type { Gender } from 'types/Gender';
 	import { Input, Select, Spinner } from 'flowbite-svelte';
 	import type { PageData } from './$types';
-	import { _handleSearch } from './+page';
-	import type { Athlete } from '../../types/Athlete';
+	import type { Athlete } from 'types/Athlete';
 	import { browser } from '$app/environment';
-	import { mounted } from '../../utils/mounted';
-	import { debounce } from '../../utils/debounce';
+	import { mounted } from 'utils/mounted';
+	import { debounce } from 'utils/debounce';
+	import { page } from '$app/stores';
+	import { updateSearchParams } from 'utils/updateSearchParams';
 
 	export let data: PageData;
-	let athletes: Athlete[] | Promise<Athlete[]> = data.athletes;
 
-	let name: string | '' = data.url.searchParams.get('name') ?? '';
+	let name: string | '' = $page.url.searchParams.get('name') ?? '';
 	let nation: string | '';
 	let gender: Gender | '' = '';
 	let personalBest: number | '' = '';
@@ -24,8 +24,10 @@
 		personalBest?: number
 	) => {
 		if (!(await debounce())) return;
+		//$page.url.searchParams.set('name', name);
+		updateSearchParams({ name: name });
 
-		athletes = _handleSearch(data.fetch, { name, nation, gender, personalBest });
+		//athletes = _handleSearch(data.fetch, { name, nation, gender, personalBest });
 	};
 
 	const isMounted = () => $mounted;
@@ -76,26 +78,16 @@
 			bind:value={personalBest}
 		/>
 	</div>
-	{#await athletes}
+	{#if data.athletes.length === 0}
 		<div class="flex justify-center items-center my-10">
-			<Spinner />
+			<p class="text-2xl font-semibold">No athletes found</p>
 		</div>
-	{:then athletes}
-		{#if athletes.length === 0}
-			<div class="flex justify-center items-center my-10">
-				<p class="text-2xl font-semibold">No athletes found</p>
-			</div>
-		{/if}
-		<div class="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10">
-			{#each athletes as athlete, index (index)}
-				<a href="/athlete/{athlete.id}">
-					<AthleteCard {athlete} />
-				</a>
-			{/each}
-		</div>
-	{:catch error}
-		<div class="flex justify-center items-center my-10">
-			<p class="text-2xl font-semibold">Error: {error.message}</p>
-		</div>
-	{/await}
+	{/if}
+	<div class="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10">
+		{#each data.athletes as athlete, index (index)}
+			<a href="/athlete/{athlete.id}">
+				<AthleteCard {athlete} />
+			</a>
+		{/each}
+	</div>
 </section>

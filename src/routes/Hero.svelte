@@ -1,7 +1,7 @@
 <script>
-	import SecondaryButton from '../compnonents/shared/SecondaryButton.svelte';
-	import PrimaryButton from '../compnonents/shared/PrimaryButton.svelte';
-	import Line from '../compnonents/shared/Line.svelte';
+	import SecondaryButton from 'compnonents/shared/SecondaryButton.svelte';
+	import PrimaryButton from 'compnonents/shared/PrimaryButton.svelte';
+	import Line from 'compnonents/shared/Line.svelte';
 </script>
 
 <section id="hero" class="hero-image pb-[150px] pt-[230px]">

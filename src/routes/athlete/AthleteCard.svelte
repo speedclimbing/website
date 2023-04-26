@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Athlete } from '../../types/Athlete';
+	import type { Athlete } from 'types/Athlete';
 
 	export let athlete: Athlete;
 	let color = athlete.gender === 'Female' ? 'text-yellow' : 'text-red';

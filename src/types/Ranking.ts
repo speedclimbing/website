@@ -3,6 +3,8 @@ export type Ranking = {
 	first_name: string;
 	last_name: string;
 	nation_code: string;
-	date: Date;
 	time: number;
+	competition_name: string;
+	competition_date: Date;
+	competition_id: string;
 };
