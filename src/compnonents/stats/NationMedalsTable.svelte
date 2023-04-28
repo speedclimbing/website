@@ -1,13 +1,6 @@
 <script lang="ts">
 	import { Table, TableBody, TableBodyCell, TableBodyRow } from 'flowbite-svelte';
-
-	function getFlagEmoji(countryCode: string) {
-		const codePoints = countryCode
-			.toUpperCase()
-			.split('')
-			.map((char) => 127397 + char.charCodeAt(0));
-		return String.fromCodePoint(...codePoints);
-	}
+	import { getFlagEmoji } from '../../utils/getFlagEmoji';
 </script>
 
 <Table noborder divClass="relative overflow-x-auto my-5 ">
