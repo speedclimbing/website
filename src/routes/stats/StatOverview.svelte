@@ -55,7 +55,7 @@
 				/>
 			</div>
 		</div>
-		<NationMedalsRanking data={data.ranking_nation_medals} />
+		<NationMedalsRanking data={data.ranking_nation_points_and_medals} />
 		<UpcomingEvents />
 	</div>
 </section>

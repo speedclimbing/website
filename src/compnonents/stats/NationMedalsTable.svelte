@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { Table, TableBody, TableBodyCell, TableBodyRow } from 'flowbite-svelte';
 	import { getFlagEmoji } from '../../utils/getFlagEmoji';
-	import type { NationMedalsCount } from 'types/Medals';
 	import MedalCountCircle from './MedalCountCircle.svelte';
+	import type { NationPointsAndMedalsCount } from 'types/Nation';
 
-	export let data: NationMedalsCount[];
+	export let data: NationPointsAndMedalsCount[];
 </script>
 
 <Table noborder divClass="relative overflow-x-auto my-5 ">
@@ -29,9 +29,9 @@
 				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium ">
 					<MedalCountCircle count={nation.bronze} type="bronze" />
 				</TableBodyCell>
-				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium text-[18px]"
-					>29</TableBodyCell
-				>
+				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium text-[18px]">
+					{nation.points}
+				</TableBodyCell>
 			</TableBodyRow>
 		{/each}
 	</TableBody>
