@@ -1,11 +1,10 @@
 <script lang="ts">
-	import { Input } from 'flowbite-svelte';
-	import { debounce } from '../../utils/debounce';
-	import type { League } from '../../types/League';
-	import type { Nation } from '../../types/Nation';
-	import type { Season } from '../../types/Season';
-	import SwitchButton from '../../compnonents/shared/SwitchButton.svelte';
-	import SelectFilter from '../../compnonents/competitions/SelectFilter.svelte';
+	import type { League } from 'types/League';
+	import type { Nation } from 'types/Nation';
+	import type { Season } from 'types/Season';
+	import SwitchButton from 'compnonents/shared/SwitchButton.svelte';
+	import SelectFilter from 'compnonents/competitions/SelectFilter.svelte';
+	import DebouncedInput from 'compnonents/shared/DebouncedInput.svelte';
 
 	export let viewCalendar: boolean;
 	export let name: string;
@@ -15,21 +14,14 @@
 	export let seasons: Season[];
 	export let nations: Nation[];
 	export let leagues: League[];
-
-	const handleKeyup = async (target: EventTarget | null) => {
-		if (!(target instanceof HTMLInputElement)) return;
-		if (!(await debounce())) return;
-		name = target.value;
-	};
 </script>
 
 <section id="competition-filter" class="xl:grid-cols-5 md:grid-cols-2 grid gap-[10px] mt-10">
-	<Input
+	<DebouncedInput
 		type="text"
 		placeholder="Competition Name"
-		class="rounded-sm font-Raleway bg-black/5"
-		value={name}
-		on:keyup={(e) => handleKeyup(e.target)}
+		inputClass="rounded-sm font-Raleway bg-black/5"
+		bind:value={name}
 	/>
 	<SelectFilter
 		bind:value={year}

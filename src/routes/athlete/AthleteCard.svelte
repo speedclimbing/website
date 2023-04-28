@@ -1,8 +1,10 @@
 <script lang="ts">
-	import type { Athlete } from '../../types/Athlete';
+	import type { Athlete } from 'types/Athlete';
 
 	export let athlete: Athlete;
-	let color = athlete.gender === 'Female' ? 'text-yellow' : 'text-red';
+
+	let color = '';
+	$: color = athlete.gender === 'Female' ? 'text-yellow' : 'text-red';
 
 	function capitalize(word: string): string {
 		return word.charAt(0).toUpperCase() + word.slice(1);

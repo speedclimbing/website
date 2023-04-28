@@ -1,7 +1,7 @@
 <script>
-	import Line from '../compnonents/shared/Line.svelte';
-	import PrimaryButton from '../compnonents/shared/PrimaryButton.svelte';
-	import SecondaryButton from '../compnonents/shared/SecondaryButton.svelte';
+	import Line from 'compnonents/shared/Line.svelte';
+	import PrimaryButton from 'compnonents/shared/PrimaryButton.svelte';
+	import SecondaryButton from 'compnonents/shared/SecondaryButton.svelte';
 </script>
 
 <section id="insights" class="py-[100px] flex gap-16 flex-col lg:items-center lg:flex-row">
