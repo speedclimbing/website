@@ -16,7 +16,6 @@
 	const items = {
 		'/competition': 'Competitions',
 		'/athlete': 'Athletes',
-		'/team': 'Teams',
 		'/stats': 'Stats',
 		'/about': 'About'
 	};
@@ -37,7 +36,7 @@
 	>
 		<NavBrand id="logo" href="/">
 			<img src="/favicon.png" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
-			<p class="font-bold text-red dark:text-red text-xl">speedclimbing</p>
+			<p class="font-bold text-red dark:text-red text-xl">speedclimbing.org</p>
 		</NavBrand>
 		<NavHamburger on:click={toggle} />
 		<NavUl

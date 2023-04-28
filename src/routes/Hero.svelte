@@ -7,7 +7,7 @@
 <section id="hero" class="hero-image pb-[150px] pt-[230px]">
 	<h1 class="font-Raleway text-[36px] sm:text-[56px] lg:text-[64px] leading-none mb-[30px]">
 		<span class="text-white font-light">Welcome to</span><br />
-		<span class="font-bold  text-black">Speedclimbing</span>
+		<span class="font-bold  text-red">Speedclimbing</span>
 	</h1>
 	<Line length="200px" />
 	<p class="mt-[40px] mb-[30px] font-semibold text-white">
