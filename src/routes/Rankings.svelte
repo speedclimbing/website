@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { Input } from 'flowbite-svelte';
-	import Line from '../compnonents/shared/Line.svelte';
-	import RankingsTable from '../compnonents/home/RankingsTable.svelte';
-	import SwitchButton from '../compnonents/shared/SwitchButton.svelte';
-	import PrimaryButton from '../compnonents/shared/PrimaryButton.svelte';
-	import type { Ranking } from 'src/types/Ranking';
+	import Line from 'compnonents/shared/Line.svelte';
+	import RankingsTable from 'compnonents/home/RankingsTable.svelte';
+	import SwitchButton from 'compnonents/shared/SwitchButton.svelte';
+	import PrimaryButton from 'compnonents/shared/PrimaryButton.svelte';
+	import type { Ranking } from 'types/Ranking';
 
 	export let worldRankingsFemale: Ranking[];
 	export let worldRankingsMale: Ranking[];

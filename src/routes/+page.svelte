@@ -5,7 +5,7 @@
 	import Rankings from './Rankings.svelte';
 	import WorldRecords from './WorldRecords.svelte';
 	import Hero from './Hero.svelte';
-	import type { HomePageData } from 'src/types/Api';
+	import type { HomePageData } from 'types/Api';
 
 	export let data: HomePageData;
 </script>

@@ -1,43 +1,31 @@
 <script lang="ts">
 	import AthleteCard from './AthleteCard.svelte';
-	import type { Gender } from '../../types/Gender';
-	import { Input, Select, Spinner } from 'flowbite-svelte';
+	import type { Gender } from 'types/Gender';
+	import { Select, Spinner } from 'flowbite-svelte';
 	import type { PageData } from './$types';
-	import { _handleSearch } from './+page';
-	import type { Athlete } from '../../types/Athlete';
 	import { browser } from '$app/environment';
-	import { mounted } from '../../utils/mounted';
-	import { debounce } from '../../utils/debounce';
+	import { mounted } from 'utils/mounted';
+	import { updateSearchParams } from 'utils/updateSearchParams';
+	import DebouncedInput from 'compnonents/shared/DebouncedInput.svelte';
+	import { navigating } from '$app/stores';
 
 	export let data: PageData;
-	let athletes: Athlete[] | Promise<Athlete[]> = data.athletes;
-
-	let name: string | '' = data.url.searchParams.get('name') ?? '';
-	let nation: string | '';
-	let gender: Gender | '' = '';
-	let personalBest: number | '' = '';
+	let params = data.params;
 
 	const handleSearch = async (
 		name: string,
 		nation: string,
-		gender?: Gender,
-		personalBest?: number
+		gender: Gender | '',
+		personalBest: number | ''
 	) => {
-		if (!(await debounce())) return;
-
-		athletes = _handleSearch(data.fetch, { name, nation, gender, personalBest });
+		updateSearchParams({ name, nation, gender, personalBest });
 	};
 
 	const isMounted = () => $mounted;
 	$: {
 		if (!browser || !isMounted()) break $;
 
-		handleSearch(
-			name,
-			nation,
-			gender === '' ? undefined : gender,
-			personalBest === '' ? undefined : personalBest
-		);
+		handleSearch(params.name, params.nation, params.gender, params.personalBest);
 	}
 
 	const genderSelect = [
@@ -58,44 +46,40 @@
 
 <section id="athletes">
 	<div class="grid grid-cols-1 lg:grid-cols-2 grid-rows-3 lg:grid-rows-2 gap-5 my-10">
-		<Input
+		<DebouncedInput
 			type="text"
 			placeholder="Name"
-			class="rounded-sm font-Raleway bg-black/5 lg:col-span-2"
-			bind:value={name}
+			inputClass="rounded-sm font-Raleway bg-black/5 lg:col-span-2"
+			bind:value={params.name}
 		/>
-		<Select bind:value={gender} placeholder="">
+		<Select bind:value={params.gender} placeholder="">
 			{#each genderSelect as { value, name }}
 				<option {value}>{name}</option>
 			{/each}
 		</Select>
-		<Input
+		<DebouncedInput
 			type="number"
 			placeholder="PB lower than"
-			class="rounded-sm font-Raleway bg-black/5"
-			bind:value={personalBest}
+			inputClass="rounded-sm font-Raleway bg-black/5"
+			bind:value={params.personalBest}
 		/>
 	</div>
-	{#await athletes}
+
+	{#if $navigating}
 		<div class="flex justify-center items-center my-10">
 			<Spinner />
 		</div>
-	{:then athletes}
-		{#if athletes.length === 0}
-			<div class="flex justify-center items-center my-10">
-				<p class="text-2xl font-semibold">No athletes found</p>
-			</div>
-		{/if}
+	{:else if data.athletes.length === 0}
+		<div class="flex justify-center items-center my-10">
+			<p class="text-2xl font-semibold">No athletes found</p>
+		</div>
+	{:else}
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10">
-			{#each athletes as athlete, index (index)}
+			{#each data.athletes as athlete, index (index)}
 				<a href="/athlete/{athlete.id}">
 					<AthleteCard {athlete} />
 				</a>
 			{/each}
 		</div>
-	{:catch error}
-		<div class="flex justify-center items-center my-10">
-			<p class="text-2xl font-semibold">Error: {error.message}</p>
-		</div>
-	{/await}
+	{/if}
 </section>

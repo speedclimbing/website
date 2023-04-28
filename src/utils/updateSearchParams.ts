@@ -1,4 +1,5 @@
 import { browser } from '$app/environment';
+import { goto } from '$app/navigation';
 
 export function updateSearchParams(params: Object): void {
 	if (!browser) return;
@@ -11,5 +12,5 @@ export function updateSearchParams(params: Object): void {
 		}
 		url.searchParams.set(value[0], value[1]);
 	});
-	window.history.pushState({}, '', url);
+	goto(url.toString(), { keepFocus: true });
 }

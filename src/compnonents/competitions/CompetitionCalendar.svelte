@@ -3,8 +3,8 @@
 	import { Calendar } from 'fullcalendar';
 	import dayGridPlugin from '@fullcalendar/daygrid';
 	import { onMount } from 'svelte';
-	import { stringToHex } from '../../utils/stringToHex';
-	import { mounted } from '../../utils/mounted';
+	import { stringToHex } from 'utils/stringToHex';
+	import { mounted } from 'utils/mounted';
 	import CalendarSubscriptionModal from './CalendarSubscriptionModal.svelte';
 
 	export let competitions: Competition[] | Promise<Competition[]>;
