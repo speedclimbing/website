@@ -1,11 +1,13 @@
 <script>
-	import AlternativeButton from '../shared/AlternativeButton.svelte';
+	// colors: bg-red/10 bg-yellow/10
+	import AlternativeButton from './AlternativeButton.svelte';
 	import { Trophy } from 'svelte-heros-v2';
+	export let color = 'yellow';
 </script>
 
 <div class="max-w-[350px] flex flex-col gap-5">
-	<div class="bg-yellow/10 rounded-[5px] self-start p-3">
-		<Trophy size="40" class="text-yellow" />
+	<div class="bg-{color}/10 rounded-[5px] self-start p-3">
+		<Trophy size="40" class="text-{color}" />
 	</div>
 	<p class="font-Roboto text-2xl font-medium">The Sport</p>
 	<p>

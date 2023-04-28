@@ -5,7 +5,7 @@
 </script>
 
 <button
-	class={`py-3 w-[150px] bg-grey/5 text-black rounded-[3px] dark:bg-grey dark:text-white ${style}`}
+	class={`py-2 w-[150px] bg-grey/5 text-black rounded-[3px] dark:bg-grey dark:text-white text-[14px] ${style}`}
 	>{text}
 	<ChevronRight class="inline-block" size="15" /></button
 >

@@ -1,5 +1,5 @@
 <script>
-	import IconBox from 'compnonents/home/IconBox.svelte';
+	import IconBox from 'compnonents/shared/IconBox.svelte';
 	import Line from 'compnonents/shared/Line.svelte';
 </script>
 
