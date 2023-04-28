@@ -10,11 +10,13 @@
 
 <div class="max-w-[350px] flex flex-col gap-5">
 	<div class="bg-{color}/10 rounded-[5px] self-start p-3">
-		<slot />
+		<slot name="icon" />
 	</div>
 	<p class="font-Roboto text-2xl font-medium">{title}</p>
 	<p>
-		{text}
+		<slot name="text">
+			{text}
+		</slot>
 	</p>
 	<AlternativeButton {onClick} text="read more" />
 </div>
