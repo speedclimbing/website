@@ -5,14 +5,15 @@
 	import type { NationPointsAndMedalsCount } from 'types/Nation';
 
 	export let data: NationPointsAndMedalsCount[];
+	export let page = 0;
 </script>
 
 <Table noborder divClass="relative overflow-x-auto my-5 ">
 	<TableBody>
-		{#each data as nation, i}
+		{#each data.slice(10 * page, 10 * (page + 1)) as nation, i}
 			<TableBodyRow color="custom">
 				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium text-md "
-					>{i + 1}</TableBodyCell
+					>{i + 1 + 10 * page}</TableBodyCell
 				>
 				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium text-[25px]"
 					>{getFlagEmoji(nation.alpha2_code)}</TableBodyCell

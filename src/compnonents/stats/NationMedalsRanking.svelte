@@ -4,6 +4,8 @@
 	import PaginationButton from './PaginationButton.svelte';
 
 	export let data: NationPointsAndMedalsCount[];
+	let page = 0;
+	const totalPages = Math.ceil(data.length / 10);
 </script>
 
 <div
@@ -12,10 +14,10 @@
 	<div class="flex justify-between flex-wrap gap-5">
 		<h2 class="text-3xl">Nation Medals</h2>
 		<div class="flex gap-5 shrink-0">
-			<p class="self-center">Page <strong>1</strong> of <strong>10</strong></p>
-			<PaginationButton />
+			<p class="self-center">Page <strong>{page}</strong> of <strong>{totalPages}</strong></p>
+			<PaginationButton bind:page {totalPages} />
 		</div>
 	</div>
 	<hr class="border-grey/10 border-[1px] dark:border-light-grey mt-2" />
-	<NationMedalsTable {data} />
+	<NationMedalsTable {data} bind:page />
 </div>
