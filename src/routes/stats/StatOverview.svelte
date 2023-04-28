@@ -34,7 +34,7 @@
 					rows={data.ranking_athlete_time.map((a) => [
 						formatName(a),
 						a.nation_code_ioc,
-						a.time.toString()
+						(a.time / 1000).toFixed(3)
 					])}
 				/>
 				<RankingOverview

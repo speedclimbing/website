@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { ChevronRight } from 'svelte-heros-v2';
-	export let text: string = 'Mehr erfahren';
+	export let text: string = 'See more';
 	export let style: string = '';
 </script>
 
