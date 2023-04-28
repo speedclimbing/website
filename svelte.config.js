@@ -12,7 +12,12 @@ const config = {
 	],
 
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		alias: {
+			utils: './src/utils',
+			types: './src/types',
+			compnonents: './src/compnonents'
+		}
 	}
 };
 

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { Select } from 'flowbite-svelte';
-	import Line from '../compnonents/shared/Line.svelte';
-	import EventCard from '../compnonents/home/EventCard.svelte';
-	import PrimaryButton from '../compnonents/shared/PrimaryButton.svelte';
+	import Line from 'compnonents/shared/Line.svelte';
+	import EventCard from 'compnonents/home/EventCard.svelte';
+	import PrimaryButton from 'compnonents/shared/PrimaryButton.svelte';
 	import type { Competition } from 'src/types/Competition';
 	import { goto } from '$app/navigation';
 

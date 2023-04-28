@@ -19,10 +19,10 @@
 
 <div class={`invert ${style}`}>
 	<div
-		class="rounded-sm relative border-2 border-[#2268d5] w-[200px] h-[45px] bg-transparent p-[2px]"
+		class="rounded-md relative border-[2px] border-[#2268d5]/50 w-[200px] h-[45px] bg-transparent p-[2px]"
 	>
 		<div
-			class="bg-[#2268d5] w-[50%] h-full ml-[0%] rounded-sm transition-[margin-left] duration-500"
+			class="bg-[#2268d5] w-[50%] h-full ml-[0%] rounded-[3px] transition-[margin-left] duration-500"
 			bind:this={box}
 		/>
 		<button

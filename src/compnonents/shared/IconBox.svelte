@@ -1,16 +1,15 @@
-<script lang="ts">
-	import AlternativeButton from '../shared/AlternativeButton.svelte';
-	import { Trophy } from 'svelte-heros-v2';
-	import type { SvelteComponent } from 'svelte';
-
-	export let title: string = 'The Sport';
-	export let text: string =
+<script>
+	// colors: bg-red/10 bg-yellow/10
+	import AlternativeButton from './AlternativeButton.svelte';
+	export let color = 'yellow';
+	export let title = 'The Sport';
+	export let text =
 		'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At';
-	export let onClick: () => void;
+	export let onClick = () => {};
 </script>
 
 <div class="max-w-[350px] flex flex-col gap-5">
-	<div class="bg-yellow/10 rounded-[5px] self-start p-3">
+	<div class="bg-{color}/10 rounded-[5px] self-start p-3">
 		<slot />
 	</div>
 	<p class="font-Roboto text-2xl font-medium">{title}</p>
