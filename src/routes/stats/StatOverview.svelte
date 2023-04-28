@@ -1,8 +1,18 @@
 <script lang="ts">
+	import type { SeasonSummary } from 'types/SeasonSummary';
 	import AlternativeButton from '../../compnonents/shared/AlternativeButton.svelte';
 	import NationMedalsRanking from '../../compnonents/stats/NationMedalsRanking.svelte';
 	import RankingOverview from '../../compnonents/stats/RankingOverview.svelte';
 	import UpcomingEvents from '../../compnonents/stats/UpcomingEvents.svelte';
+	import type { AthleteResult } from 'types/Athlete';
+
+	export let data: SeasonSummary;
+
+	const formatName = (athlete: AthleteResult) => {
+		return `${athlete.first_name.charAt(0).toUpperCase()}${athlete.first_name.slice(
+			1
+		)} ${athlete.last_name.toUpperCase()}`;
+	};
 </script>
 
 <section class="bg-grey/10 dark:bg-dark-grey lg:px-[10%] px-[5%] py-[100px]">
@@ -19,12 +29,33 @@
 			</div>
 
 			<div class="flex justify-between flex-wrap gap-[50px]">
-				<RankingOverview />
-				<RankingOverview />
-				<RankingOverview />
+				<RankingOverview
+					label="Worldranking by time"
+					rows={data.ranking_athlete_time.map((a) => [
+						formatName(a),
+						a.nation_code_ioc,
+						a.time.toString()
+					])}
+				/>
+				<RankingOverview
+					label="Worldranking by points"
+					rows={data.ranking_athlete_points.map((a) => [
+						formatName(a),
+						a.nation_code_ioc,
+						a.points.toString()
+					])}
+				/>
+				<RankingOverview
+					label="Worldranking by average rank"
+					rows={data.ranking_athlete_avg_rank.map((a) => [
+						formatName(a),
+						a.nation_code_ioc,
+						a.avg_rank.toString()
+					])}
+				/>
 			</div>
 		</div>
-		<NationMedalsRanking />
+		<NationMedalsRanking data={data.ranking_nation_medals} />
 		<UpcomingEvents />
 	</div>
 </section>

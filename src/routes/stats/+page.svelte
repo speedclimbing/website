@@ -1,7 +1,10 @@
 <script lang="ts">
+	import type { PageData } from './$types';
 	import About from './About.svelte';
 	import Hero from './Hero.svelte';
 	import StatOverview from './StatOverview.svelte';
+
+	export let data: PageData;
 
 	let bar: HTMLElement;
 
@@ -23,5 +26,5 @@
 
 	<div class="bg-red rounded-sm w-[calc(100%/2)] h-1 transition-[margin-left] " bind:this={bar} />
 </section>
-<StatOverview />
+<StatOverview data={data.male} />
 <About />

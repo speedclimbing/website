@@ -1,6 +1,9 @@
 <script lang="ts">
+	import type { NationMedalsCount } from 'types/Medals';
 	import NationMedalsTable from './NationMedalsTable.svelte';
 	import PaginationButton from './PaginationButton.svelte';
+
+	export let data: NationMedalsCount[];
 </script>
 
 <div
@@ -14,5 +17,5 @@
 		</div>
 	</div>
 	<hr class="border-grey/10 border-[1px] dark:border-light-grey mt-2" />
-	<NationMedalsTable />
+	<NationMedalsTable {data} />
 </div>
