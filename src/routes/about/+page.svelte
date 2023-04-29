@@ -10,5 +10,5 @@
 <TheSport />
 <TheRules />
 <TheWall />
-<History />
-<Faq />
+<!--History />
+<Faq /-->

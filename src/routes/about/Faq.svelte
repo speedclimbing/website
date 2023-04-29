@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Accordion, AccordionItem, P } from 'flowbite-svelte';
-	import Line from '../../compnonents/shared/Line.svelte';
+	import Line from 'compnonents/shared/Line.svelte';
 
 	const faq = [
 		{

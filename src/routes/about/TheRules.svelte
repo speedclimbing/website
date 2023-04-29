@@ -1,7 +1,7 @@
 <script>
 	import { P } from 'flowbite-svelte';
-	import Line from '../../compnonents/shared/Line.svelte';
-	import Keyword from '../../compnonents/about/Keyword.svelte';
+	import Line from 'compnonents/shared/Line.svelte';
+	import Keyword from 'compnonents/about/Keyword.svelte';
 </script>
 
 <section class="py-6">

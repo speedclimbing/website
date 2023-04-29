@@ -1,8 +1,6 @@
 <script>
-	import { Img, P, Timeline, TimelineItem } from 'flowbite-svelte';
-	import Line from '../../compnonents/shared/Line.svelte';
-	import PrimaryButton from '../../compnonents/shared/PrimaryButton.svelte';
-	import { goto } from '$app/navigation';
+	import { P } from 'flowbite-svelte';
+	import Line from 'compnonents/shared/Line.svelte';
 </script>
 
 <section class="py-6">

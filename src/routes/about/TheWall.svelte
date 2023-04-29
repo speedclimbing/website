@@ -1,6 +1,6 @@
 <script>
-	import { Img, List, P } from 'flowbite-svelte';
-	import Line from '../../compnonents/shared/Line.svelte';
+	import { List, P } from 'flowbite-svelte';
+	import Line from 'compnonents/shared/Line.svelte';
 </script>
 
 <section class="py-6">
