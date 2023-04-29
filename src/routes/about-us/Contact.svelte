@@ -29,9 +29,9 @@
 	</P>
 
 	{#if submitResult === 'success'}
-		<Alert color="green" on:close={resetSubmitResult}>Submitted successfully!</Alert>
+		<Alert status="success" on:close={resetSubmitResult}>Submitted successfully!</Alert>
 	{:else if submitResult !== ''}
-		<Alert color="red" on:close={resetSubmitResult}>
+		<Alert status="error" on:close={resetSubmitResult}>
 			An error occured. Please refresh the page and try again.
 		</Alert>
 	{/if}

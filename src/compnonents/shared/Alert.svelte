@@ -1,11 +1,14 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 
-	export let color = 'green';
+	export let status: 'success' | 'error' = 'success';
 	const dispatch = createEventDispatcher();
 </script>
 
-<div class="bg-{color} text-white rounded-lg p-4 text-sm" role="alert">
+<div
+	class="{status === 'success' ? 'bg-green' : 'bg-red'} text-white rounded-lg p-4 text-sm"
+	role="alert"
+>
 	<div class="flex items-center">
 		<div><slot /></div>
 		<button
