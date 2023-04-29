@@ -1,20 +1,48 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import Line from 'compnonents/shared/Line.svelte';
 	import PrimaryButton from 'compnonents/shared/PrimaryButton.svelte';
 	import Alert from 'compnonents/shared/Alert.svelte';
 	import { Input, Label, P, Textarea } from 'flowbite-svelte';
 	import { Turnstile } from 'svelte-turnstile';
-	import { goto } from '$app/navigation';
 
+	export let turnstileSiteKey: string | undefined;
+
+	let loading = false;
 	let turnstilePassed = false;
-	let submitResult: string;
-
-	$: submitResult = $page.url.searchParams.get('contact-result') ?? '';
+	let turnstile: Turnstile;
+	let submitResult: string = '';
 
 	const resetSubmitResult = () => {
-		$page.url.searchParams.set('contact-result', '');
-		goto($page.url.toString(), { keepFocus: true });
+		submitResult = '';
+	};
+
+	const handleSubmit = async (e: Event) => {
+		let form = e.target;
+		if (!(form instanceof HTMLFormElement)) {
+			return;
+		}
+
+		loading = true;
+
+		let data = new FormData(form);
+		let resp = await fetch(form.action, {
+			method: form.method,
+			body: data,
+			headers: {
+				Accept: 'application/json'
+			}
+		});
+
+		submitResult = (await resp.json()).result;
+
+		turnstilePassed = false;
+		turnstile.reset();
+
+		if (submitResult == 'success') {
+			form.reset();
+		}
+
+		loading = false;
 	};
 </script>
 
@@ -32,33 +60,51 @@
 		<Alert status="success" on:close={resetSubmitResult}>Submitted successfully!</Alert>
 	{:else if submitResult !== ''}
 		<Alert status="error" on:close={resetSubmitResult}>
-			An error occured. Please refresh the page and try again.
+			An error occured, please try again. Alternatively, you can send us an email to <a
+				class="text-white font-bold"
+				href="mailto:contact@speedclimbing.org">contact@speedclimbing.org</a
+			>.
 		</Alert>
 	{/if}
 
-	<form class="grid grid-cols-2 gap-4 pt-4" method="post" action="/about-us/contact">
+	<form
+		class="grid grid-cols-2 gap-4 pt-4"
+		method="post"
+		action="/about-us/contact"
+		on:submit|preventDefault={handleSubmit}
+	>
 		<div class="col-span-2 md:col-span-1">
 			<Label for="email" class="bloack mb-2">Your E-Mail address</Label>
-			<Input id="email" name="email" placeholder="john.doe@gmail.com" required type="email" />
+			<Input
+				id="email"
+				name="email"
+				placeholder="john.doe@gmail.com"
+				required
+				type="email"
+				disabled={loading}
+			/>
 		</div>
 
 		<div class="col-span-2 md:col-span-1">
 			<Label for="name" class="bloack mb-2">Your name</Label>
-			<Input id="name" name="name" placeholder="John Doe" required />
+			<Input id="name" name="name" placeholder="John Doe" required disabled={loading} />
 		</div>
 
 		<div class="col-span-2">
 			<Label for="message" class="bloack mb-2">Your message</Label>
-			<Textarea id="message" name="message" rows="4" required />
+			<Textarea id="message" name="message" rows="4" required disabled={loading} />
 		</div>
 
-		<div class="col-span-2">
-			<Turnstile
-				siteKey="1x00000000000000000000AA"
-				on:turnstile-callback={() => (turnstilePassed = true)}
-			/>
-		</div>
+		{#if turnstileSiteKey}
+			<div class="col-span-2">
+				<Turnstile
+					siteKey={turnstileSiteKey}
+					on:turnstile-callback={() => (turnstilePassed = true)}
+					bind:this={turnstile}
+				/>
+			</div>
+		{/if}
 
-		<PrimaryButton text="Submit" disabled={!turnstilePassed} />
+		<PrimaryButton text="Submit" disabled={!turnstilePassed || loading} />
 	</form>
 </section>
