@@ -28,20 +28,14 @@ async function verifyCfTurnstileResponse(token: string, secret: string) {
 
 	const data: TokenValidateResponse = await response.json();
 
-	return {
-		// Return the status
-		success: data.success,
-
-		// Return the first error if it exists
-		error: data['error-codes']?.length ? data['error-codes'][0] : null
-	};
+	return data.success;
 }
 export const POST: RequestHandler = async (event) => {
 	const formData = await event.request.formData();
 
 	const response = formData.get('cf-turnstile-response')?.toString() ?? '';
 
-	if (!(await verifyCfTurnstileResponse(response, '1x0000000000000000000000000000000AA')).success) {
+	if (!(await verifyCfTurnstileResponse(response, '1x0000000000000000000000000000000AA'))) {
 		return redirect('captcha-failed');
 	}
 

@@ -13,7 +13,7 @@
 		},
 		{
 			name: 'Jakob Mayerhofer',
-			roles: ['UI/UX', 'development'],
+			roles: ['UI/UX design', 'development'],
 			about: 'I study at the TU Munich blablabalbala .....',
 			image: '/images/about-us/jakob.jpg'
 		},
@@ -62,11 +62,12 @@
 		{/each}
 	</div>
 
-	<h4 class="text-2xl text-center font-bold pt-10 pb-7">Contributors</h4>
+	<h4 class="text-2xl text-center font-bold pt-10 pb-6">Contributors</h4>
 
 	<p class="text-center text-lg pb-6">
 		This website is an open source project and everone is welcome to contribute to it on
-		<a href="https://github.com/speedclimbing/website" target="_blank">GitHub </a>!
+		<a href="https://github.com/speedclimbing/website" target="_blank">GitHub </a>! We'd like to
+		thank everyone who has done so and thereby helped the project to succeed.
 	</p>
 
 	<div class="flex items-stretch flex-wrap justify-center gap-4">
