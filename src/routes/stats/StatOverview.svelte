@@ -5,8 +5,10 @@
 	import RankingOverview from '../../compnonents/stats/RankingOverview.svelte';
 	import UpcomingEvents from '../../compnonents/stats/UpcomingEvents.svelte';
 	import type { AthleteResult } from 'types/Athlete';
+	import type { Competition } from 'types/Competition';
 
-	export let data: SeasonSummary;
+	export let seasonSummary: SeasonSummary;
+	export let upcomingCompetitions: Competition[];
 
 	const formatName = (athlete: AthleteResult) => {
 		return `${athlete.first_name.charAt(0).toUpperCase()}${athlete.first_name.slice(
@@ -31,7 +33,7 @@
 			<div class="flex justify-between flex-wrap gap-6 md:gap-20">
 				<RankingOverview
 					label="Worldranking by time"
-					rows={data.ranking_athlete_time.map((a) => [
+					rows={seasonSummary.ranking_athlete_time.map((a) => [
 						formatName(a),
 						a.nation_code_ioc,
 						(a.time / 1000).toFixed(3)
@@ -39,7 +41,7 @@
 				/>
 				<RankingOverview
 					label="Worldranking by points"
-					rows={data.ranking_athlete_points.map((a) => [
+					rows={seasonSummary.ranking_athlete_points.map((a) => [
 						formatName(a),
 						a.nation_code_ioc,
 						a.points.toString()
@@ -47,7 +49,7 @@
 				/>
 				<RankingOverview
 					label="Worldranking by average rank"
-					rows={data.ranking_athlete_avg_rank.map((a) => [
+					rows={seasonSummary.ranking_athlete_avg_rank.map((a) => [
 						formatName(a),
 						a.nation_code_ioc,
 						a.avg_rank.toString()
@@ -55,7 +57,7 @@
 				/>
 			</div>
 		</div>
-		<NationMedalsRanking data={data.ranking_nation_points_and_medals} />
-		<UpcomingEvents />
+		<NationMedalsRanking data={seasonSummary.ranking_nation_points_and_medals} />
+		<UpcomingEvents competitions={upcomingCompetitions} />
 	</div>
 </section>

@@ -26,5 +26,8 @@
 
 	<div class="bg-red rounded-sm w-[calc(100%/2)] h-1 transition-[margin-left] " bind:this={bar} />
 </section>
-<StatOverview data={data.male} />
+<StatOverview
+	seasonSummary={data.SeasonSummary.male}
+	upcomingCompetitions={data.upcomingCompetitions}
+/>
 <About />

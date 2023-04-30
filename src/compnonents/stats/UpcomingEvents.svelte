@@ -3,32 +3,7 @@
 	import EventCard from '../home/EventCard.svelte';
 	import AlternativeButton from '../shared/AlternativeButton.svelte';
 
-	const competitions: Competition[] = [
-		{
-			name: 'Next Event',
-			location: 'Barcelona',
-			from: new Date(),
-			to: new Date(),
-			nation_code: 'ESP',
-			league_id: 'abcdefg'
-		},
-		{
-			name: 'Next Event',
-			location: 'Barcelona',
-			from: new Date(),
-			to: new Date(),
-			nation_code: 'ESP',
-			league_id: 'abcdefg'
-		},
-		{
-			name: 'Next Event',
-			location: 'Barcelona',
-			from: new Date(),
-			to: new Date(),
-			nation_code: 'ESP',
-			league_id: 'abcdefg'
-		}
-	];
+	export let competitions: Competition[];
 </script>
 
 <div
