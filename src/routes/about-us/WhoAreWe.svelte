@@ -80,8 +80,10 @@
 				rounded={true}
 				href={`https://github.com/${contributor.username}`}
 			>
-				<Avatar src={`/images/about-us/contributors/${contributor.username}.png`} />
-				<p class="pl-2 text-lg">{contributor.name}</p>
+				<div class="pl-[2px]">
+					<Avatar src={`/images/about-us/contributors/${contributor.username}.png`} />
+				</div>
+				<span class="pl-2  text-lg">{contributor.name}</span>
 			</Badge>
 		{/each}
 	</div>
