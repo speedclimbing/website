@@ -8,7 +8,7 @@
 			name: 'Dorian Zedler',
 			roles: ['software architecture', 'development'],
 			about: `I'm a passionate speed climber and software developer. 
-                When I'm not climbing, I study computer science at the TU Munich and build software like this website. `,
+                When I'm not climbing, I study computer science at the TU Munich and build software like this website. You may have heard of the 'Speedclimbing Stopwatch'-App - another project of mine.`,
 			website: 'https://dorian.im',
 			image: '/images/about-us/dorian.jpg'
 		},
@@ -21,7 +21,7 @@
 		{
 			name: 'Peter Schnabel',
 			roles: ['consulting', 'statistics'],
-			about: 'I am the national speedclimbing coach of germany blablabalbal.....',
+			about: `I'm the national coach of the German speedclimbing team and totally nuts about speed climbing. Even though I originally come from track and field, I've been trying to transfer my knowledge to climbing since 2021, and I'm getting a little bit better every day.`,
 			image: '/images/about-us/peter.jpg'
 		}
 	];
