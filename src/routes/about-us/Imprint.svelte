@@ -1,9 +1,11 @@
 <script lang="ts">
+	import AnchorPoint from 'compnonents/shared/AnchorPoint.svelte';
 	import Line from 'compnonents/shared/Line.svelte';
 </script>
 
 <section class="py-6">
-	<h2 class="text-4xl font-bold" id="imprint">Imprint</h2>
+	<AnchorPoint id="imprint" />
+	<h2 class="text-4xl font-bold">Imprint</h2>
 	<Line color="red" />
 
 	<p class="text-lg pb-6">
@@ -12,7 +14,7 @@
 		<b><a href="mailto:dorian.zedler@speedclimbing.org">dorian.zedler@speedclimbing.org</a></b>
 	</p>
 
-	<h2 class="text-xl font-bold pb-2" id="imprint">Disclaimer</h2>
+	<h2 class="text-xl font-bold pb-2">Disclaimer</h2>
 	<p>
 		All information provided on this website has been compiled and checked to the best of our
 		knowledge and belief. However, we cannot guarantee that the information provided is up-to-date,
@@ -20,7 +22,7 @@
 		Internet offer does not come about. We are not liable for any damage caused by the use of this
 		internet offer.
 	</p>
-	<h2 class="text-xl font-bold pb-2 pt-4" id="imprint">Links</h2>
+	<h2 class="text-xl font-bold pb-2 pt-4">Links</h2>
 	<p>
 		Cross-references ("links") to the websites of other providers are to be distinguished from our
 		own content. Through these links, we merely provide access to the use of third-party content in

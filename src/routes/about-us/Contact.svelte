@@ -4,6 +4,7 @@
 	import Alert from 'compnonents/shared/Alert.svelte';
 	import { Input, Label, P, Textarea } from 'flowbite-svelte';
 	import { Turnstile } from 'svelte-turnstile';
+	import AnchorPoint from 'compnonents/shared/AnchorPoint.svelte';
 
 	export let turnstileSiteKey: string | undefined;
 
@@ -49,7 +50,8 @@
 </script>
 
 <section class="py-6">
-	<h2 class="text-4xl font-bold" id="contact">Get in touch</h2>
+	<AnchorPoint id="contact" />
+	<h2 class="text-4xl font-bold">Get in touch</h2>
 	<Line color="red" />
 
 	<P class="pb-4 text-yellow-800">

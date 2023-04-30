@@ -1,9 +1,11 @@
 <script>
+	import AnchorPoint from 'compnonents/shared/AnchorPoint.svelte';
 	import Line from 'compnonents/shared/Line.svelte';
 </script>
 
 <section class="py-6">
-	<h2 class="text-4xl font-bold" id="privacy-policy">Privacy Policy</h2>
+	<AnchorPoint id="privacy-policy" />
+	<h2 class="text-4xl font-bold">Privacy Policy</h2>
 	<Line color="red" />
 
 	<p>
@@ -11,15 +13,13 @@
 		use it. In the following, we would like to inform you how your data is processed by us.
 		<br />
 	</p>
-	<h2 class="text-xl font-bold pb-2 pt-4" id="imprint">Responsible in the sense of the DSGVO:</h2>
+	<h2 class="text-xl font-bold pb-2 pt-4">Responsible in the sense of the DSGVO:</h2>
 	<p>
 		Dorian Zedler <br />
 		<a href="mailto:dorian.zedler@speedclimbing.org">dorian.zedler@speedclimbing.org</a>.
 		<br />
 	</p>
-	<h2 class="text-xl font-bold pb-2 pt-4" id="imprint">
-		You can reach our data protection officer at:
-	</h2>
+	<h2 class="text-xl font-bold pb-2 pt-4">You can reach our data protection officer at:</h2>
 	<p>
 		Dorian Zedler<br />
 		<a href="mailto:dorian.zedler@speedclimbing.org">dorian.zedler@speedclimbing.org</a>.
@@ -35,7 +35,7 @@
 		are legal retention obligations.
 		<br />
 	</p>
-	<h2 class="text-xl font-bold pb-2 pt-4" id="imprint">Data subject rights</h2>
+	<h2 class="text-xl font-bold pb-2 pt-4">Data subject rights</h2>
 	<p>
 		You have as a data subject, the right to information, the right to rectification or deletion,
 		the right to restrict processing and the right to object to the processing of your data. If you
@@ -53,10 +53,10 @@
 		>.
 	</p>
 
-	<h2 class="text-xl font-bold pb-2 pt-4" id="imprint">Cookies</h2>
+	<h2 class="text-xl font-bold pb-2 pt-4">Cookies</h2>
 	<p>We do not use cookies.</p>
 
-	<h2 class="text-xl font-bold pb-2 pt-4" id="imprint">Contact form</h2>
+	<h2 class="text-xl font-bold pb-2 pt-4">Contact form</h2>
 	<p>
 		We provide you with a contact form through which we collect the following personal data:
 		<br />
@@ -79,7 +79,7 @@
 		Your data will be deleted after the completion of processing.
 	</p>
 
-	<h2 class="text-xl font-bold pb-2 pt-4" id="imprint">Cloudflare</h2>
+	<h2 class="text-xl font-bold pb-2 pt-4">Cloudflare</h2>
 	<p>
 		We use the Content Delivery Network (CDN) of Cloudflare Germany GmbH, Rosental 7, c/o Mindspace,
 		80331 Munich Germany (Cloudflare) to increase the security and delivery speed of our website.

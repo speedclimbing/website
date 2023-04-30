@@ -1,4 +1,5 @@
 <script>
+	import AnchorPoint from 'compnonents/shared/AnchorPoint.svelte';
 	import Line from 'compnonents/shared/Line.svelte';
 	import { A, Avatar, Badge, Card, P } from 'flowbite-svelte';
 
@@ -34,6 +35,7 @@
 </script>
 
 <section class="py-6">
+	<AnchorPoint id="who-we-are" />
 	<h2 class="text-4xl font-bold">Who we are</h2>
 	<Line color="red" />
 
