@@ -44,8 +44,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@types/nodemailer": "^6.4.7",
-		"fullcalendar": "^6.1.5",
-		"nodemailer": "^6.9.1"
+		"fullcalendar": "^6.1.5"
 	}
 }

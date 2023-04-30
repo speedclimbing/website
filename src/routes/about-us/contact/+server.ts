@@ -1,6 +1,4 @@
-import type SMTPTransport from 'nodemailer/lib/smtp-transport';
 import type { RequestHandler } from './$types';
-import nodemailer from 'nodemailer';
 
 const respond = (result: string, headers: Headers) => {
 	if (headers.has('Accept') && headers.get('Accept') == 'application/json') {
