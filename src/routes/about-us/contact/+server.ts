@@ -44,19 +44,18 @@ const EMAIL_REGEX =
 	/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 interface ContactFormSubmission {
-	formrecevrUrl: string;
 	senderEmail: string;
 	senderName: string;
 	senderMessage: string;
 }
 
-async function sendEmail(form: ContactFormSubmission) {
+async function sendEmail(formrecevrUrl: string, form: ContactFormSubmission) {
 	let formData = new FormData();
 	formData.set('email', form.senderEmail);
 	formData.set('name', form.senderName);
 	formData.set('message', form.senderMessage);
 
-	let response = await fetch(form.formrecevrUrl, {
+	let response = await fetch(formrecevrUrl, {
 		method: 'POST',
 		body: formData,
 		headers: { Accept: 'application/json' }
@@ -65,44 +64,64 @@ async function sendEmail(form: ContactFormSubmission) {
 	return response.ok;
 }
 
-export const POST: RequestHandler = async (event) => {
-	const env = event.platform?.env;
-	if (!env?.FORMRECEVR_URL) {
-		return respond('error', event.request.headers);
-	}
-
-	const formData = await event.request.formData();
-
-	const response = formData.get('cf-turnstile-response')?.toString() ?? '';
-
+const validateFormData = async (
+	formData: FormData,
+	turnstileSecretKey?: string
+): Promise<ContactFormSubmission | false> => {
+	const turnstileResponse = formData.get('cf-turnstile-response')?.toString() ?? '';
 	if (
-		env?.TURNSTILE_SECRET_KEY &&
-		!(await verifyCfTurnstileResponse(response, env?.TURNSTILE_SECRET_KEY))
+		turnstileSecretKey &&
+		!(await verifyCfTurnstileResponse(turnstileResponse, turnstileSecretKey))
 	) {
-		return respond('captcha-failed', event.request.headers);
+		return false;
 	}
 
-	const senderEmail = formData.get('email')?.toString() ?? '';
+	const senderEmail = formData.get('email')?.toString();
 	const senderName = formData
 		.get('name')
 		?.toString()
 		.replaceAll(/[^A-Za-z- ]/g, '');
 	const senderMessage = formData.get('message')?.toString();
 
-	if (!senderEmail || !senderEmail.match(EMAIL_REGEX) || !senderName || !senderMessage) {
-		return respond('invalid-form', event.request.headers);
+	if (!senderName || !senderMessage || !senderEmail || !senderEmail.match(EMAIL_REGEX)) {
+		return false;
 	}
 
-	if (
-		!(await sendEmail({
-			formrecevrUrl: env?.FORMRECEVR_URL,
-			senderEmail,
-			senderName,
-			senderMessage
-		}))
-	) {
-		return respond('error', event.request.headers);
+	return {
+		senderEmail,
+		senderName,
+		senderMessage
+	};
+};
+
+const handleFormSubmission = async (
+	formData: FormData,
+	env?: { TURNSTILE_SECRET_KEY: string; FORMRECEVR_URL: string }
+) => {
+	const contactFormSubmission = await validateFormData(formData, env?.TURNSTILE_SECRET_KEY);
+	if (!contactFormSubmission) {
+		return 'invalid-form';
 	}
 
-	return respond('success', event.request.headers);
+	if (!env?.FORMRECEVR_URL) {
+		return 'error';
+	}
+
+	const { senderEmail, senderName, senderMessage } = contactFormSubmission;
+
+	const result = await sendEmail(env?.FORMRECEVR_URL, {
+		senderEmail,
+		senderName,
+		senderMessage
+	});
+
+	return result ? 'success' : 'error';
+};
+
+export const POST: RequestHandler = async (event) => {
+	const formData = await event.request.formData();
+
+	const result = await handleFormSubmission(formData, event.platform?.env);
+
+	return respond(result, event.request.headers);
 };
