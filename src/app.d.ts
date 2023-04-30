@@ -8,14 +8,7 @@ declare namespace App {
 	interface Platform {
 		env?: {
 			API_TOKEN: string;
-			EMAIL_HOST: string;
-			EMAIL_PORT: string;
-			EMAIL_TLS: string;
-			EMAIL_SSL: string;
-			EMAIL_USER: string;
-			EMAIL_PASSWORD: string;
-			EMAIL_FROM: string;
-			EMAIL_TO: string;
+			FORMRECEVR_URL: string;
 			TURNSTILE_SECRET_KEY: string;
 			TURNSTILE_SITE_KEY: string;
 		};

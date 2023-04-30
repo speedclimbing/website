@@ -35,8 +35,10 @@
 
 		submitResult = (await resp.json()).result;
 
-		turnstilePassed = false;
-		turnstile.reset();
+		if (turnstileSiteKey) {
+			turnstilePassed = false;
+			turnstile.reset();
+		}
 
 		if (submitResult == 'success') {
 			form.reset();
@@ -105,6 +107,6 @@
 			</div>
 		{/if}
 
-		<PrimaryButton text="Submit" disabled={!turnstilePassed || loading} />
+		<PrimaryButton text="Submit" disabled={(turnstileSiteKey && !turnstilePassed) || loading} />
 	</form>
 </section>

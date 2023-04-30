@@ -45,29 +45,33 @@ async function verifyCfTurnstileResponse(token: string, secret: string) {
 const EMAIL_REGEX =
 	/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-async function sendEmail(
-	options: SMTPTransport.Options,
-	senderEmail: string,
-	senderName: string,
-	senderMessage: string,
-	fromEmail: string,
-	toEmail: string
-) {
-	let transporter = nodemailer.createTransport(options);
+interface ContactFormSubmission {
+	formrecevrUrl: string;
+	senderEmail: string;
+	senderName: string;
+	senderMessage: string;
+}
 
-	const info = await transporter.sendMail({
-		from: `"${senderName}" <${fromEmail}>`,
-		to: toEmail,
-		subject: 'speedclimbing.ord contact form submission',
-		replyTo: `"${senderName}" <${senderEmail}>`,
-		text: senderMessage
+async function sendEmail(form: ContactFormSubmission) {
+	let formData = new FormData();
+	formData.set('email', form.senderEmail);
+	formData.set('name', form.senderName);
+	formData.set('message', form.senderMessage);
+
+	let response = await fetch(form.formrecevrUrl, {
+		method: 'POST',
+		body: formData,
+		headers: { Accept: 'application/json' }
 	});
 
-	return info.accepted;
+	return response.ok;
 }
 
 export const POST: RequestHandler = async (event) => {
 	const env = event.platform?.env;
+	if (!env?.FORMRECEVR_URL) {
+		return respond('error', event.request.headers);
+	}
 
 	const formData = await event.request.formData();
 
@@ -84,38 +88,20 @@ export const POST: RequestHandler = async (event) => {
 	const senderName = formData
 		.get('name')
 		?.toString()
-		.replace(/[^A-Za-z- ]/, '');
+		.replaceAll(/[^A-Za-z- ]/g, '');
 	const senderMessage = formData.get('message')?.toString();
 
 	if (!senderEmail || !senderEmail.match(EMAIL_REGEX) || !senderName || !senderMessage) {
 		return respond('invalid-form', event.request.headers);
 	}
 
-	if (!env) {
-		return respond('error', event.request.headers);
-	}
-
-	const options = {
-		host: env.EMAIL_HOST,
-		port: parseInt(env.EMAIL_PORT),
-		secure: env.EMAIL_SSL === 'true',
-		requireTLS: env.EMAIL_TLS === 'true',
-		auth: {
-			user: env.EMAIL_USER,
-			pass: env.EMAIL_PASSWORD
-		},
-		logger: false
-	};
-
 	if (
-		!(await sendEmail(
-			options,
+		!(await sendEmail({
+			formrecevrUrl: env?.FORMRECEVR_URL,
 			senderEmail,
 			senderName,
-			senderMessage,
-			env.EMAIL_FROM,
-			env.EMAIL_TO
-		))
+			senderMessage
+		}))
 	) {
 		return respond('error', event.request.headers);
 	}
