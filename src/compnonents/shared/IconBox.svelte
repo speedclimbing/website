@@ -1,11 +1,11 @@
-<script>
+<script lang="ts">
 	// colors: bg-red/10 bg-yellow/10
 	import AlternativeButton from './AlternativeButton.svelte';
 	export let color = 'yellow';
 	export let title = 'The Sport';
 	export let text =
 		'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At';
-	export let onClick = () => {};
+	export let onClick: (() => void) | undefined = undefined;
 </script>
 
 <div class="max-w-[350px] flex flex-col gap-5">
@@ -18,5 +18,7 @@
 			{text}
 		</slot>
 	</p>
-	<AlternativeButton {onClick} text="read more" />
+	{#if onClick}
+		<AlternativeButton {onClick} text="read more" />
+	{/if}
 </div>
