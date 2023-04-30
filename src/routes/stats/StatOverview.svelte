@@ -28,7 +28,7 @@
 				/>
 			</div>
 
-			<div class="flex justify-between flex-wrap gap-[50px]">
+			<div class="flex justify-between flex-wrap gap-6 md:gap-20">
 				<RankingOverview
 					label="Worldranking by time"
 					rows={data.ranking_athlete_time.map((a) => [
