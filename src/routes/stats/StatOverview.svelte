@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { SeasonSummary } from 'types/SeasonSummary';
-	import AlternativeButton from '../../compnonents/shared/AlternativeButton.svelte';
-	import NationMedalsRanking from '../../compnonents/stats/NationMedalsRanking.svelte';
-	import RankingOverview from '../../compnonents/stats/RankingOverview.svelte';
-	import UpcomingEvents from '../../compnonents/stats/UpcomingEvents.svelte';
+	import AlternativeButton from 'compnonents/shared/AlternativeButton.svelte';
+	import NationMedalsRanking from 'compnonents/stats/NationMedalsRanking.svelte';
+	import RankingOverview from 'compnonents/stats/RankingOverview.svelte';
+	import UpcomingEvents from 'compnonents/stats/UpcomingCompetitions.svelte';
 	import type { AthleteResult } from 'types/Athlete';
 	import type { Competition } from 'types/Competition';
 
@@ -52,7 +52,7 @@
 					rows={seasonSummary.ranking_athlete_avg_rank.map((a) => [
 						formatName(a),
 						a.nation_code_ioc,
-						a.avg_rank.toString()
+						a.avg_rank.toFixed(2)
 					])}
 				/>
 			</div>

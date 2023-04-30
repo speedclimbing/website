@@ -1,5 +1,6 @@
 <script lang="ts">
-	import type { Competition } from '../../types/Competition';
+	import { goto } from '$app/navigation';
+	import type { Competition } from 'types/Competition';
 	import EventCard from '../home/EventCard.svelte';
 	import AlternativeButton from '../shared/AlternativeButton.svelte';
 
@@ -14,6 +15,7 @@
 		<AlternativeButton
 			style="dark:bg-red dark:border-red bg-red border-red !text-white shrink-0"
 			text="All competitons"
+			on:click={() => goto('/competition')}
 		/>
 	</div>
 	<div class="flex flex-col gap-2">

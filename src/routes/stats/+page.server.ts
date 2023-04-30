@@ -6,7 +6,11 @@ import { fetchEndpoint } from 'utils/api';
 
 export const load: ServerLoad = async ({ fetch, platform }) => {
 	const [SeasonSummary, upcomingCompetitions] = await Promise.all([
-		fetchEndpoint<SeasonSummaryResponse>(fetch, platform, '/stats/summary/season/2022'),
+		fetchEndpoint<SeasonSummaryResponse>(
+			fetch,
+			platform,
+			`/stats/summary/season/${new Date().getFullYear()}`
+		),
 		fetchEndpoint<Competition[]>(fetch, platform, '/competition', {
 			from: new Date().toISOString().substring(0, 10)
 		})
