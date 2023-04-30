@@ -16,8 +16,6 @@ export const fetchEndpoint = async <T>(
 	let headers: Record<string, string> = {};
 	if (platform?.env?.API_TOKEN) {
 		headers['Authorization'] = `Bearer ${platform.env.API_TOKEN}`;
-	} else if (process.env.API_TOKEN) {
-		headers['Authorization'] = `Bearer ${process.env.API_TOKEN}`;
 	}
 
 	const response = await fetch(`${API_URL}/${path}`, {
