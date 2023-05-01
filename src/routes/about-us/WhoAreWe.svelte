@@ -51,7 +51,7 @@
 
 	<div class="flex items-stretch justify-center flex-wrap gap-4">
 		{#each people as person}
-			<Card size="xl" class="flex-auto lg:max-w-[50%] 2xl:max-w-[33%]">
+			<Card href={person.website} size="xl" class="flex-auto lg:max-w-[50%] 2xl:max-w-[33%]">
 				<div class="flex justify-start items-center space-x-3">
 					<img
 						class="w-[70px] h-[70px] rounded-full"
