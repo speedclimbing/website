@@ -1,6 +1,5 @@
 <script>
 	import { goto } from '$app/navigation';
-	import Keyword from 'compnonents/about/Keyword.svelte';
 	import IconBox from 'compnonents/shared/IconBox.svelte';
 	import Line from 'compnonents/shared/Line.svelte';
 	import { P } from 'flowbite-svelte';

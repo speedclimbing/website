@@ -19,6 +19,6 @@
 		</slot>
 	</p>
 	{#if onClick}
-		<AlternativeButton {onClick} text="read more" />
+		<AlternativeButton {onClick} text="read more" style="mt-auto" />
 	{/if}
 </div>
