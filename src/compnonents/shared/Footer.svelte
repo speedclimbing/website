@@ -21,32 +21,32 @@
 		<div class="flex flex-col">
 			<p class="text-light-grey font-light text-lg mb-3 dark:text-light-grey">Search</p>
 			<ul class=" font-medium flex-col gap-2 flex">
-				<a href="/competition">Competitions</a>
-				<a href="/athlete">Athletes</a>
-				<a href="/stats">Stats</a>
+				<li><a href="/competition">Competitions</a></li>
+				<li><a href="/athlete">Athletes</a></li>
+				<li><a href="/stats">Stats</a></li>
 			</ul>
 		</div>
 		<div class="flex flex-col">
 			<p class="text-light-grey font-light text-lg mb-3 dark:text-light-grey">Speedclimbing</p>
 			<ul class=" font-medium flex-col gap-2 flex">
-				<a href="/about#the-sport">The sport</a>
-				<a href="/about#the-wall">The wall</a>
-				<a href="/about#the-rules">The rules</a>
+				<li><a href="/about#the-sport">The sport</a></li>
+				<li><a href="/about#the-wall">The wall</a></li>
+				<li><a href="/about#the-rules">The rules</a></li>
 			</ul>
 		</div>
 		<div class="flex flex-col">
 			<p class="text-light-grey font-light text-lg mb-3 dark:text-light-grey">About</p>
 			<ul class=" font-medium flex-col gap-2 flex">
-				<a href="/about-us#contact">Contact</a>
-				<a href="/about-us#impress">Impress</a>
-				<a href="/about-us#privacy-policy">Privacy Policy</a>
+				<li><a href="/about-us#contact">Contact</a></li>
+				<li><a href="/about-us#impress">Impress</a></li>
+				<li><a href="/about-us#privacy-policy">Privacy Policy</a></li>
 			</ul>
 		</div>
 	</div>
 </footer>
 
 <style>
-	ul > a {
+	ul > li > a {
 		color: white;
 	}
 </style>
