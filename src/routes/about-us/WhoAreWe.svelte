@@ -51,16 +51,23 @@
 
 	<div class="flex items-stretch justify-center flex-wrap gap-4">
 		{#each people as person}
-			<Card img={person.image} href={person.website} horizontal class="flex-auto">
-				<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-					{person.name}
-				</h5>
-				<div class="flex gap-2 py-2">
-					{#each person.roles as role}
-						<Badge color="dark">{role}</Badge>
-					{/each}
+			<Card size="xl" class="flex-auto lg:max-w-[50%] 2xl:max-w-[33%]">
+				<div class="flex justify-start items-center space-x-3">
+					<img
+						class="w-[70px] h-[70px] rounded-full"
+						src={person.image}
+						alt="image of {person.name}"
+					/>
+					<div class="space-y-2 font-medium dark:text-white text-left">
+						<span class="text-2xl">{person.name}</span>
+						<div class="flex gap-2">
+							{#each person.roles as role}
+								<Badge color="dark">{role}</Badge>
+							{/each}
+						</div>
+					</div>
 				</div>
-				<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">
+				<p class="pt-4">
 					{person.about}
 				</p>
 			</Card>
