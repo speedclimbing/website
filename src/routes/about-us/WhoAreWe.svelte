@@ -98,3 +98,9 @@
 		{/each}
 	</div>
 </section>
+
+<style lang="postcss">
+	p {
+		@apply max-w-[50rem];
+	}
+</style>
