@@ -1,6 +1,4 @@
 <script>
-	import { P } from 'flowbite-svelte';
-
 	import Line from 'compnonents/shared/Line.svelte';
 </script>
 
@@ -8,7 +6,7 @@
 	<h2 class="text-4xl font-bold" id="the-sport">What is speedclimbing?</h2>
 	<Line color="red" />
 
-	<P class="pb-6 text-4xl">
+	<p>
 		Speedclimbing is one of the three disciplines in modern sports climbing. The biggest difference
 		to lead or bouldering is the standardized wall. The wall is exactly the same in every gym and on
 		every competition all around the world.
@@ -20,5 +18,5 @@
 		that 15 meter wall in five seconds.
 		<br />
 		This is what makes speedclimbing so exciting!
-	</P>
+	</p>
 </section>

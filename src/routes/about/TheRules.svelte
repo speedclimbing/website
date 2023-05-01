@@ -1,5 +1,4 @@
 <script>
-	import { P } from 'flowbite-svelte';
 	import Line from 'compnonents/shared/Line.svelte';
 </script>
 
@@ -7,8 +6,8 @@
 	<h2 class="text-4xl font-bold" id="the-rules">How does the competition work?</h2>
 	<Line color="red" />
 
-	<P
-		>A speedclimbing competition consists of two parts:
+	<p>
+		A speedclimbing competition consists of two parts:
 		<span class="text-blue-500 font-bold">training</span>,
 		<span class="text-yellow font-bold">qualification</span>
 		and
@@ -34,5 +33,5 @@
 		next round. The loser is eliminated. When only four athletes are left, it's called the semi-final.
 		The losers of the semi-final compete again, in the so-called small-final, for the third place. The
 		winners proceed to the final to determine who wins the competition.
-	</P>
+	</p>
 </section>

@@ -2,7 +2,6 @@
 	import { goto } from '$app/navigation';
 	import IconBox from 'compnonents/shared/IconBox.svelte';
 	import Line from 'compnonents/shared/Line.svelte';
-	import { P } from 'flowbite-svelte';
 	import { BarsArrowUp, BookOpen, Trophy } from 'svelte-heros-v2';
 </script>
 
