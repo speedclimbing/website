@@ -38,7 +38,7 @@
 			<p class="text-light-grey font-light text-lg mb-3 dark:text-light-grey">About</p>
 			<ul class=" font-medium flex-col gap-2 flex">
 				<li><a href="/about-us#contact">Contact</a></li>
-				<li><a href="/about-us#impress">Impress</a></li>
+				<li><a href="/about-us#imprint">Imprint</a></li>
 				<li><a href="/about-us#privacy-policy">Privacy Policy</a></li>
 			</ul>
 		</div>
