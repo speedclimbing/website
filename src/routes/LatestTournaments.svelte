@@ -4,6 +4,7 @@
 	import EventCard from 'compnonents/home/EventCard.svelte';
 	import PrimaryButton from 'compnonents/shared/PrimaryButton.svelte';
 	import type { Competition } from 'src/types/Competition';
+	import { goto } from '$app/navigation';
 
 	export let competitions: Competition[];
 
@@ -18,16 +19,15 @@
 <section id="latest-tournaments" class="py-[100px]">
 	<h2 class="text-4xl font-bold text-center">Latest Competitions</h2>
 	<Line style="mx-auto" />
-	<div class="flex justify-between gap-5 flex-col lg:flex-row">
-		<Select items={countries} bind:value={selected} />
-		<Select items={countries} bind:value={selected} />
-		<Select items={countries} bind:value={selected} />
-	</div>
 	<div class="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10">
 		{#each competitions as competition, index (index)}
 			<EventCard {competition} />
 		{/each}
 	</div>
 
-	<PrimaryButton text="View all Competitions" link="/competition" style="mx-auto block" />
+	<PrimaryButton
+		text="View all Competitions"
+		onClick={() => goto('/competition')}
+		style="mx-auto block"
+	/>
 </section>
