@@ -8,6 +8,9 @@ declare namespace App {
 	interface Platform {
 		env?: {
 			API_TOKEN: string;
+			FORMRECEVR_URL: string;
+			TURNSTILE_SECRET_KEY: string;
+			TURNSTILE_SITE_KEY: string;
 		};
 	}
 }
