@@ -1,4 +1,5 @@
 <script>
+	import { goto } from '$app/navigation';
 	import Line from 'compnonents/shared/Line.svelte';
 	import PrimaryButton from 'compnonents/shared/PrimaryButton.svelte';
 	import SecondaryButton from 'compnonents/shared/SecondaryButton.svelte';
@@ -7,18 +8,14 @@
 <section id="insights" class="py-[100px] flex gap-16 flex-col lg:items-center lg:flex-row">
 	<img src="/images/Charts.png" alt="some statistics" class=" lg:w-[350px] xl:w-[500px]" />
 	<div>
-		<h2 class="text-4xl font-bold">Deep Insights</h2>
+		<h2 class="text-4xl font-bold">Statistics</h2>
 		<Line />
-		<p class="mb-10">
-			Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-			invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-			justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-			ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-			eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+		<p class="mb-10 text-lg">
+			Want to find out more about top athletes and teams? We put together some intresting rankings
+			and statistics to give you a deeper insight to into the sport!
 		</p>
 		<div class="flex gap-3 flex-col px-[auto] sm:flex-row">
-			<PrimaryButton text="Latest Competitions" link="/competition" />
-			<SecondaryButton text="Top Climbers" />
+			<PrimaryButton text="Find out more" onClick={() => goto('/stats')} />
 		</div>
 	</div>
 </section>
