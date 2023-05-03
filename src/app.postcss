@@ -80,15 +80,27 @@ a {
 
 #default-carousel {
 	@apply h-[100%];
+	pointer-events: none;
 }
 
-.hero-slide > img {
+#default-carousel > div:first-child,
+#default-carousel > div > div {
+	@apply h-[100%];
+}
+
+#default-carousel > div > div {
+	@apply flex overflow-hidden;
+}
+
+#default-carousel > div > div > img {
 	flex: auto;
 	height: 100%;
+	z-index: -1;
 	object-fit: cover;
 	object-position: top right;
 }
 
-.hero-slide {
-	background: linear-gradient(0deg, rgba(17, 24, 39, 0.6), rgba(17, 24, 39, 0.6));
+#default-carousel > button,
+#default-carousel > div > button {
+	pointer-events: all;
 }

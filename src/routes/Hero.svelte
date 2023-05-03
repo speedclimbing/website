@@ -20,21 +20,18 @@
 	];
 </script>
 
-<section id="hero" class="relative p-0 h-[700px]">
-	<div class="h-[100%]">
+<section id="hero" class="relative p-0">
+	<div class="absolute top-0 left-0  w-[100%] h-[100%] pointer-events-none">
 		<Carousel
 			{images}
-			divClass="h-[100%]"
-			slideClass="h-[100%] hero-slide flex overflow-hidden"
-			captionClass="h-10 bg-gray-300 dark:bg-gray-700 dark:text-white p-2 m-2 text-center absolute bottom-0 right-0 rounded-md"
+			slideClass="hero-slide flex overflow-hidden"
+			captionClass="h-10 bg-gray-300 dark:bg-gray-700 dark:text-white p-2 m-2 text-center absolute bottom-0 right-0 rounded-md z-10"
 			showThumbs={false}
 			showCaptions={true}
 		/>
 	</div>
 
-	<div
-		class="absolute top-0 left-0 pt-[230px] px-[10%] lg:px-[15%] w-[100%] h-[100%] hero-gradient"
-	>
+	<div class="pt-[230px] pb-[150px] px-[10%] lg:px-[15%] hero-gradient z-[10]">
 		<h1 class="font-Raleway text-[36px] sm:text-[56px] lg:text-[64px] leading-none mb-[30px]">
 			<span class="text-white font-light">Welcome to</span><br />
 			<span class="font-bold  text-red">Speedclimbing</span>
@@ -57,11 +54,6 @@
 <style lang="postcss">
 	.hero-gradient {
 		background-image: linear-gradient(0deg, rgba(17, 24, 39, 0.6), rgba(17, 24, 39, 0.6));
-	}
-
-	.hero-slide > img {
-		felx: auto;
-		display: none;
 	}
 
 	#hero {
