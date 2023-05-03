@@ -1,10 +1,12 @@
 <script>
 	import { List, P } from 'flowbite-svelte';
 	import Line from 'compnonents/shared/Line.svelte';
+	import AnchorPoint from 'compnonents/shared/AnchorPoint.svelte';
 </script>
 
 <section class="py-6">
-	<h2 class="text-4xl font-bold" id="the-wall">What is so special about that wall?</h2>
+	<AnchorPoint id="the-wall" />
+	<h2 class="text-4xl font-bold">What is so special about that wall?</h2>
 	<Line color="red" />
 
 	<P class="pb-6">

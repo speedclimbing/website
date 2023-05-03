@@ -1,9 +1,11 @@
 <script>
+	import AnchorPoint from 'compnonents/shared/AnchorPoint.svelte';
 	import Line from 'compnonents/shared/Line.svelte';
 </script>
 
 <section class="py-6">
-	<h2 class="text-4xl font-bold" id="the-sport">What is speedclimbing?</h2>
+	<AnchorPoint id="the-sport" />
+	<h2 class="text-4xl font-bold">What is speedclimbing?</h2>
 	<Line color="red" />
 
 	<p>

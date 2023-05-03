@@ -3,7 +3,7 @@
 </script>
 
 <section class="py-6">
-	<h2 class="text-4xl font-bold" id="the-sport">Where did it come from?</h2>
+	<h2 class="text-4xl font-bold">Where did it come from?</h2>
 	<Line color="red" />
 
 	<p>
