@@ -13,7 +13,8 @@ const config = {
 				grey: '#374151',
 				'light-grey': '#6B7280',
 				red: '#DA3C2B',
-				yellow: '#DD972A'
+				yellow: '#DD972A',
+				green: '#057A55'
 			},
 			fontFamily: {
 				Roboto: ['Roboto', 'sans-serif'],
@@ -29,9 +30,9 @@ const config = {
 					'98%': { transform: 'scaleY(0.1)' }
 				},
 				eyes: {
-					'0%, 25%, 50%, 75%': { transform: 'translate(0, 0)'},
-					'30%, 45%': { transform: 'translate(-10px, 0)'},
-					'80%, 95%': { transform: 'translate(10px, 0)'}
+					'0%, 25%, 50%, 75%': { transform: 'translate(0, 0)' },
+					'30%, 45%': { transform: 'translate(-10px, 0)' },
+					'80%, 95%': { transform: 'translate(10px, 0)' }
 				}
 			}
 		}
