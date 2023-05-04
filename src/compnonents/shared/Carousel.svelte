@@ -13,18 +13,10 @@
 	let clazz: string;
 	export { clazz as class };
 	const id = newUniqueId();
-
-	let currentItem = 0;
 </script>
 
-{#each items as item, i}
-	<input
-		class="carousel-selector hidden"
-		type="radio"
-		name={id}
-		id="{id}-{i}"
-		checked={currentItem == i}
-	/>
+{#each items as _, i}
+	<input class="carousel-selector hidden" type="radio" name={id} id="{id}-{i}" checked={i == 0} />
 {/each}
 
 <div class="carousel-container relative z-30 {clazz}">
@@ -71,31 +63,3 @@
 		{/each}
 	</div>
 </div>
-
-<style lang="postcss">
-	.carousel-control {
-		pointer-events: all;
-	}
-
-	.carousel-nav {
-		pointer-events: all;
-	}
-
-	.carousel-container:hover .carousel-control {
-		@apply opacity-100 -z-10;
-	}
-
-	@for $i from 1 to 10 {
-		.carousel-selector:nth-child($i):checked ~ .carousel-container .carousel-item:nth-child($i) {
-			@apply opacity-100 z-10;
-			pointer-events: auto;
-		}
-
-		.carousel-selector:nth-child($i):checked
-			~ .carousel-container
-			.carousel-nav
-			> label:nth-child($i) {
-			@apply opacity-100;
-		}
-	}
-</style>
