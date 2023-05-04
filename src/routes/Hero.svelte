@@ -24,14 +24,15 @@
 	<div class="absolute top-0 left-0  w-[100%] h-[100%] pointer-events-none">
 		<Carousel
 			{images}
-			slideClass="hero-slide flex overflow-hidden"
-			captionClass="h-10 bg-gray-300 dark:bg-gray-700 dark:text-white p-2 m-2 text-center absolute bottom-0 right-0 rounded-md z-10"
+			captionClass="h-10 bg-gray-300 dark:bg-gray-700 dark:text-white p-2 m-2 text-center absolute bottom-0 right-0 rounded-md z-5"
 			showThumbs={false}
 			showCaptions={true}
+			loop
+			duration={5000}
 		/>
 	</div>
 
-	<div class="pt-[230px] pb-[150px] px-[10%] lg:px-[15%] hero-gradient z-[10]">
+	<div class="pt-[230px] pb-[150px] px-[10%] lg:px-[15%] hero-gradient">
 		<h1 class="font-Raleway text-[36px] sm:text-[56px] lg:text-[64px] leading-none mb-[30px]">
 			<span class="text-white font-light">Welcome to</span><br />
 			<span class="font-bold  text-red">Speedclimbing</span>
