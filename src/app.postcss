@@ -90,16 +90,18 @@ a {
 	@apply opacity-100 -z-10;
 }
 
-@for $i from 1 to 10 {
-	.carousel-selector:nth-child($i):checked ~ .carousel-container .carousel-item:nth-child($i) {
-		@apply opacity-100 z-10;
-		pointer-events: auto;
-	}
+.carousel-selector:nth-child(1):checked ~ .carousel-container .carousel-item:nth-child(1) {
+	@apply opacity-100 z-10;
+	pointer-events: auto;
+}
+.carousel-selector:nth-child(2):checked ~ .carousel-container .carousel-item:nth-child(2) {
+	@apply opacity-100 z-10;
+	pointer-events: auto;
+}
 
-	.carousel-selector:nth-child($i):checked
-		~ .carousel-container
-		.carousel-nav
-		> label:nth-child($i) {
-		@apply opacity-100;
-	}
+.carousel-selector:nth-child(1):checked ~ .carousel-container .carousel-nav > label:nth-child(1) {
+	@apply opacity-100;
+}
+.carousel-selector:nth-child(2):checked ~ .carousel-container .carousel-nav > label:nth-child(2) {
+	@apply opacity-100;
 }

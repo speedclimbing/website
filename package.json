@@ -45,7 +45,6 @@
 	"type": "module",
 	"dependencies": {
 		"fullcalendar": "^6.1.5",
-		"locally-unique-id-generator": "^0.1.5",
-		"postcss-for": "^2.1.1"
+		"locally-unique-id-generator": "^0.1.5"
 	}
 }
