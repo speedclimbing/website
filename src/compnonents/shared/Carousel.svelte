@@ -1,8 +1,7 @@
 <script lang="ts">
-	import type { SvelteComponent } from 'svelte';
-	import newUniqueId from 'locally-unique-id-generator';
-	import { comment } from 'svelte/internal';
 	import { mod } from 'utils/mod';
+	import { nextId } from '../../stores';
+	import { uniqueId } from 'utils/uniqueId';
 
 	interface CarouselItem {
 		properties?: Record<string, any>;
@@ -12,7 +11,7 @@
 	export let items: CarouselItem[];
 	let clazz: string;
 	export { clazz as class };
-	const id = newUniqueId();
+	const id = uniqueId();
 </script>
 
 {#each items as _, i}
