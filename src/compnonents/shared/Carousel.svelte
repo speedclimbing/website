@@ -1,6 +1,7 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
+	import { onMount } from 'svelte';
 	import { mod } from 'utils/mod';
-	import { nextId } from '../../stores';
 	import { uniqueId } from 'utils/uniqueId';
 
 	interface CarouselItem {
@@ -12,10 +13,31 @@
 	let clazz: string;
 	export { clazz as class };
 	const id = uniqueId();
+
+	let timeout: NodeJS.Timeout;
+	let currentIndex = 0;
+
+	const restartTimeout = (_: number) => {
+		clearTimeout(timeout);
+		timeout = setTimeout(() => {
+			currentIndex = mod(currentIndex + 1, items.length);
+		}, 5000);
+	};
+
+	$: {
+		if (browser) restartTimeout(currentIndex);
+	}
 </script>
 
 {#each items as _, i}
-	<input class="carousel-selector hidden" type="radio" name={id} id="{id}-{i}" checked={i == 0} />
+	<input
+		class="carousel-selector hidden"
+		type="radio"
+		name={id}
+		id="{id}-{i}"
+		value={i}
+		bind:group={currentIndex}
+	/>
 {/each}
 
 <div class="carousel-container relative z-30 {clazz}">
