@@ -22,7 +22,7 @@
 
 <section id="hero" class="relative p-0">
 	<div class="top-0 left-0  w-[100%] pointer-events-none">
-		<Carousel items={carouselItems} class="w-[100%] h-[45rem]" />
+		<Carousel items={carouselItems} bottomNav={false} class="w-[100%] h-[45rem]" />
 	</div>
 </section>
 

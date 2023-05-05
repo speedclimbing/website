@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { onMount } from 'svelte';
 	import { mod } from 'utils/mod';
 	import { uniqueId } from 'utils/uniqueId';
 
@@ -12,6 +11,8 @@
 	export let items: CarouselItem[];
 	let clazz: string;
 	export { clazz as class };
+	export let bottomNav: boolean = true;
+
 	const id = uniqueId();
 
 	let timeout: NodeJS.Timeout;
@@ -73,14 +74,16 @@
 		</figure>
 	{/each}
 
-	<div class="carousel-nav absolute bottom-4 left-[50%] translate-x-[-50%] z-40 flex">
-		{#each items as _, i}
-			<label
-				for="{id}-{i}"
-				class="px-2 py-4 cursor-pointer opacity-50 flex justify-center items-center"
-			>
-				<div class="block w-[50px] h-[2px] bg-white" />
-			</label>
-		{/each}
-	</div>
+	{#if bottomNav}
+		<div class="carousel-nav absolute bottom-4 left-[50%] translate-x-[-50%] z-40 flex">
+			{#each items as _, i}
+				<label
+					for="{id}-{i}"
+					class="px-2 py-4 cursor-pointer opacity-50 flex justify-center items-center"
+				>
+					<div class="block w-[50px] h-[2px] bg-white" />
+				</label>
+			{/each}
+		</div>
+	{/if}
 </div>
