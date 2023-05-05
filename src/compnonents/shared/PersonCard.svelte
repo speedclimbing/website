@@ -19,10 +19,14 @@
 </script>
 
 <div
-	class="w-[300px] md:w-[450px] lg:w-[400px] h-[250px] p-5 mt-20 rounded-md background-gradient relative flex flex-col-reverse"
+	class="w-[300px] md:w-[400px] lg:w-[450px] h-[250px] p-5 mt-20 rounded-md background-gradient relative flex flex-col-reverse"
 	use:cardColor
 >
-	<img src={image} alt={name} class="absolute w-[70%] top-[-70px] left-[50%] translate-x-[-50%]" />
+	<img
+		src={image}
+		alt={name}
+		class="absolute w-[80%] top-[-60px] md:top-[-90px] lg:top-[-120px] left-[50%] translate-x-[-50%]"
+	/>
 	<div class="relative p-5 rounded-sm bg-white/[0.85]">
 		<p class="dark:text-black">{name}</p>
 		<p class="text-color text-normal font-normal">{subtitle}</p>
