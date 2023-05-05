@@ -5,6 +5,12 @@
 
 	export let image: string = '';
 	export let imageClass: string = '';
+	export let imageSource:
+		| {
+				url: string;
+				alt: string;
+		  }
+		| undefined;
 </script>
 
 <div class="absolute top-0 left-0 w-[100%] h-[100%] pointer-events-none -z-10">
@@ -16,6 +22,16 @@
 		/>
 	</div>
 </div>
+
+{#if imageSource}
+	<a
+		class="absolute bottom-4 right-4 px-4 py-2 bg-black rounded-md text-white"
+		href={imageSource.url}
+		target="_blank"
+	>
+		{imageSource.alt}
+	</a>
+{/if}
 
 <div class="flex flex-col justify-center gap-0 mx-[10%] mg:px-[15%] h-[100%] w-[80%] mg:w-[70%]">
 	<h1 class="font-Raleway text-[36px] sm:text-[56px] lg:text-[64px] leading-none">

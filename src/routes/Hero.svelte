@@ -1,23 +1,23 @@
-<script>
+<script lang="ts">
 	import Carousel from 'compnonents/shared/Carousel.svelte';
 	import CarouselComponent from 'compnonents/home/CarouselComponent.svelte';
+	import { MEDIA_URL } from 'utils/constants';
 
-	const carouselItems = [
-		{
+	export let heroImages: string[][];
+
+	const carouselItems = heroImages.map((image) => {
+		return {
 			properties: {
-				image: '/images/52852741066_38ce95a27a_h.jpg',
-				imageClass: 'object-right-top'
+				image: `${MEDIA_URL}/image/hero/${image[0]}`,
+				imageClass: image[4],
+				imageSource: {
+					url: image[2],
+					alt: `Source: ${image[1]}`
+				}
 			},
 			component: CarouselComponent
-		},
-		{
-			properties: {
-				image: '/images/Hero.jpg',
-				imageClass: 'object-top'
-			},
-			component: CarouselComponent
-		}
-	];
+		};
+	});
 </script>
 
 <section id="hero" class="relative p-0">

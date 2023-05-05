@@ -47,6 +47,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"fullcalendar": "^6.1.5"
+		"fullcalendar": "^6.1.5",
+		"postcss-for": "^2.1.1"
 	}
 }
