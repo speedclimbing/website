@@ -14,7 +14,7 @@
 </script>
 
 <div class="absolute top-0 left-0 w-[100%] h-[100%] pointer-events-none -z-10">
-	<div class="hero-gradient inline-block w-[100%] h-[100%]">
+	<div class="bg-black opacity-40 inline-block w-[100%] h-[100%]">
 		<img
 			src={image}
 			class="relative w-[100%] h-[100%] object-cover -z-20 {imageClass}"
@@ -51,9 +51,3 @@
 		>
 	</div>
 </div>
-
-<style lang="postcss">
-	.hero-gradient {
-		background-image: linear-gradient(0deg, rgba(17, 24, 39, 0.6), rgba(17, 24, 39, 0.6));
-	}
-</style>
