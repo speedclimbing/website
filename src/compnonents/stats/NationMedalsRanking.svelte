@@ -1,6 +1,6 @@
 <script lang="ts">
 	import NationMedalsTable from './NationMedalsTable.svelte';
-	import PaginationButton from './PaginationButton.svelte';
+	import Pagination from '../shared/Pagination.svelte';
 </script>
 
 <div
@@ -8,10 +8,7 @@
 >
 	<div class="flex justify-between flex-wrap gap-5">
 		<h2 class="text-3xl">Nation Medals</h2>
-		<div class="flex gap-5 shrink-0">
-			<p class="self-center">Page <strong>1</strong> of <strong>10</strong></p>
-			<PaginationButton />
-		</div>
+		<Pagination />
 	</div>
 	<hr class="border-grey/10 border-[1px] dark:border-light-grey mt-2" />
 	<NationMedalsTable />

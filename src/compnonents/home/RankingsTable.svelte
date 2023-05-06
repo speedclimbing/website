@@ -22,7 +22,7 @@
 	<TableHead class="text-black/25">
 		<TableHeadCell>Rank</TableHeadCell>
 		<TableHeadCell>Full Name</TableHeadCell>
-		<TableHeadCell>Country</TableHeadCell>
+		<TableHeadCell>Nation</TableHeadCell>
 		<TableHeadCell>Date</TableHeadCell>
 		<TableHeadCell>Time</TableHeadCell>
 	</TableHead>
