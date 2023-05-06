@@ -29,9 +29,8 @@
 				<h2 class="text-4xl font-bold">Athlete Search</h2>
 				<Line />
 			</div>
-			<p class="text-sm font-light max-w-[300px] md:text-right mb-5 mt-[-30px] md:mt-0">
-				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-				invidunt ut labore et dolore magna aliquyam
+			<p class="text-lg font-light max-w-[300px] md:text-right mb-5 mt-[-30px] md:mt-0">
+				Find out more about your favourite athletes!
 			</p>
 		</div>
 

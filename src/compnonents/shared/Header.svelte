@@ -16,7 +16,6 @@
 	const items = {
 		'/competition': 'Competitions',
 		'/athlete': 'Athletes',
-		'/team': 'Teams',
 		'/stats': 'Stats',
 		'/about': 'About'
 	};
@@ -36,7 +35,7 @@
 		navDivClass="mx-0 flex flex-wrap justify-between items-center  container"
 	>
 		<NavBrand id="logo" href="/">
-			<img src="/favicon.png" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
+			<img src="/favicon.png" class="mr-3 h-6 sm:h-9" alt="Logo" />
 			<p class="font-bold text-red dark:text-red text-xl">speedclimbing</p>
 		</NavBrand>
 		<NavHamburger on:click={toggle} />
@@ -51,7 +50,7 @@
 				<NavLi
 					href={path}
 					activeClass="text-red"
-					nonActiveClass="hover:text-red"
+					nonActiveClass="hover:text-red text-white"
 					on:click={() => {
 						!hidden && toggle();
 					}}>{name}</NavLi

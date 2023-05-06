@@ -19,7 +19,7 @@
 </script>
 
 <div
-	class="w-[300px] md:w-[450px] lg:w-[400px] h-[250px] p-5 rounded-md background-gradient relative flex flex-col-reverse"
+	class="w-[300px] md:w-[450px] lg:w-[400px] h-[250px] p-5 mt-20 rounded-md background-gradient relative flex flex-col-reverse"
 	use:cardColor
 >
 	<img src={image} alt={name} class="absolute w-full top-[-50px] left-[-50px]" />
