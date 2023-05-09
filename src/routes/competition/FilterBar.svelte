@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { League } from 'types/League';
+	import type { LeagueGroup } from 'types/LeagueGroup';
 	import type { Nation } from 'types/Nation';
 	import type { Season } from 'types/Season';
 	import SwitchButton from 'compnonents/shared/SwitchButton.svelte';
@@ -9,11 +9,11 @@
 	export let viewCalendar: boolean;
 	export let name: string;
 	export let year: number;
-	export let league: string;
+	export let league_group: string;
 	export let nation: string;
 	export let seasons: Season[];
 	export let nations: Nation[];
-	export let leagues: League[];
+	export let league_groups: LeagueGroup[];
 </script>
 
 <section id="competition-filter" class="xl:grid-cols-5 md:grid-cols-2 grid gap-[10px] mt-10">
@@ -23,28 +23,28 @@
 		inputClass="rounded-sm font-Raleway bg-black/5"
 		bind:value={name}
 	/>
+	<SelectFilter bind:value={year} options={seasons} textProperty="year" valueProperty="year" />
 	<SelectFilter
-		bind:value={year}
-		options={seasons}
-		textProperty="year"
-		valueProperty="year"
-		onChange={() => {
-			league = '';
-		}}
-	/>
-	<SelectFilter
-		bind:value={league}
-		options={leagues}
+		bind:value={league_group}
+		options={league_groups}
 		textProperty="name"
 		valueProperty="id"
+		optgroup={{
+			property: 'continent',
+			defaultText: 'World-wide'
+		}}
 		defaultText="All Leagues"
 	/>
 	<SelectFilter
 		bind:value={nation}
 		options={nations}
-		textProperty="code"
-		valueProperty="id"
+		textProperty="name"
+		valueProperty="code_ioc"
 		defaultText="All Nations"
+		optgroup={{
+			property: 'continent',
+			defaultText: 'World-wide'
+		}}
 	/>
 	<SwitchButton
 		leftClickAction={() => (viewCalendar = false)}

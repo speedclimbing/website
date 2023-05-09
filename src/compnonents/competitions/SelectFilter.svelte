@@ -3,8 +3,27 @@
 	export let onChange: () => void = () => {};
 	export let textProperty: string;
 	export let valueProperty: string;
-	export let options: any[];
+	export let optgroup:
+		| {
+				property: string;
+				defaultText: string;
+		  }
+		| undefined = undefined;
 	export let defaultText: string | null = null;
+	export let options: { [key: string]: string | number | null }[];
+
+	let groupedOptions: Record<string, typeof options> = {};
+
+	if (optgroup) {
+		groupedOptions = options.reduce((acc, option) => {
+			const group = option[optgroup!.property] ?? optgroup!.defaultText;
+			if (!acc[group]) {
+				acc[group] = [];
+			}
+			acc[group].push(option);
+			return acc;
+		}, groupedOptions);
+	}
 </script>
 
 <select
@@ -15,7 +34,18 @@
 	{#if defaultText}
 		<option value="">{defaultText}</option>
 	{/if}
-	{#each options as option}
-		<option value={option[valueProperty]}>{option[textProperty]}</option>
-	{/each}
+
+	{#if optgroup}
+		{#each Object.keys(groupedOptions) as group}
+			<optgroup label={group}>
+				{#each groupedOptions[group] as option}
+					<option value={option[valueProperty]}>{option[textProperty]}</option>
+				{/each}
+			</optgroup>
+		{/each}
+	{:else}
+		{#each options as option}
+			<option value={option[valueProperty]}>{option[textProperty]}</option>
+		{/each}
+	{/if}
 </select>

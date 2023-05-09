@@ -11,18 +11,31 @@
 	import { navigating } from '$app/stores';
 
 	export let data: PageData;
-	let competitions: Competition[] = data.competitions;
-	let { year, name, nation, league } = data.params;
+	let { year, name, nation, league_group } = data.params;
 	let viewCalendar: boolean = false;
+	let calendarDate: Date | undefined = undefined;
 
 	const isMounted = () => $mounted;
-	const handleSearch = async (year: number, name: string, nation: string, league: string) => {
-		updateSearchParams({ year, name, nation, league });
+	const handleSearch = async (year: number, name: string, nation: string, league_group: string) => {
+		updateSearchParams({ year, name, nation, league_group });
 	};
 
 	$: {
 		if (!browser || !isMounted()) break $;
-		handleSearch(year, name, nation, league);
+		handleSearch(year, name, nation, league_group);
+	}
+
+	$: {
+		if (!browser || !isMounted()) break $;
+
+		const currentDate = new Date();
+		if (!calendarDate && year === currentDate.getFullYear()) {
+			calendarDate = currentDate;
+		}
+
+		if (calendarDate && year !== calendarDate.getFullYear()) {
+			year = calendarDate.getFullYear();
+		}
 	}
 </script>
 
@@ -30,10 +43,10 @@
 	bind:year
 	bind:name
 	bind:nation
-	bind:league
+	bind:league_group
 	bind:viewCalendar
 	seasons={data.seasons}
-	leagues={data.leagues}
+	league_groups={data.league_groups}
 	nations={data.nations}
 />
 <section id="competitions">
@@ -52,6 +65,6 @@
 			{/each}
 		</div>
 	{:else if viewCalendar}
-		<CompetitionCalendar {competitions} bind:year />
+		<CompetitionCalendar competitions={data.competitions} bind:date={calendarDate} />
 	{/if}
 </section>
