@@ -1,14 +1,15 @@
 <script lang="ts">
-	import type { Competition } from 'types/Competition';
 	import type { PageData } from './$types';
 	import { mounted } from 'utils/mounted';
 	import { browser } from '$app/environment';
 	import { updateSearchParams } from 'utils/updateSearchParams';
-	import FilterBar from './FilterBar.svelte';
 	import CompetitionCalendar from 'compnonents/competitions/CompetitionCalendar.svelte';
 	import EventCard from 'compnonents/home/EventCard.svelte';
 	import { Spinner } from 'flowbite-svelte';
 	import { navigating } from '$app/stores';
+	import DebouncedInput from 'compnonents/shared/DebouncedInput.svelte';
+	import SelectFilter from 'compnonents/competitions/SelectFilter.svelte';
+	import SwitchButton from 'compnonents/shared/SwitchButton.svelte';
 
 	export let data: PageData;
 	let { year, name, nation, league_group } = data.params;
@@ -26,29 +27,62 @@
 	}
 
 	$: {
-		if (!browser || !isMounted()) break $;
-
 		const currentDate = new Date();
-		if (!calendarDate && year === currentDate.getFullYear()) {
+		if (!viewCalendar && year === currentDate.getFullYear()) {
 			calendarDate = currentDate;
-		}
-
-		if (calendarDate && year !== calendarDate.getFullYear()) {
+		} else if (!viewCalendar && year !== currentDate.getFullYear()) {
+			calendarDate = undefined;
+		} else if (viewCalendar && calendarDate && year !== calendarDate.getFullYear()) {
 			year = calendarDate.getFullYear();
 		}
 	}
 </script>
 
-<FilterBar
-	bind:year
-	bind:name
-	bind:nation
-	bind:league_group
-	bind:viewCalendar
-	seasons={data.seasons}
-	league_groups={data.league_groups}
-	nations={data.nations}
-/>
+<section id="competition-filter" class="xl:grid-cols-5 md:grid-cols-2 grid gap-[10px] mt-10">
+	<DebouncedInput
+		type="text"
+		placeholder="Competition Name"
+		inputClass="rounded-sm font-Raleway bg-black/5"
+		bind:value={name}
+	/>
+	<SelectFilter
+		bind:value={year}
+		options={data.seasons}
+		disabled={viewCalendar}
+		textProperty="year"
+		valueProperty="year"
+	/>
+	<SelectFilter
+		bind:value={league_group}
+		options={data.league_groups}
+		textProperty="name"
+		valueProperty="id"
+		optgroup={{
+			property: 'continent',
+			defaultText: 'World-wide'
+		}}
+		defaultText="All Leagues"
+	/>
+	<SelectFilter
+		bind:value={nation}
+		options={data.nations}
+		textProperty="name"
+		valueProperty="code_ioc"
+		defaultText="All Nations"
+		optgroup={{
+			property: 'continent',
+			defaultText: 'World-wide'
+		}}
+	/>
+	<SwitchButton
+		leftClickAction={() => (viewCalendar = false)}
+		rightClickAction={() => (viewCalendar = true)}
+		leftString="List"
+		rightString="Calendar"
+		style="md:col-span-2 ml-auto xl:col-span-1"
+	/>
+</section>
+
 <section id="competitions">
 	{#if $navigating}
 		<div class="flex justify-center items-center my-10">
