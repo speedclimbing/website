@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Competition } from 'src/types/Competition';
+	import type { Competition } from 'types/Competition';
 	import { Calendar } from 'fullcalendar';
 	import dayGridPlugin from '@fullcalendar/daygrid';
 	import { onMount } from 'svelte';

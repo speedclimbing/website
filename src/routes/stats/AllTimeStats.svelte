@@ -3,9 +3,9 @@
 	import Line from 'compnonents/shared/Line.svelte';
 	import Pagination from 'compnonents/shared/Pagination.svelte';
 	import FastestAthletesAllTime from 'compnonents/stats/FastestAthletesAllTime.svelte';
+	import FastestCompetitionHistory from 'compnonents/stats/FastestCompetitionHistory.svelte';
 	import FastestCompetitionsAllTime from 'compnonents/stats/FastestCompetitionsAllTime.svelte';
 	import NationMedalsRanking from 'compnonents/stats/NationMedalsRanking.svelte';
-	import { Input } from 'flowbite-svelte';
 
 	let value = 1;
 
@@ -28,13 +28,13 @@
 <section class="bg-grey/10 dark:bg-dark-grey lg:px-[10%] px-[5%] py-[100px]">
 	<div class="grid grid-cols-10 gap-6">
 		<div
-			class="bg-white dark:bg-grey px-[5vw] py-5 rounded-md dark:border-white/5 border-2 col-span-10 flex justify-between"
+			class="bg-white dark:bg-grey px-[5vw] py-5 rounded-md dark:border-white/5 border-2 col-span-10 flex justify-between flex-wrap gap-5"
 		>
 			<div>
 				<h2 class="text-4xl font-bold">Time Records</h2>
 				<Line style="mb-0" color="yellow" />
 			</div>
-			<div class="mt-auto mb-auto flex gap-5">
+			<div class="mt-auto mb-auto flex gap-5 flex-wrap">
 				<SelectFilter
 					bind:value
 					{options}
@@ -59,14 +59,29 @@
 			</div>
 		</div>
 		<div
-			class="bg-white dark:bg-grey px-[5vw] py-10 rounded-md dark:border-white/5 border-2 col-span-10 flex flex-col gap-8 mb-5"
+			class="bg-white dark:bg-grey px-[5vw] py-10 rounded-md dark:border-white/5 border-2 col-span-10 flex flex-col gap-8"
 		>
 			<Pagination />
 			<FastestAthletesAllTime />
 			<Pagination />
 		</div>
+
 		<div
-			class="bg-white dark:bg-grey px-[5vw] py-5 rounded-md dark:border-white/5 border-2 col-span-7 flex justify-between"
+			class="bg-white dark:bg-grey px-[2vw] py-10 rounded-md dark:border-white/5 border-2 col-span-10 xl:col-span-5 flex flex-col gap-2"
+		>
+			<h2 class="text-3xl">History of Fastest Athletes</h2>
+
+			<FastestCompetitionHistory />
+		</div>
+		<div
+			class="bg-white dark:bg-grey px-[2vw] py-10 rounded-md dark:border-white/5 border-2 col-span-10 xl:col-span-5 flex flex-col gap-2"
+		>
+			<h2 class="text-3xl">History of Fastest Competitions</h2>
+
+			<FastestCompetitionHistory />
+		</div>
+		<div
+			class="bg-white dark:bg-grey px-[5vw] py-5 rounded-md dark:border-white/5 border-2 col-span-10  flex justify-between flex-wrap gap-5"
 		>
 			<div>
 				<h2 class="text-4xl font-bold">Fastest Competitions</h2>
@@ -84,7 +99,17 @@
 		</div>
 
 		<div
-			class="bg-white dark:bg-grey px-[5vw] py-10 rounded-md dark:border-white/5 border-2 col-span-3 row-span-2"
+			class="bg-white dark:bg-grey px-[5vw] py-10 rounded-md dark:border-white/5 border-2 col-span-10  flex flex-col gap-8"
+		>
+			<Pagination />
+			<FastestCompetitionsAllTime />
+			<Pagination />
+		</div>
+
+		<NationMedalsRanking />
+
+		<div
+			class="bg-white dark:bg-grey px-[5vw] py-10 rounded-md dark:border-white/5 border-2 col-span-10 xl:col-span-4 row-span-2 shadow-[0_10px_50px_0_rgba(17,24,39,.05)]"
 		>
 			<h2 class="text-3xl shrink-0 mb-5">Quick Links/Other Content</h2>
 			<p>
@@ -96,15 +121,5 @@
 				voluptua.
 			</p>
 		</div>
-
-		<div
-			class="bg-white dark:bg-grey px-[5vw] py-10 rounded-md dark:border-white/5 border-2 col-span-7 flex flex-col gap-8"
-		>
-			<Pagination />
-			<FastestCompetitionsAllTime />
-			<Pagination />
-		</div>
-
-		<NationMedalsRanking />
 	</div>
 </section>

@@ -44,6 +44,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@types/chartjs": "^0.0.31",
+		"chart.js": "^4.3.0",
 		"fullcalendar": "^6.1.5"
 	}
 }
