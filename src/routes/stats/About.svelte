@@ -1,7 +1,7 @@
 <script>
 	import { BookOpen, ChartBar, Envelope } from 'svelte-heros-v2';
-	import IconBox from '../../compnonents/shared/IconBox.svelte';
-	import Line from '../../compnonents/shared/Line.svelte';
+	import IconBox from '../../compnonents/shared/content/IconBox.svelte';
+	import Line from '../../compnonents/shared/content/Line.svelte';
 </script>
 
 <section id="about" class="py-[100px]">

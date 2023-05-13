@@ -1,12 +1,11 @@
 <script>
 	import AnchorPoint from 'compnonents/shared/AnchorPoint.svelte';
-	import Line from 'compnonents/shared/Line.svelte';
+	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
 </script>
 
 <section class="py-6">
 	<AnchorPoint id="privacy-policy" />
-	<h2 class="text-4xl font-bold">Privacy Policy</h2>
-	<Line color="red" />
+	<TitleWithLine titleText="Privacy Policy" />
 
 	<p>
 		Our users privacy is very important to us! We want you to know, which data we collect and how we

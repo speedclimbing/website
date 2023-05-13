@@ -1,12 +1,11 @@
 <script lang="ts">
 	import AnchorPoint from 'compnonents/shared/AnchorPoint.svelte';
-	import Line from 'compnonents/shared/Line.svelte';
+	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
 </script>
 
 <section class="py-6">
 	<AnchorPoint id="imprint" />
-	<h2 class="text-4xl font-bold">Imprint</h2>
-	<Line color="red" />
+	<TitleWithLine titleText="Imprint" />
 
 	<p class="text-lg pb-6">
 		Responsible for contents of this website:<br />

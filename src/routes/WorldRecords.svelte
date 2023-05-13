@@ -1,5 +1,6 @@
 <script lang="ts">
-	import PersonCard from 'compnonents/shared/PersonCard.svelte';
+	import PersonCard from 'compnonents/shared/content/PersonCard.svelte';
+	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
 	import type { Ranking } from 'types/Ranking';
 
 	export let worldRecordMale: Ranking;
@@ -7,8 +8,12 @@
 </script>
 
 <section id="world-records" class="py-[100px]">
-	<h2 class="text-4xl font-bold text-center">Current World Records</h2>
-	<div id="line" class="bg-yellow rounded-sm w-[100px] h-1 mt-5 mb-10 mx-auto" />
+	<TitleWithLine
+		titleText="Current World Record"
+		titleClasses="text-center"
+		lineClasses="mx-auto"
+		lineColor="yellow"
+	/>
 	<div class="flex flex-col gap-20 mx-auto justify-center mt-20 items-center lg:flex-row lg:gap-10">
 		<PersonCard
 			image="/images/aleksandra-miroslaw-transparent.png"

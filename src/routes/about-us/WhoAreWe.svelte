@@ -1,6 +1,7 @@
 <script>
 	import AnchorPoint from 'compnonents/shared/AnchorPoint.svelte';
-	import Line from 'compnonents/shared/Line.svelte';
+	import Line from 'compnonents/shared/content/Line.svelte';
+	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
 	import { A, Avatar, Badge, Card, P } from 'flowbite-svelte';
 
 	const people = [
@@ -39,8 +40,7 @@
 
 <section class="py-6">
 	<AnchorPoint id="who-we-are" />
-	<h2 class="text-4xl font-bold">Who we are</h2>
-	<Line color="red" />
+	<TitleWithLine titleText="Who we are" />
 
 	<h4 class="text-2xl font-bold pb-6">The core team</h4>
 

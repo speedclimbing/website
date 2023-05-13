@@ -6,7 +6,7 @@
 	import { browser } from '$app/environment';
 	import { mounted } from 'utils/mounted';
 	import { updateSearchParams } from 'utils/updateSearchParams';
-	import DebouncedInput from 'compnonents/shared/DebouncedInput.svelte';
+	import DebouncedInput from 'compnonents/shared/inputs/DebouncedInput.svelte';
 	import { navigating } from '$app/stores';
 
 	export let data: PageData;

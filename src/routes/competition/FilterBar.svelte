@@ -2,9 +2,9 @@
 	import type { League } from 'types/League';
 	import type { Nation } from 'types/Nation';
 	import type { Season } from 'types/Season';
-	import SwitchButton from 'compnonents/shared/SwitchButton.svelte';
-	import SelectFilter from 'compnonents/competitions/SelectFilter.svelte';
-	import DebouncedInput from 'compnonents/shared/DebouncedInput.svelte';
+	import SwitchButton from 'compnonents/shared/buttons/SwitchButton.svelte';
+	import SelectFilter from 'compnonents/shared/inputs/SelectFilter.svelte';
+	import DebouncedInput from 'compnonents/shared/inputs/DebouncedInput.svelte';
 
 	export let viewCalendar: boolean;
 	export let name: string;

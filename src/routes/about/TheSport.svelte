@@ -1,12 +1,11 @@
 <script>
 	import AnchorPoint from 'compnonents/shared/AnchorPoint.svelte';
-	import Line from 'compnonents/shared/Line.svelte';
+	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
 </script>
 
 <section class="py-6">
 	<AnchorPoint id="the-sport" />
-	<h2 class="text-4xl font-bold">What is speedclimbing?</h2>
-	<Line color="red" />
+	<TitleWithLine titleText="What is speedclimbing?" />
 
 	<p>
 		Speedclimbing is one of the three disciplines in modern sports climbing. The biggest difference

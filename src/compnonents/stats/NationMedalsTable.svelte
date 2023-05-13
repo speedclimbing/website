@@ -1,51 +1,73 @@
 <script lang="ts">
-	import { Table, TableBody, TableBodyCell, TableBodyRow } from 'flowbite-svelte';
 	import { getFlagEmoji } from '../../utils/getFlagEmoji';
+	import Table from '../shared/Table.svelte';
+
+	type Nation = {
+		rank: number;
+		code: string;
+		name: string;
+		gold: number;
+		silver: number;
+		bronze: number;
+	};
+
+	type TableCellComponent = {
+		type: string;
+		classes: string;
+		value: string | number;
+	};
+
+	const nations = new Array(5);
+	nations.fill({
+		rank: 1,
+		code: 'de',
+		name: 'Germany',
+		gold: 10,
+		silver: 12,
+		bronze: 7
+	});
+
+	const getValues = (n: Nation) => {
+		let medalClasses =
+			'rounded-[50%] aspect-square h-9 flex items-center justify-center text-white';
+		const flag = {
+			type: 'div',
+			classes: 'text-[25px]',
+			value: getFlagEmoji(n.code)
+		};
+
+		const gold: TableCellComponent = {
+			type: 'div',
+			classes: `${medalClasses} bg-yellow`,
+			value: n.gold
+		};
+
+		const silver: TableCellComponent = {
+			type: 'div',
+			classes: `${medalClasses} bg-light-grey`,
+			value: n.gold
+		};
+
+		const bronze: TableCellComponent = {
+			type: 'div',
+			classes: `${medalClasses} bg-[#C47A49]`,
+			value: n.gold
+		};
+
+		const total: TableCellComponent = {
+			type: 'div',
+			classes: 'text-[18px]',
+			value: n.gold + n.silver + n.bronze
+		};
+
+		return [n.rank, flag, n.name, gold, silver, bronze, total];
+	};
 </script>
 
-<Table noborder divClass="relative overflow-x-auto my-5 ">
-	<TableBody>
-		{#each new Array(5) as n, i}
-			<TableBodyRow color="custom">
-				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium text-md "
-					>{i + 1}</TableBodyCell
-				>
-				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium text-[25px]"
-					>{getFlagEmoji('de')}</TableBodyCell
-				>
-				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium ">Germany</TableBodyCell>
-				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium "
-					><div
-						class="rounded-[50%] aspect-square h-9 bg-yellow flex items-center justify-center text-white"
-					>
-						10
-					</div></TableBodyCell
-				>
-				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium "
-					><div
-						class="rounded-[50%] aspect-square h-9 bg-light-grey flex items-center justify-center text-white"
-					>
-						12
-					</div></TableBodyCell
-				>
-				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium "
-					><div
-						class="rounded-[50%] aspect-square h-9 bg-bronze flex items-center justify-center text-white"
-					>
-						7
-					</div></TableBodyCell
-				>
-				<TableBodyCell tdClass="px-4 py-2 whitespace-nowrap font-medium text-[18px]"
-					>29</TableBodyCell
-				>
-			</TableBodyRow>
-		{/each}
-	</TableBody>
-</Table>
-
-<style>
-	.bg-bronze {
-		background-image: linear-gradient(rgba(187, 148, 87, 0.7), rgba(187, 148, 87, 0.7)),
-			linear-gradient(#da3c2b, #da3c2b);
-	}
-</style>
+<Table
+	tableObjects={nations}
+	{getValues}
+	divider={false}
+	tableCellClasses="px-4 py-2 whitespace-nowrap font-medium"
+	tableClasses="mt-5"
+/>

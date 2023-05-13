@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Line from 'compnonents/shared/Line.svelte';
-	import PrimaryButton from 'compnonents/shared/PrimaryButton.svelte';
+	import PrimaryButton from 'compnonents/shared/buttons/PrimaryButton.svelte';
 	import Alert from 'compnonents/shared/Alert.svelte';
 	import { Input, Label, P, Textarea } from 'flowbite-svelte';
 	import { Turnstile } from 'svelte-turnstile';
 	import AnchorPoint from 'compnonents/shared/AnchorPoint.svelte';
+	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
 
 	export let turnstileSiteKey: string | undefined;
 
@@ -51,8 +51,7 @@
 
 <section class="py-6">
 	<AnchorPoint id="contact" />
-	<h2 class="text-4xl font-bold">Get in touch</h2>
-	<Line color="red" />
+	<TitleWithLine titleText="Get in touch" />
 
 	<P class="pb-4 text-yellow-800">
 		Do you have any ideas on things we should add? Want to share your thoughts, or just want to say

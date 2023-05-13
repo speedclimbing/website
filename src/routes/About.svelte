@@ -1,13 +1,12 @@
 <script>
 	import { goto } from '$app/navigation';
-	import IconBox from 'compnonents/shared/IconBox.svelte';
-	import Line from 'compnonents/shared/Line.svelte';
+	import IconBox from 'compnonents/shared/content/IconBox.svelte';
+	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
 	import { BarsArrowUp, BookOpen, Trophy } from 'svelte-heros-v2';
 </script>
 
 <section id="about" class="py-[100px]">
-	<h2 class="text-4xl font-bold">About Speedclimbing</h2>
-	<Line color="yellow" />
+	<TitleWithLine titleText="About Speedclimbing" lineColor="yellow" />
 
 	<p class=" text-xl pb-10">
 		You have never heard of speedclimbing? This is the perfect place to get up to speed and learn

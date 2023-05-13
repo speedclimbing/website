@@ -6,7 +6,7 @@
 	import { updateSearchParams } from 'utils/updateSearchParams';
 	import FilterBar from './FilterBar.svelte';
 	import CompetitionCalendar from 'compnonents/competitions/CompetitionCalendar.svelte';
-	import EventCard from 'compnonents/home/EventCard.svelte';
+	import EventCard from 'compnonents/shared/content/EventCard.svelte';
 	import { Spinner } from 'flowbite-svelte';
 	import { navigating } from '$app/stores';
 

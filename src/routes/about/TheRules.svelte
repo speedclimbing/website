@@ -1,12 +1,11 @@
 <script>
 	import AnchorPoint from 'compnonents/shared/AnchorPoint.svelte';
-	import Line from 'compnonents/shared/Line.svelte';
+	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
 </script>
 
 <section class="py-6">
 	<AnchorPoint id="the-rules" />
-	<h2 class="text-4xl font-bold">How does the competition work?</h2>
-	<Line color="red" />
+	<TitleWithLine titleText="How does the competition work?" />
 
 	<p>
 		A speedclimbing competition consists of two parts:

@@ -1,13 +1,6 @@
 <script lang="ts">
-	import {
-		Table,
-		TableBody,
-		TableBodyCell,
-		TableBodyRow,
-		TableHead,
-		TableHeadCell
-	} from 'flowbite-svelte';
 	import type { Ranking } from 'types/Ranking';
+	import Table from '../shared/Table.svelte';
 
 	export let worldRankingsFemale: Ranking[];
 	export let worldRankingsMale: Ranking[];
@@ -16,34 +9,24 @@
 	function capitalize(word: string): string {
 		return word.charAt(0).toUpperCase() + word.slice(1);
 	}
+
+	const getValues = (r: Ranking) => [
+		r.rank,
+		r.last_name.toUpperCase() + ' ' + capitalize(r.first_name),
+		r.nation_code,
+		r.competition_date.toLocaleDateString('de-DE', {
+			year: 'numeric',
+			month: 'long',
+			day: '2-digit'
+		}),
+		(r.time / 1000).toFixed(3)
+	];
 </script>
 
-<Table hoverable={true}>
-	<TableHead class="text-black/25">
-		<TableHeadCell>Rank</TableHeadCell>
-		<TableHeadCell>Full Name</TableHeadCell>
-		<TableHeadCell>Nation</TableHeadCell>
-		<TableHeadCell>Date</TableHeadCell>
-		<TableHeadCell>Time</TableHeadCell>
-	</TableHead>
-
-	<TableBody>
-		{#each male ? worldRankingsMale : worldRankingsFemale as ranking, index (index)}
-			<TableBodyRow class="border-t-[1px]">
-				<TableBodyCell>{index + 1}</TableBodyCell>
-				<TableBodyCell
-					>{ranking.last_name.toUpperCase()} {capitalize(ranking.first_name)}</TableBodyCell
-				>
-				<TableBodyCell>{ranking.nation_code}</TableBodyCell>
-				<TableBodyCell
-					>{ranking.competition_date.toLocaleDateString('de-DE', {
-						year: 'numeric',
-						month: 'long',
-						day: '2-digit'
-					})}</TableBodyCell
-				>
-				<TableBodyCell>{(ranking.time / 1000).toFixed(3)}</TableBodyCell>
-			</TableBodyRow>
-		{/each}
-	</TableBody>
-</Table>
+<Table
+	tableObjects={male ? worldRankingsMale : worldRankingsFemale}
+	{getValues}
+	tableHeadings={['rank', 'Full name', 'Nation', 'date', 'Time']}
+	tableHeadClasses="dark:!bg-gray-700"
+	tableRowClasses="dark:!bg-dark-grey dark:hover:!bg-grey/25"
+/>

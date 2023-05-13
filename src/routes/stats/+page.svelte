@@ -1,20 +1,20 @@
 <script lang="ts">
 	import About from './About.svelte';
 	import Hero from './Hero.svelte';
-	import StatOverview from './StatOverview.svelte';
+	import SeasonStats from './SeasonStats.svelte';
 	import AllTimeStats from './AllTimeStats.svelte';
 
 	let bar: HTMLElement;
-	let seasonStats: boolean = true;
+	let showSeasonStats: boolean = true;
 
 	const handleClickSeasonStats = () => {
 		bar.style.marginLeft = '0';
-		seasonStats = true;
+		showSeasonStats = true;
 	};
 
 	const handleClickAllTimeStats = () => {
 		bar.style.marginLeft = 'calc(100%/2)';
-		seasonStats = false;
+		showSeasonStats = false;
 	};
 </script>
 
@@ -27,8 +27,8 @@
 
 	<div class="bg-red rounded-sm w-[calc(100%/2)] h-1 transition-[margin-left] " bind:this={bar} />
 </section>
-{#if seasonStats}
-	<StatOverview />
+{#if showSeasonStats}
+	<SeasonStats />
 	<About />
 {:else}
 	<AllTimeStats />
