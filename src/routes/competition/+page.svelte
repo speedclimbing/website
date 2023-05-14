@@ -21,20 +21,38 @@
 		updateSearchParams({ year, name, nation, league_group });
 	};
 
+	const updateCalendarDateOnYearChange = (newYear: number) => {
+		if (calendarDate && newYear === calendarDate.getFullYear()) {
+			return;
+		}
+
+		const currentDate = new Date();
+		if (newYear === currentDate.getFullYear()) {
+			calendarDate = currentDate;
+		} else {
+			calendarDate = undefined;
+		}
+	};
+
+	const updateYearOnCalendarDateChange = (newCalendarDate: Date | undefined) => {
+		if (!viewCalendar || newCalendarDate === undefined || year === newCalendarDate.getFullYear()) {
+			return;
+		}
+
+		year = newCalendarDate.getFullYear();
+	};
+
 	$: {
-		if (!browser || !isMounted()) break $;
-		handleSearch(year, name, nation, league_group);
+		updateCalendarDateOnYearChange(year);
 	}
 
 	$: {
-		const currentDate = new Date();
-		if (!viewCalendar && year === currentDate.getFullYear()) {
-			calendarDate = currentDate;
-		} else if (!viewCalendar && year !== currentDate.getFullYear()) {
-			calendarDate = undefined;
-		} else if (viewCalendar && calendarDate && year !== calendarDate.getFullYear()) {
-			year = calendarDate.getFullYear();
-		}
+		updateYearOnCalendarDateChange(calendarDate);
+	}
+
+	$: {
+		if (!browser || !isMounted()) break $;
+		handleSearch(year, name, nation, league_group);
 	}
 </script>
 
@@ -45,13 +63,7 @@
 		inputClass="rounded-sm font-Raleway bg-black/5"
 		bind:value={name}
 	/>
-	<SelectFilter
-		bind:value={year}
-		options={data.seasons}
-		disabled={viewCalendar}
-		textProperty="year"
-		valueProperty="year"
-	/>
+	<SelectFilter bind:value={year} options={data.seasons} textProperty="year" valueProperty="year" />
 	<SelectFilter
 		bind:value={league_group}
 		options={data.league_groups}
