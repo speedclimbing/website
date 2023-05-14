@@ -29,7 +29,8 @@
 		"eslint-plugin-svelte3": "^4.0.0",
 		"flowbite": "^1.6.5",
 		"flowbite-svelte": "^0.34.9",
-		"postcss": "^8.4.14",
+		"postcss": "^8.4.21",
+		"postcss-each": "^1.1.0",
 		"postcss-load-config": "^4.0.1",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.8.1",
@@ -47,7 +48,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"fullcalendar": "^6.1.5",
-		"postcss-for": "^2.1.1"
+		"fullcalendar": "^6.1.5"
 	}
 }

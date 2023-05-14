@@ -1,6 +1,6 @@
 const tailwindcss = require('tailwindcss');
 const autoprefixer = require('autoprefixer');
-const pstcssFor = require('postcss-for');
+const pstcssEach = require('postcss-each');
 
 const config = {
 	plugins: [
@@ -8,7 +8,7 @@ const config = {
 		tailwindcss(),
 		//But others, like autoprefixer, need to run after,
 		autoprefixer,
-		pstcssFor
+		pstcssEach
 	]
 };
 
