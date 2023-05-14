@@ -78,6 +78,41 @@ const lineColor = (darkMode: boolean) => {
 	return darkMode ? 'rgba(255, 255, 255, .1)' : 'rgba(17, 24, 39, 0.1)';
 };
 
+const configureData = (labels: string[], title: string, data: number[]) => {
+	return {
+		labels: labels,
+		datasets: [
+			{
+				label: title,
+				data: data,
+				fill: false,
+				backgroundColor: '#DA3C2B',
+				borderColor: 'rgb(218, 60, 43, 0.5)',
+				pointHitRadius: 10,
+				pointRadius: 4
+			}
+		]
+	};
+};
+
+const configureScales = (darkMode: boolean) => {
+	return {
+		y: {
+			ticks: {
+				color: ticksColor(darkMode),
+				stepSize: 0.1
+			},
+			grid: { color: lineColor(darkMode) },
+			border: { color: lineColor(darkMode) }
+		},
+		x: {
+			ticks: { color: ticksColor(darkMode) },
+			grid: { color: lineColor(darkMode) },
+			border: { color: lineColor(darkMode) }
+		}
+	};
+};
+
 export const chartConfig = (
 	labels: string[],
 	data: number[],
@@ -86,20 +121,7 @@ export const chartConfig = (
 ): ChartConfiguration => {
 	return {
 		type: 'line',
-		data: {
-			labels: labels,
-			datasets: [
-				{
-					label: title,
-					data: data,
-					fill: false,
-					backgroundColor: '#DA3C2B',
-					borderColor: 'rgb(218, 60, 43, 0.5)',
-					pointHitRadius: 10,
-					pointRadius: 4
-				}
-			]
-		},
+		data: configureData(labels, title, data),
 		options: {
 			plugins: {
 				legend: {
@@ -111,21 +133,7 @@ export const chartConfig = (
 					external: tooltipHandler
 				}
 			},
-			scales: {
-				y: {
-					ticks: {
-						color: ticksColor(darkMode),
-						stepSize: 0.1
-					},
-					grid: { color: lineColor(darkMode) },
-					border: { color: lineColor(darkMode) }
-				},
-				x: {
-					ticks: { color: ticksColor(darkMode) },
-					grid: { color: lineColor(darkMode) },
-					border: { color: lineColor(darkMode) }
-				}
-			}
+			scales: configureScales(darkMode)
 		}
 	};
 };
