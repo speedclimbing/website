@@ -77,3 +77,25 @@ a {
 .fc-subscribeToCalendar-button.fc-button.fc-button-primary:active:focus {
 	box-shadow: 0 0 0 0.2rem rgba(218, 60, 43, 0.5);
 }
+
+.carousel-nav,
+.carousel-control {
+	pointer-events: all;
+}
+
+.carousel-container:hover .carousel-control {
+	@apply opacity-100 -z-10;
+}
+
+@for $i from 1 to 8 {
+	.carousel-selector:nth-child($i):checked ~ .carousel-container .carousel-item:nth-child($i) {
+		@apply opacity-100 z-10;
+		pointer-events: auto;
+	}
+	.carousel-selector:nth-child($i):checked
+		~ .carousel-container
+		.carousel-nav
+		> label:nth-child($i) {
+		@apply opacity-100;
+	}
+}

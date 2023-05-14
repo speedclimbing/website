@@ -11,7 +11,9 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write ."
+		"format": "prettier --plugin-search-dir . --write .",
+		"pages": "wrangler pages dev .svelte-kit/cloudflare",
+		"tail": "wrangler pages deployment tail --project-name speedclimbing --environment preview"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
@@ -40,10 +42,12 @@
 		"tslib": "^2.4.1",
 		"typescript": "^4.9.3",
 		"vite": "^4.0.0",
-		"vitest": "^0.25.3"
+		"vitest": "^0.25.3",
+		"wrangler": "^2.19.0"
 	},
 	"type": "module",
 	"dependencies": {
-		"fullcalendar": "^6.1.5"
+		"fullcalendar": "^6.1.5",
+		"postcss-for": "^2.1.1"
 	}
 }
