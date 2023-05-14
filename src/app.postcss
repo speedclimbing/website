@@ -87,7 +87,7 @@ a {
 	@apply opacity-100 -z-10;
 }
 
-@for $i from 1 to 8 {
+@each $i in 1, 2, 3, 4, 5, 6, 7, 8 {
 	.carousel-selector:nth-child($i):checked ~ .carousel-container .carousel-item:nth-child($i) {
 		@apply opacity-100 z-10;
 		pointer-events: auto;
