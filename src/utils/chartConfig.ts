@@ -17,11 +17,12 @@ const getOrCreateTooltip = (chart: Chart) => {
 };
 
 const setTooltipBody = (tooltip: TooltipModel<'line'>, tooltipEl: HTMLDivElement) => {
-	const titleLines = tooltip.title || [];
 	const bodyLines = tooltip.body.map((b) => b.lines);
-	const tableHead = document.createElement('thead');
 
-	titleLines.forEach((title) => {
+	const tableHead = document.createElement('thead');
+	const tableBody = document.createElement('tbody');
+
+	tooltip.title.forEach((title) => {
 		const tr = document.createElement('tr');
 		const th = document.createElement('th');
 		const text = document.createTextNode(title);
@@ -31,11 +32,10 @@ const setTooltipBody = (tooltip: TooltipModel<'line'>, tooltipEl: HTMLDivElement
 		tableHead.appendChild(tr);
 	});
 
-	const tableBody = document.createElement('tbody');
-	bodyLines.forEach((body) => {
+	bodyLines.forEach((lines) => {
 		const tr = document.createElement('tr');
 		const td = document.createElement('td');
-		const text = document.createTextNode(body[0]);
+		const text = document.createTextNode(lines[0]);
 
 		td.appendChild(text);
 		tr.appendChild(td);
