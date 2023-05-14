@@ -23,3 +23,4 @@ const prefersDarkModeStore = () => {
 };
 
 export const prefersDarkMode = prefersDarkModeStore();
+export const nextId = writable(0);

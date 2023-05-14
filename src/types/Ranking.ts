@@ -1,4 +1,5 @@
 export type Ranking = {
+	id: string;
 	rank: number;
 	first_name: string;
 	last_name: string;

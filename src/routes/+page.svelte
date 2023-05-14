@@ -5,20 +5,20 @@
 	import Rankings from './Rankings.svelte';
 	import WorldRecords from './WorldRecords.svelte';
 	import Hero from './Hero.svelte';
-	import type { HomePageData } from 'types/Api';
+	import type { PageData } from './$types';
 
-	export let data: HomePageData;
+	export let data: PageData;
 </script>
 
-<Hero />
+<Hero heroImages={data.heroImages} />
 <WorldRecords
-	worldRecordMale={data.male_worldranking[0]}
-	worldRecordFemale={data.female_worldranking[0]}
+	worldRecordMale={data.data.male_worldranking[0]}
+	worldRecordFemale={data.data.female_worldranking[0]}
 />
 <Rankings
-	worldRankingsMale={data.male_worldranking}
-	worldRankingsFemale={data.female_worldranking}
+	worldRankingsMale={data.data.male_worldranking}
+	worldRankingsFemale={data.data.female_worldranking}
 />
-<LatestTournaments competitions={data.latest_competitions} />
+<LatestTournaments competitions={data.data.latest_competitions} />
 <Insights />
 <About />
