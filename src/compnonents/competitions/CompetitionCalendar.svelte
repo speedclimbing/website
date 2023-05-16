@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Competition } from 'src/types/Competition';
+	import type { Competition } from 'types/Competition';
 	import { Calendar } from 'fullcalendar';
 	import dayGridPlugin from '@fullcalendar/daygrid';
 	import { onMount } from 'svelte';
@@ -7,12 +7,11 @@
 	import { mounted } from 'utils/mounted';
 	import CalendarSubscriptionModal from './CalendarSubscriptionModal.svelte';
 
-	export let competitions: Competition[] | Promise<Competition[]>;
-	export let year: number;
+	export let competitions: Competition[];
+	export let date: Date | undefined = undefined;
 	let calendarEl: HTMLElement;
 	let calendar: Calendar;
 	let showModal: boolean;
-	var calendarYearChanged = false;
 	const isMounted = () => $mounted;
 
 	onMount(() => {
@@ -42,18 +41,14 @@
 					icon: 'chevron-left',
 					click: function () {
 						calendar.prev();
-						if (calendar.getDate().getFullYear() == year) return;
-						calendarYearChanged = true;
-						year = calendar.getDate().getFullYear();
+						date = calendar.getDate();
 					}
 				},
 				customnext: {
 					icon: 'chevron-right',
 					click: function () {
 						calendar.next();
-						if (calendar.getDate().getFullYear() == year) return;
-						calendarYearChanged = true;
-						year = calendar.getDate().getFullYear();
+						date = calendar.getDate();
 					}
 				},
 				subscribeToCalendar: {
@@ -63,20 +58,9 @@
 			}
 		});
 
-		if (competitions instanceof Promise) {
-			competitions.then((comps) => {
-				updateCalendarEvents(comps);
-			});
-		} else {
-			updateCalendarEvents(competitions);
-		}
-
+		updateCalendarEvents(competitions);
 		calendar.render();
 	});
-
-	function handleToggleCalendar(viewCalendar: boolean) {
-		viewCalendar ? calendar.render() : calendar.destroy();
-	}
 
 	function updateCalendarEvents(competitions: Competition[]) {
 		calendar.removeAllEvents();
@@ -93,19 +77,15 @@
 				}
 			});
 		});
-		if (competitions.length && !calendarYearChanged) {
-			calendar.gotoDate(competitions[0].from);
-		} else {
-			calendarYearChanged = false;
+
+		if (date || competitions.length > 0) {
+			calendar.gotoDate(date ?? competitions[0].from);
 		}
 	}
 	$: {
-		if (!isMounted() || !(competitions instanceof Promise)) break $;
-		handleToggleCalendar(false);
-		competitions.then((comps) => {
-			updateCalendarEvents(comps);
-			handleToggleCalendar(comps.length != 0);
-		});
+		if (!isMounted()) break $;
+		updateCalendarEvents(competitions);
+		calendar.render();
 	}
 </script>
 

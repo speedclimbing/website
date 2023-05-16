@@ -1,4 +1,4 @@
-export type League = {
+export type LeagueGroup = {
 	id: string;
 	name: string;
 };

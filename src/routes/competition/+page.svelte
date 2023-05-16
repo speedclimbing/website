@@ -1,41 +1,100 @@
 <script lang="ts">
-	import type { Competition } from 'types/Competition';
 	import type { PageData } from './$types';
 	import { mounted } from 'utils/mounted';
 	import { browser } from '$app/environment';
 	import { updateSearchParams } from 'utils/updateSearchParams';
-	import FilterBar from './FilterBar.svelte';
 	import CompetitionCalendar from 'compnonents/competitions/CompetitionCalendar.svelte';
 	import EventCard from 'compnonents/home/EventCard.svelte';
 	import { Spinner } from 'flowbite-svelte';
 	import { navigating } from '$app/stores';
+	import DebouncedInput from 'compnonents/shared/DebouncedInput.svelte';
+	import SelectFilter from 'compnonents/competitions/SelectFilter.svelte';
+	import SwitchButton from 'compnonents/shared/SwitchButton.svelte';
 
 	export let data: PageData;
-	let competitions: Competition[] = data.competitions;
-	let { year, name, nation, league } = data.params;
+	let { year, name, nation, league_group } = data.params;
 	let viewCalendar: boolean = false;
+	let calendarDate: Date | undefined = undefined;
 
 	const isMounted = () => $mounted;
-	const handleSearch = async (year: number, name: string, nation: string, league: string) => {
-		updateSearchParams({ year, name, nation, league });
+	const handleSearch = async (year: number, name: string, nation: string, league_group: string) => {
+		updateSearchParams({ year, name, nation, league_group });
+	};
+
+	const updateCalendarDateOnYearChange = (newYear: number) => {
+		if (calendarDate && newYear === calendarDate.getFullYear()) {
+			return;
+		}
+
+		const currentDate = new Date();
+		if (newYear === currentDate.getFullYear()) {
+			calendarDate = currentDate;
+		} else {
+			calendarDate = undefined;
+		}
+	};
+
+	const updateYearOnCalendarDateChange = (newCalendarDate: Date | undefined) => {
+		if (!viewCalendar || newCalendarDate === undefined || year === newCalendarDate.getFullYear()) {
+			return;
+		}
+
+		year = newCalendarDate.getFullYear();
 	};
 
 	$: {
+		updateCalendarDateOnYearChange(year);
+	}
+
+	$: {
+		updateYearOnCalendarDateChange(calendarDate);
+	}
+
+	$: {
 		if (!browser || !isMounted()) break $;
-		handleSearch(year, name, nation, league);
+		handleSearch(year, name, nation, league_group);
 	}
 </script>
 
-<FilterBar
-	bind:year
-	bind:name
-	bind:nation
-	bind:league
-	bind:viewCalendar
-	seasons={data.seasons}
-	leagues={data.leagues}
-	nations={data.nations}
-/>
+<section id="competition-filter" class="xl:grid-cols-5 md:grid-cols-2 grid gap-[10px] mt-10">
+	<DebouncedInput
+		type="text"
+		placeholder="Competition Name"
+		inputClass="rounded-sm font-Raleway bg-black/5"
+		bind:value={name}
+	/>
+	<SelectFilter bind:value={year} options={data.seasons} textProperty="year" valueProperty="year" />
+	<SelectFilter
+		bind:value={league_group}
+		options={data.league_groups}
+		textProperty="name"
+		valueProperty="id"
+		optgroup={{
+			property: 'continent',
+			defaultText: 'World-wide'
+		}}
+		defaultText="All Leagues"
+	/>
+	<SelectFilter
+		bind:value={nation}
+		options={data.nations}
+		textProperty="name"
+		valueProperty="code_ioc"
+		defaultText="All Nations"
+		optgroup={{
+			property: 'continent',
+			defaultText: 'World-wide'
+		}}
+	/>
+	<SwitchButton
+		leftClickAction={() => (viewCalendar = false)}
+		rightClickAction={() => (viewCalendar = true)}
+		leftString="List"
+		rightString="Calendar"
+		style="md:col-span-2 ml-auto xl:col-span-1"
+	/>
+</section>
+
 <section id="competitions">
 	{#if $navigating}
 		<div class="flex justify-center items-center my-10">
@@ -52,6 +111,6 @@
 			{/each}
 		</div>
 	{:else if viewCalendar}
-		<CompetitionCalendar {competitions} bind:year />
+		<CompetitionCalendar competitions={data.competitions} bind:date={calendarDate} />
 	{/if}
 </section>
