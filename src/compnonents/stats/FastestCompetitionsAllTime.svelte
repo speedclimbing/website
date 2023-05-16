@@ -20,7 +20,6 @@
 </script>
 
 <Table
-	tableObjects={competitions}
-	{getValues}
-	tableHeadings={['rank', 'competition', 'date', 'Fet']}
+	tableObjects={competitions.map((c) => getValues(c))}
+	columnNames={['rank', 'competition', 'date', 'Fet']}
 />

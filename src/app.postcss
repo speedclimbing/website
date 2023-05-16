@@ -84,14 +84,11 @@ a {
 }
 
 .custom-tooltip {
-	padding: 10px 20px;
-	border-radius: 6px;
-	pointer-events: none;
-	position: absolute;
 	transform: translate(-50%, 0);
 	transition: all 0.25s ease-in-out;
 	box-shadow: 0 10px 50px 0 rgba(17, 24, 39, 0.1);
-	margin-top: 15px;
+	@apply pointer-events-none absolute;
+	@apply mt-[15px] py-[10px] px-5 rounded-md;
 	@apply text-black dark:text-white;
 	@apply bg-white dark:bg-black;
 }

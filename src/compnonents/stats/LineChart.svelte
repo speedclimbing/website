@@ -5,21 +5,25 @@
 	import { mounted } from 'utils/mounted';
 	import { browser } from '$app/environment';
 
-	export let data: any[];
-	export let valueAttribute: string;
-	export let nameAttribute: string;
+	type ChartPoint = {
+		value: number;
+		label: string;
+	};
+
+	export let data: ChartPoint[];
+	export let name: string;
 
 	let canvas: ChartItem;
 	let chart: Chart;
 
-	const initializeChart = (colorMode: boolean) => {
+	const initializeChart = (darkMode: boolean) => {
 		chart = new Chart(
 			canvas,
 			chartConfig(
-				data.map((obj) => obj[nameAttribute]),
-				data.map((obj) => obj[valueAttribute]),
-				'FET',
-				colorMode
+				data.map((d) => d.label),
+				data.map((d) => d.value),
+				name,
+				darkMode
 			)
 		);
 	};

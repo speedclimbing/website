@@ -8,9 +8,8 @@
 		TableHeadCell
 	} from 'flowbite-svelte';
 
-	export let tableHeadings: string[] = [];
-	export let tableObjects: object[];
-	export let getValues: (obj: any) => (string | number | TableCellComponent)[];
+	export let columnNames: string[] = [];
+	export let tableObjects: (string | number | TableCellComponent)[][];
 	export let tableClasses = '';
 	export let tableHeadClasses = '';
 	export let tableRowClasses = '';
@@ -26,7 +25,7 @@
 
 <Table noborder divClass="relative overflow-x-auto {tableClasses}">
 	<TableHead class="text-black/40 dark:text-white bg-grey/5 dark:bg-dark-grey {tableHeadClasses}">
-		{#each tableHeadings as heading}
+		{#each columnNames as heading}
 			<TableHeadCell>{heading.toUpperCase()}</TableHeadCell>
 		{/each}
 	</TableHead>
@@ -38,7 +37,7 @@
 					'border-t-[1px] border-grey/10 dark:border-light-grey/60'} dark:bg-grey hover:bg-gray-50 dark:hover:bg-gray-600/50 {tableRowClasses}"
 				color="custom"
 			>
-				{#each getValues(object) as value}
+				{#each object as value}
 					<TableBodyCell tdClass={tableCellClasses}>
 						{#if value instanceof Object}
 							<svelte:element this={value.type} class={value.classes}>{value.value}</svelte:element>

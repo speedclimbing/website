@@ -3,15 +3,15 @@ import type { Chart, ChartConfiguration, TooltipModel } from 'chart.js';
 const getOrCreateTooltip = (chart: Chart) => {
 	let tooltipEl = chart.canvas.parentNode?.querySelector('div');
 
-	if (!tooltipEl) {
-		tooltipEl = document.createElement('div');
-		tooltipEl.classList.add('custom-tooltip');
+	if (tooltipEl) return tooltipEl;
 
-		const table = document.createElement('table');
+	tooltipEl = document.createElement('div');
+	tooltipEl.classList.add('custom-tooltip');
 
-		tooltipEl.appendChild(table);
-		chart.canvas.parentNode?.appendChild(tooltipEl);
-	}
+	const table = document.createElement('table');
+
+	tooltipEl.appendChild(table);
+	chart.canvas.parentNode?.appendChild(tooltipEl);
 
 	return tooltipEl;
 };

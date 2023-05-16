@@ -65,8 +65,7 @@
 </script>
 
 <Table
-	tableObjects={nations}
-	{getValues}
+	tableObjects={nations.map((n) => getValues(n))}
 	divider={false}
 	tableCellClasses="px-4 py-2 whitespace-nowrap font-medium"
 	tableClasses="mt-5"

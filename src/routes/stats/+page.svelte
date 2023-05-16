@@ -5,16 +5,16 @@
 	import AllTimeStats from './AllTimeStats.svelte';
 
 	let bar: HTMLElement;
-	let showSeasonStats: boolean = true;
+	let season: number | undefined = undefined;
 
 	const handleClickSeasonStats = () => {
 		bar.style.marginLeft = '0';
-		showSeasonStats = true;
+		season = new Date().getFullYear();
 	};
 
 	const handleClickAllTimeStats = () => {
 		bar.style.marginLeft = 'calc(100%/2)';
-		showSeasonStats = false;
+		season = undefined;
 	};
 </script>
 
@@ -27,7 +27,7 @@
 
 	<div class="bg-red rounded-sm w-[calc(100%/2)] h-1 transition-[margin-left] " bind:this={bar} />
 </section>
-{#if showSeasonStats}
+{#if season}
 	<SeasonStats />
 	<About />
 {:else}

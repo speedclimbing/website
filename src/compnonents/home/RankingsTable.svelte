@@ -24,9 +24,10 @@
 </script>
 
 <Table
-	tableObjects={male ? worldRankingsMale : worldRankingsFemale}
-	{getValues}
-	tableHeadings={['rank', 'Full name', 'Nation', 'date', 'Time']}
+	tableObjects={male
+		? worldRankingsMale.map((r) => getValues(r))
+		: worldRankingsFemale.map((r) => getValues(r))}
+	columnNames={['rank', 'Full name', 'Nation', 'date', 'Time']}
 	tableHeadClasses="dark:!bg-gray-700"
 	tableRowClasses="dark:!bg-dark-grey dark:hover:!bg-grey/25"
 />

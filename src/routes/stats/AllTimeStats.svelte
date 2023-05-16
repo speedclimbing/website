@@ -109,18 +109,20 @@
 	<BoxContainer className="px-[3vw] xl:col-span-5">
 		<h2 class="text-2xl mb-5">History of Fastest Athletes</h2>
 		<FastestCompetitionHistory
-			data={comps}
-			nameAttribute="from"
-			valueAttribute="final_entry_time"
+			data={comps.map((c) => {
+				return { value: c.final_entry_time, label: c.from };
+			})}
+			name="World records"
 		/>
 	</BoxContainer>
 	<BoxContainer className="px-[3vw] xl:col-span-5">
 		<h2 class="text-2xl mb-5">History of Fastest Competitions</h2>
 
 		<FastestCompetitionHistory
-			data={comps}
-			nameAttribute="from"
-			valueAttribute="final_entry_time"
+			data={comps.map((c) => {
+				return { value: c.final_entry_time, label: c.from };
+			})}
+			name="FET"
 		/>
 	</BoxContainer>
 	<BoxContainer className="flex justify-between gap-5 flex-wrap">

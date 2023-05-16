@@ -32,8 +32,7 @@
 	<hr class="border-grey/10 dark:border-light-grey border-[1px] my-2" />
 
 	<Table
-		tableObjects={fastestAthletes}
-		{getValues}
+		tableObjects={fastestAthletes.map((a) => getValues(a))}
 		tableCellClasses="px-2 py-4 whitespace-nowrap font-medium"
 		divider={false}
 	/>

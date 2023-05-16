@@ -25,7 +25,6 @@
 </script>
 
 <Table
-	tableObjects={fastestAthletes}
-	{getValues}
-	tableHeadings={['Rank', 'Full name', 'Nation', 'Competition', 'Date', 'Time']}
+	tableObjects={fastestAthletes.map((a) => getValues(a))}
+	columnNames={['Rank', 'Full name', 'Nation', 'Competition', 'Date', 'Time']}
 />
