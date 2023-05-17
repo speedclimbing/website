@@ -4,12 +4,12 @@
 	import { browser } from '$app/environment';
 	import { updateSearchParams } from 'utils/updateSearchParams';
 	import CompetitionCalendar from 'compnonents/competitions/CompetitionCalendar.svelte';
-	import EventCard from 'compnonents/home/EventCard.svelte';
+	import EventCard from 'compnonents/shared/content/EventCard.svelte';
 	import { Spinner } from 'flowbite-svelte';
 	import { navigating } from '$app/stores';
-	import DebouncedInput from 'compnonents/shared/DebouncedInput.svelte';
-	import SelectFilter from 'compnonents/competitions/SelectFilter.svelte';
-	import SwitchButton from 'compnonents/shared/SwitchButton.svelte';
+	import DebouncedInput from 'compnonents/shared/inputs/DebouncedInput.svelte';
+	import SelectFilter from 'compnonents/shared/inputs/SelectFilter.svelte';
+	import SwitchButton from 'compnonents/shared/buttons/SwitchButton.svelte';
 
 	export let data: PageData;
 	let { year, name, nation, league_group } = data.params;

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import Line from 'compnonents/shared/Line.svelte';
-	import PrimaryButton from 'compnonents/shared/PrimaryButton.svelte';
+	import Line from 'compnonents/shared/content/Line.svelte';
+	import PrimaryButton from 'compnonents/shared/buttons/PrimaryButton.svelte';
 
 	export let image: string = '';
 	export let imageClass: string = '';

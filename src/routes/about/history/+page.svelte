@@ -1,11 +1,12 @@
 <script>
 	import { Img, P, Timeline, TimelineItem } from 'flowbite-svelte';
-	import Line from 'compnonents/shared/Line.svelte';
+	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
+	import AnchorPoint from 'compnonents/shared/AnchorPoint.svelte';
 </script>
 
 <section class="py-6">
-	<h2 class="text-4xl font-bold" id="the-sport">The history of speedclimbing</h2>
-	<Line color="red" />
+	<AnchorPoint id="the-sport" />
+	<TitleWithLine titleText="The history of speedclimbing" />
 
 	<P class="pb-6 text-4xl">
 		This timeline shows some of the most important milestones in the history of speedclimbing.

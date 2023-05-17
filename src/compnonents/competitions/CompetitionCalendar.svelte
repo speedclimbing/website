@@ -89,5 +89,5 @@
 	}
 </script>
 
-<div id="calendar" class="py-10 text-black dark:text-white" bind:this={calendarEl} />
+<div id="calendar" class="py-10" bind:this={calendarEl} />
 <CalendarSubscriptionModal bind:open={showModal} />

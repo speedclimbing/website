@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Competition } from '../../types/Competition';
+	import type { Competition } from '../../../types/Competition';
 	import { Calendar, MapPin } from 'svelte-heros-v2';
 
 	export let competition: Competition;

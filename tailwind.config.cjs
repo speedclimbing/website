@@ -34,6 +34,10 @@ const config = {
 					'30%, 45%': { transform: 'translate(-10px, 0)' },
 					'80%, 95%': { transform: 'translate(10px, 0)' }
 				}
+			},
+			boxShadow: {
+				'box-light': '0 10px 50px 0 rgba(17, 24, 39, .05)',
+				'box-dark': '0 10px 50px 0 rgba(247, 247, 247, .02)'
 			}
 		}
 	},

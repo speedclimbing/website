@@ -1,13 +1,12 @@
 <script>
 	import { List, P } from 'flowbite-svelte';
-	import Line from 'compnonents/shared/Line.svelte';
 	import AnchorPoint from 'compnonents/shared/AnchorPoint.svelte';
+	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
 </script>
 
 <section class="py-6">
 	<AnchorPoint id="the-wall" />
-	<h2 class="text-4xl font-bold">What is so special about that wall?</h2>
-	<Line color="red" />
+	<TitleWithLine titleText="What is so special about that wall?" />
 
 	<P class="pb-6">
 		The speedclimbing wall was <b>originally designed in 2004</b> by the famous route-setter Jacky

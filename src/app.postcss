@@ -56,6 +56,11 @@ a {
 	@apply text-red;
 }
 
+.fc-col-header-cell-cushion,
+.fc-daygrid-day-number {
+	@apply text-black dark:text-white;
+}
+
 .fc-customnext-button.fc-button.fc-button-primary,
 .fc-customprev-button.fc-button.fc-button-primary,
 .fc-subscribeToCalendar-button.fc-button.fc-button-primary {
@@ -76,6 +81,16 @@ a {
 .fc-customprev-button.fc-button.fc-button-primary:active:focus,
 .fc-subscribeToCalendar-button.fc-button.fc-button-primary:active:focus {
 	box-shadow: 0 0 0 0.2rem rgba(218, 60, 43, 0.5);
+}
+
+.custom-tooltip {
+	transform: translate(-50%, 0);
+	transition: all 0.25s ease-in-out;
+	box-shadow: 0 10px 50px 0 rgba(17, 24, 39, 0.1);
+	@apply pointer-events-none absolute;
+	@apply mt-[15px] py-[10px] px-5 rounded-md;
+	@apply text-black dark:text-white;
+	@apply bg-white dark:bg-black;
 }
 
 .carousel-nav,

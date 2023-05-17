@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Accordion, AccordionItem, P } from 'flowbite-svelte';
-	import Line from 'compnonents/shared/Line.svelte';
 	import AnchorPoint from 'compnonents/shared/AnchorPoint.svelte';
+	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
 
 	const faq = [
 		{
@@ -21,8 +21,7 @@
 
 <section class="py-6">
 	<AnchorPoint id="faq" />
-	<h2 class="text-4xl font-bold">FAQ</h2>
-	<Line color="red" />
+	<TitleWithLine titleText="FAQ" />
 
 	<Accordion flush>
 		{#each faq as { question, answer }, i}

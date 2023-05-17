@@ -1,6 +1,6 @@
 <script lang="ts">
 	// colors: bg-red/10 bg-yellow/10
-	import AlternativeButton from './AlternativeButton.svelte';
+	import AlternativeButton from '../buttons/AlternativeButton.svelte';
 	export let color = 'yellow';
 	export let title = 'The Sport';
 	export let text =
