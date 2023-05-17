@@ -1,37 +1,32 @@
-<script>
-	import { goto } from '$app/navigation';
-	import PrimaryButton from 'compnonents/shared/buttons/PrimaryButton.svelte';
-	import Line from 'compnonents/shared/content/Line.svelte';
+<script lang="ts">
+	import Carousel from 'compnonents/shared/Carousel.svelte';
+	import CarouselComponent from 'compnonents/home/CarouselComponent.svelte';
+	import { MEDIA_URL } from 'utils/constants';
+
+	export let heroImages: string[][];
+
+	const carouselItems = heroImages.map((image) => {
+		return {
+			properties: {
+				image: `${MEDIA_URL}/image/hero/${image[0]}`,
+				imageClass: image[4],
+				imageSource: {
+					url: image[2],
+					alt: `Source: ${image[1]}`
+				}
+			},
+			component: CarouselComponent
+		};
+	});
 </script>
 
-<section id="hero" class="hero-image pb-[150px] pt-[230px]">
-	<h1 class="font-Raleway text-[36px] sm:text-[56px] lg:text-[64px] leading-none mb-[30px]">
-		<span class="text-white font-light">Welcome to</span><br />
-		<span class="font-bold  text-red">Speedclimbing</span>
-	</h1>
-	<Line length="200px" />
-	<p class="mt-[40px] mb-[30px] font-semibold text-white">
-		The ultimate race to the top. Full of emotions,<br />adrenalin and sportsmanship. Take a look
-		for yourself!
-	</p>
-	<div class="flex gap-3 flex-col sm:flex-row">
-		<PrimaryButton text="Latest Competitions" onClick={() => goto('/competition')} />
-		<button
-			class={`py-3 w-[200px] border-2 text-white border-white bg-white/10 rounded-[3px] font-semibold`}
-			>Top Climbers</button
-		>
+<section id="hero" class="relative p-0">
+	<div class="top-0 left-0  w-[100%] pointer-events-none">
+		<Carousel items={carouselItems} bottomNav={false} class="w-[100%] h-[45rem]" />
 	</div>
 </section>
 
-<style>
-	.hero-image {
-		background-image: linear-gradient(0deg, rgba(17, 24, 39, 0.6), rgba(17, 24, 39, 0.6)),
-			url('/images/Hero.jpg');
-		background-position: 50% 10%;
-		background-repeat: no-repeat;
-		background-size: cover;
-	}
-
+<style lang="postcss">
 	#hero {
 		margin-top: -5rem;
 	}

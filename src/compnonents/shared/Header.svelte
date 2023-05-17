@@ -24,7 +24,7 @@
 <header
 	class="px-[10%] lg:px-[15%] flex justify-between fixed w-full {transparent
 		? 'bg-white/0 dark:bg-white/0'
-		: 'bg-white dark:bg-black shadow'} top-0 z-10 transition-colors duration-500"
+		: 'bg-white dark:bg-black shadow'} top-0 z-50 transition-colors duration-500"
 >
 	<Navbar
 		let:hidden
