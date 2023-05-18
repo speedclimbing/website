@@ -3,12 +3,12 @@
 	import RankingsTable from 'compnonents/home/RankingsTable.svelte';
 	import SwitchButton from 'compnonents/shared/buttons/SwitchButton.svelte';
 	import PrimaryButton from 'compnonents/shared/buttons/PrimaryButton.svelte';
-	import type { Ranking } from 'types/Ranking';
 	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
 	import type { Gender } from 'types/Gender';
+	import type { AthleteTimeResult } from 'types/Athlete';
 
-	export let worldRankingsFemale: Ranking[];
-	export let worldRankingsMale: Ranking[];
+	export let worldRankingsFemale: AthleteTimeResult[];
+	export let worldRankingsMale: AthleteTimeResult[];
 	let gender: Gender = 'Male';
 </script>
 

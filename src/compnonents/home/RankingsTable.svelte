@@ -1,34 +1,31 @@
 <script lang="ts">
-	import type { Ranking } from 'types/Ranking';
+	import type { AthleteTimeResult } from 'types/Athlete';
 	import Table from '../shared/Table.svelte';
 	import type { Gender } from 'types/Gender';
+	import { formatName } from 'utils/formatName';
 
-	export let worldRankingsFemale: Ranking[];
-	export let worldRankingsMale: Ranking[];
+	export let worldRankingsFemale: AthleteTimeResult[];
+	export let worldRankingsMale: AthleteTimeResult[];
 	export let gender: Gender = 'Male';
 
-	function capitalize(word: string): string {
-		return word.charAt(0).toUpperCase() + word.slice(1);
-	}
-
-	const getValues = (r: Ranking) => [
-		r.rank,
-		r.last_name.toUpperCase() + ' ' + capitalize(r.first_name),
-		r.nation_code,
+	const getValues = (r: AthleteTimeResult, i: number) => [
+		i + 1,
+		formatName(r),
+		r.nation_code_ioc,
+		(r.time / 1000).toFixed(3),
 		r.competition_date.toLocaleDateString('de-DE', {
 			year: 'numeric',
 			month: 'long',
 			day: '2-digit'
-		}),
-		(r.time / 1000).toFixed(3)
+		})
 	];
 </script>
 
 <Table
 	tableObjects={gender === 'Male'
-		? worldRankingsMale.map((r) => getValues(r))
-		: worldRankingsFemale.map((r) => getValues(r))}
-	columnNames={['rank', 'Full name', 'Nation', 'date', 'Time']}
+		? worldRankingsMale.map((r, i) => getValues(r, i))
+		: worldRankingsFemale.map((r, i) => getValues(r, i))}
+	columnNames={['rank', 'Full name', 'Nation', 'Time', 'Date']}
 	tableHeadClasses="dark:!bg-gray-700"
 	tableRowClasses="dark:!bg-dark-grey dark:hover:!bg-grey/25"
 />
