@@ -5,18 +5,11 @@
 	import PrimaryButton from 'compnonents/shared/buttons/PrimaryButton.svelte';
 	import type { Ranking } from 'types/Ranking';
 	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
+	import type { Gender } from 'types/Gender';
 
 	export let worldRankingsFemale: Ranking[];
 	export let worldRankingsMale: Ranking[];
-	let male: boolean = true;
-
-	function setFemale() {
-		male = false;
-	}
-
-	function setMale() {
-		male = true;
-	}
+	let gender: Gender = 'Male';
 </script>
 
 <section id="rankings" class="bg-grey/5 py-20 flex flex-col gap-10 dark:bg-black">
@@ -50,12 +43,10 @@
 			<TitleWithLine titleText="All time World Ranking" lineColor="yellow" />
 			<SwitchButton
 				style="mb-10 mt-[-30px] sm:mt-0"
-				leftClickAction={() => setMale()}
-				rightClickAction={() => setFemale()}
-				leftString="Male"
-				rightString="Female"
+				options={['Male', 'Female']}
+				bind:value={gender}
 			/>
 		</div>
-		<RankingsTable {worldRankingsFemale} {worldRankingsMale} {male} />
+		<RankingsTable {worldRankingsFemale} {worldRankingsMale} {gender} />
 	</div>
 </section>

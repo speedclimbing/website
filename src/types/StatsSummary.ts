@@ -9,3 +9,11 @@ export type SeasonSummary = {
 	ranking_nation_points_and_medals: NationPointsAndMedalsCount[];
 	ranking_competition_fet: CompetitionFinalEntryTime[];
 };
+
+export type AllTimeSummary = {
+	ranking_athlete_time: AthleteTimeResult[];
+	ranking_nation_points_and_medals: NationPointsAndMedalsCount[];
+	ranking_competition_fet: CompetitionFinalEntryTime[];
+	history_world_record: AthleteTimeResult[];
+	history_competition_fet: CompetitionFinalEntryTime[];
+};

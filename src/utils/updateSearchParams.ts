@@ -6,7 +6,7 @@ export function updateSearchParams(params: Object): void {
 
 	const url = new URL(document.location.toString());
 	Object.entries(params).forEach((value) => {
-		if (value[1] == '') {
+		if (value[1] == '' || value[1] == undefined) {
 			url.searchParams.get(value[0]) && url.searchParams.delete(value[0]);
 			return;
 		}

@@ -1,22 +1,19 @@
 <script lang="ts">
 	import NationMedalsTable from 'compnonents/stats/NationMedalsTable.svelte';
-	import AlternativeButton from '../../../../../compnonents/shared/buttons/AlternativeButton.svelte';
-	import RankingOverview from '../../../../../compnonents/stats/RankingOverview.svelte';
+	import AlternativeButton from '../../../compnonents/shared/buttons/AlternativeButton.svelte';
+	import RankingOverview from '../../../compnonents/stats/RankingOverview.svelte';
 	import BoxContainer from 'compnonents/shared/layout/BoxContainer.svelte';
 	import Pagination from 'compnonents/shared/pagination/Pagination.svelte';
 	import EventCard from 'compnonents/shared/content/EventCard.svelte';
 	import About from './About.svelte';
-	import type { PageData } from './$types';
 	import { goto } from '$app/navigation';
 	import type { AthleteResult } from 'types/Athlete';
+	import type { Competition } from 'types/Competition';
+	import type { SeasonSummary } from 'types/StatsSummary';
+	import { formatName } from 'utils/formatName';
 
-	export let data: PageData;
-
-	const formatName = (athlete: AthleteResult) => {
-		return `${athlete.first_name.charAt(0).toUpperCase()}${athlete.first_name.slice(
-			1
-		)} ${athlete.last_name.toUpperCase()}`;
-	};
+	export let upcomingCompetitions: Competition[];
+	export let seasonSummary: SeasonSummary;
 </script>
 
 <section class="bg-grey/10 dark:bg-dark-grey lg:px-[10%] px-[5%] py-[50px] grid grid-cols-10 gap-5">
@@ -32,7 +29,7 @@
 		<div class="flex justify-between flex-wrap gap-[50px]">
 			<RankingOverview
 				label="Worldranking by time"
-				data={data.seasonSummary.ranking_athlete_time.map((a) => [
+				data={seasonSummary.ranking_athlete_time.map((a) => [
 					formatName(a),
 					a.nation_code_ioc,
 					(a.time / 1000).toFixed(3)
@@ -40,7 +37,7 @@
 			/>
 			<RankingOverview
 				label="Worldranking by points"
-				data={data.seasonSummary.ranking_athlete_points.map((a) => [
+				data={seasonSummary.ranking_athlete_points.map((a) => [
 					formatName(a),
 					a.nation_code_ioc,
 					a.points.toString()
@@ -48,7 +45,7 @@
 			/>
 			<RankingOverview
 				label="Worldranking by average rank"
-				data={data.seasonSummary.ranking_athlete_avg_rank.map((a) => [
+				data={seasonSummary.ranking_athlete_avg_rank.map((a) => [
 					formatName(a),
 					a.nation_code_ioc,
 					a.avg_rank.toFixed(2)
@@ -58,12 +55,7 @@
 	</BoxContainer>
 
 	<BoxContainer className="xl:col-span-6">
-		<div class="flex justify-between flex-wrap gap-5">
-			<h2 class="text-3xl">Nation Medals</h2>
-			<Pagination />
-		</div>
-		<hr class="border-grey/10 border-[1px] dark:border-light-grey mt-2" />
-		<NationMedalsTable data={data.seasonSummary.ranking_nation_points_and_medals} />
+		<NationMedalsTable data={seasonSummary.ranking_nation_points_and_medals} />
 	</BoxContainer>
 
 	<BoxContainer className="xl:col-span-4">
@@ -76,7 +68,7 @@
 			/>
 		</div>
 		<div class="flex flex-col gap-2">
-			{#each data.upcomingCompetitions as competition}
+			{#each upcomingCompetitions as competition}
 				<EventCard {competition} />
 			{/each}
 		</div>

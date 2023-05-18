@@ -1,10 +1,11 @@
 <script lang="ts">
 	import type { Ranking } from 'types/Ranking';
 	import Table from '../shared/Table.svelte';
+	import type { Gender } from 'types/Gender';
 
 	export let worldRankingsFemale: Ranking[];
 	export let worldRankingsMale: Ranking[];
-	export let male: boolean = true;
+	export let gender: Gender = 'Male';
 
 	function capitalize(word: string): string {
 		return word.charAt(0).toUpperCase() + word.slice(1);
@@ -24,7 +25,7 @@
 </script>
 
 <Table
-	tableObjects={male
+	tableObjects={gender === 'Male'
 		? worldRankingsMale.map((r) => getValues(r))
 		: worldRankingsFemale.map((r) => getValues(r))}
 	columnNames={['rank', 'Full name', 'Nation', 'date', 'Time']}

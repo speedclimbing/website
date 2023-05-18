@@ -1,9 +1,13 @@
 <script lang="ts">
 	import type { NationPointsAndMedalsCount } from 'types/Nation';
 	import { getFlagEmoji } from '../../utils/getFlagEmoji';
-	import Table, { type TableCellComponent } from '../shared/Table.svelte';
+	import type { TableCellComponent } from '../shared/Table.svelte';
+	import PaginatedTable from 'compnonents/shared/pagination/PaginatedTable.svelte';
+	import Pagination from 'compnonents/shared/pagination/Pagination.svelte';
 
 	export let data: NationPointsAndMedalsCount[];
+
+	let page = 0;
 
 	const getMedalComponent = (
 		medal: 'gold' | 'silver' | 'bronze',
@@ -47,9 +51,18 @@
 	};
 </script>
 
-<Table
+<div class="flex justify-between flex-wrap gap-5">
+	<h2 class="text-3xl">Nation Medals</h2>
+	<Pagination bind:page totalPages={Math.ceil(data.length / 5)} />
+</div>
+<hr class="border-grey/10 border-[1px] dark:border-light-grey mt-2" />
+
+<PaginatedTable
 	tableObjects={data.map((n, i) => getValues(i, n))}
 	divider={false}
 	tableCellClasses="px-4 py-2 whitespace-nowrap font-medium"
 	tableClasses="mt-5"
+	paginationUi={false}
+	{page}
+	pageSize={5}
 />
