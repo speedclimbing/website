@@ -1,39 +1,17 @@
 <script lang="ts">
+	import type { NationPointsAndMedalsCount } from 'types/Nation';
 	import { getFlagEmoji } from '../../utils/getFlagEmoji';
-	import Table from '../shared/Table.svelte';
+	import Table, { type TableCellComponent } from '../shared/Table.svelte';
 
-	type Nation = {
-		rank: number;
-		code: string;
-		name: string;
-		gold: number;
-		silver: number;
-		bronze: number;
-	};
+	export let data: NationPointsAndMedalsCount[];
 
-	type TableCellComponent = {
-		type: string;
-		classes: string;
-		value: string | number;
-	};
-
-	const nations = new Array(5);
-	nations.fill({
-		rank: 1,
-		code: 'de',
-		name: 'Germany',
-		gold: 10,
-		silver: 12,
-		bronze: 7
-	});
-
-	const getValues = (n: Nation) => {
+	const getValues = (i: number, n: NationPointsAndMedalsCount) => {
 		let medalClasses =
 			'rounded-[50%] aspect-square h-9 flex items-center justify-center text-white';
 		const flag = {
 			type: 'div',
 			classes: 'text-[25px]',
-			value: getFlagEmoji(n.code)
+			value: getFlagEmoji(n.alpha2_code)
 		};
 
 		const gold: TableCellComponent = {
@@ -54,18 +32,18 @@
 			value: n.gold
 		};
 
-		const total: TableCellComponent = {
+		const points: TableCellComponent = {
 			type: 'div',
 			classes: 'text-[18px]',
-			value: n.gold + n.silver + n.bronze
+			value: n.points
 		};
 
-		return [n.rank, flag, n.name, gold, silver, bronze, total];
+		return [i + 1, flag, n.name, gold, silver, bronze, points];
 	};
 </script>
 
 <Table
-	tableObjects={nations.map((n) => getValues(n))}
+	tableObjects={data.map((n, i) => getValues(i, n))}
 	divider={false}
 	tableCellClasses="px-4 py-2 whitespace-nowrap font-medium"
 	tableClasses="mt-5"

@@ -13,9 +13,14 @@ export const fetchEndpoint = async <T>(
 		path += `?${new URLSearchParams(params).toString()}`;
 	}
 
-	let headers: Record<string, string> = {};
+	let headers: Record<string, string> = {
+		Accept: 'application/json'
+	};
+
 	if (platform?.env?.API_TOKEN) {
 		headers['Authorization'] = `Bearer ${platform.env.API_TOKEN}`;
+	} else if (process.env.API_TOKEN) {
+		headers['Authorization'] = `Bearer ${process.env.API_TOKEN}`;
 	}
 
 	const response = await fetch(`${API_URL}/${path}`, {
