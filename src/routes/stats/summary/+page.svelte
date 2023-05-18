@@ -1,7 +1,4 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
-	import { goto } from '$app/navigation';
-	import { page } from '$app/stores';
 	import SwitchButton from 'compnonents/shared/buttons/SwitchButton.svelte';
 	import SelectFilter from 'compnonents/shared/inputs/SelectFilter.svelte';
 	import type { PageData } from './$types';
@@ -11,10 +8,6 @@
 
 	export let data: PageData;
 	let { year, gender } = data.params;
-
-	$: {
-		console.log($page.params.season);
-	}
 
 	$: {
 		updateSearchParams({ year, gender });

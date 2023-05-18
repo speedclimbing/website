@@ -9,8 +9,6 @@
 	let group = uniqueId();
 
 	const optionWidth = Math.floor(100 / options.length);
-
-	$: console.log(value);
 </script>
 
 <div class={`invert ${style}`}>

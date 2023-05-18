@@ -8,7 +8,7 @@
 <Header />
 
 {#if $navigating}
-	<div class="absolute top-0 left-[-10%] w-[100vw] h-1 bg-red z-50 progress_animation" />
+	<div class="fixed top-0 left-[-10%] w-[100vw] h-1 bg-red z-50 progress_animation" />
 {/if}
 
 <main>
