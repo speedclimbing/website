@@ -15,7 +15,9 @@
 	export let pageSize: number = 5;
 	export let paginationUi = true;
 
-	const totalPages = Math.ceil(tableObjects.length / pageSize);
+	let totalPages: number;
+
+	$: totalPages = Math.ceil(tableObjects.length / pageSize);
 </script>
 
 {#if paginationUi}
