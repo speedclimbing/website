@@ -13,7 +13,7 @@
 
 	export let data: PageData;
 	let { year, name, nation, league_group } = data.params;
-	let viewCalendar: boolean = false;
+	let view: 'List' | 'Calendar' = 'List';
 	let calendarDate: Date | undefined = undefined;
 
 	const isMounted = () => $mounted;
@@ -35,7 +35,11 @@
 	};
 
 	const updateYearOnCalendarDateChange = (newCalendarDate: Date | undefined) => {
-		if (!viewCalendar || newCalendarDate === undefined || year === newCalendarDate.getFullYear()) {
+		if (
+			view !== 'Calendar' ||
+			newCalendarDate === undefined ||
+			year === newCalendarDate.getFullYear()
+		) {
 			return;
 		}
 
@@ -87,10 +91,8 @@
 		}}
 	/>
 	<SwitchButton
-		leftClickAction={() => (viewCalendar = false)}
-		rightClickAction={() => (viewCalendar = true)}
-		leftString="List"
-		rightString="Calendar"
+		options={['List', 'Calendar']}
+		bind:value={view}
 		style="md:col-span-2 ml-auto xl:col-span-1"
 	/>
 </section>
@@ -104,13 +106,13 @@
 		<div class="flex justify-center items-center my-10">
 			<p class="text-2xl font-semibold">No competitions found</p>
 		</div>
-	{:else if !viewCalendar}
+	{:else if view === 'List'}
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10">
 			{#each data.competitions as competition, index (index)}
 				<EventCard {competition} />
 			{/each}
 		</div>
-	{:else if viewCalendar}
+	{:else if view === 'Calendar'}
 		<CompetitionCalendar competitions={data.competitions} bind:date={calendarDate} />
 	{/if}
 </section>
