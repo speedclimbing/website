@@ -101,7 +101,7 @@
 				options={allTimeData.leagueGroups}
 				textProperty="name"
 				valueProperty="id"
-				defaultText="All Leagues"
+				defaultText="World Cups and World Championships"
 				optgroup={{
 					property: 'continent',
 					defaultText: 'World-wide'
