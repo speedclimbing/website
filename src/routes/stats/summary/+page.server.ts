@@ -72,6 +72,7 @@ const loadAllTimeData = async ({ fetch, platform, gender }: LoadParams) => {
 	).then((summary) => {
 		initializeDates(summary.ranking_competition_fet);
 		initializeDates(summary.ranking_athlete_time);
+		initializeDates(summary.history_world_record);
 		return summary;
 	});
 

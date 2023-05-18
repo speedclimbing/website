@@ -85,9 +85,11 @@
 	<BoxContainer className="px-[3vw] xl:col-span-5">
 		<h2 class="text-2xl mb-5">World-Record history</h2>
 		<FastestCompetitionHistory
-			data={allTimeSummary.history_world_record.reverse().map((c) => {
-				return { value: c.time, label: formatCompetitionName(c.competition_name) };
-			})}
+			data={allTimeSummary.history_world_record
+				.sort((a, b) => b.time - a.time)
+				.map((c) => {
+					return { value: c.time, label: formatCompetitionName(c.competition_name) };
+				})}
 			name="World records"
 		/>
 	</BoxContainer>

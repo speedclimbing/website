@@ -16,7 +16,7 @@
 	let canvas: ChartItem;
 	let chart: Chart;
 
-	const initializeChart = (darkMode: boolean) => {
+	const initializeChart = (data: ChartPoint[], darkMode: boolean) => {
 		chart = new Chart(
 			canvas,
 			chartConfig(
@@ -31,7 +31,7 @@
 	$: {
 		if (browser && $mounted) {
 			if (chart) chart.destroy();
-			initializeChart($prefersDarkMode);
+			initializeChart(data, $prefersDarkMode);
 		}
 	}
 </script>
