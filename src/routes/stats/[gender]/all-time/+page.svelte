@@ -150,7 +150,7 @@
 			<Pagination />
 		</div>
 		<hr class="border-grey/10 border-[1px] dark:border-light-grey mt-2" />
-		<NationMedalsTable />
+		<!--NationMedalsTable /-->
 	</BoxContainer>
 
 	<BoxContainer className="xl:col-span-4">

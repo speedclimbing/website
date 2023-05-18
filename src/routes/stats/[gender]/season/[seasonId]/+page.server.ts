@@ -9,7 +9,7 @@ export const load: ServerLoad = async ({ fetch, platform, params }) => {
 		fetchEndpoint<SeasonSummary>(
 			fetch,
 			platform,
-			'/stats/summary/season/' + params.gender + '/' + params.seasonId
+			`/stats/summary/season/${params.gender}/${params.seasonId}`
 		),
 		fetchEndpoint<Competition[]>(fetch, platform, '/competition', {
 			from: new Date().toISOString().substring(0, 10)

@@ -1,9 +1,12 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
+	import type { LayoutData } from './$types';
 	import Hero from './Hero.svelte';
 	import SwitchButton from 'compnonents/shared/buttons/SwitchButton.svelte';
 	import SelectFilter from 'compnonents/shared/inputs/SelectFilter.svelte';
+
+	export let data: LayoutData;
 
 	let bar: HTMLElement;
 	let season: number = new Date().getFullYear();
@@ -35,8 +38,8 @@
 
 	$: {
 		if (!browser) break $;
-		if (showSeasonStats) goto('/stats/' + gender + '/season/' + season);
-		else goto(`/stats/all-time`);
+		if (showSeasonStats) goto(`/stats/${gender}/season/${season}`);
+		else goto(`/stats/${gender}/all-time`);
 	}
 </script>
 
@@ -57,7 +60,12 @@
 		</div>
 		<div class="flex justify-end gap-2 my-auto order-first lg:order-2 py-3">
 			{#if showSeasonStats}
-				<SelectFilter bind:value={season} {options} valueProperty="year" textProperty="year" />
+				<SelectFilter
+					bind:value={season}
+					options={data.seasons}
+					valueProperty="year"
+					textProperty="year"
+				/>
 			{/if}
 			<SwitchButton
 				rightClickAction={() => {

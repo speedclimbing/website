@@ -5,6 +5,25 @@
 
 	export let data: NationPointsAndMedalsCount[];
 
+	const getMedalComponent = (
+		medal: 'gold' | 'silver' | 'bronze',
+		nation: NationPointsAndMedalsCount
+	) => {
+		const medalClasses =
+			'rounded-[50%] aspect-square h-9 flex items-center justify-center text-white';
+		const medalCount = nation[medal];
+		const medalColor =
+			medal === 'gold' ? 'bg-yellow' : medal === 'silver' ? 'bg-light-grey' : 'bg-[#C47A49]';
+		const opacity = medalCount === 0 ? 'opacity-20' : '';
+		const compnonent: TableCellComponent = {
+			type: 'div',
+			classes: `${medalClasses} ${medalColor} ${opacity}`,
+			value: medalCount
+		};
+
+		return compnonent;
+	};
+
 	const getValues = (i: number, n: NationPointsAndMedalsCount) => {
 		let medalClasses =
 			'rounded-[50%] aspect-square h-9 flex items-center justify-center text-white';
@@ -14,23 +33,9 @@
 			value: getFlagEmoji(n.alpha2_code)
 		};
 
-		const gold: TableCellComponent = {
-			type: 'div',
-			classes: `${medalClasses} bg-yellow`,
-			value: n.gold
-		};
-
-		const silver: TableCellComponent = {
-			type: 'div',
-			classes: `${medalClasses} bg-light-grey`,
-			value: n.gold
-		};
-
-		const bronze: TableCellComponent = {
-			type: 'div',
-			classes: `${medalClasses} bg-[#C47A49]`,
-			value: n.gold
-		};
+		const gold = getMedalComponent('gold', n);
+		const silver = getMedalComponent('silver', n);
+		const bronze = getMedalComponent('bronze', n);
 
 		const points: TableCellComponent = {
 			type: 'div',
