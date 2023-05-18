@@ -8,6 +8,7 @@ import type { Season } from 'types/Season';
 import type { SeasonSummary, AllTimeSummary } from 'types/StatsSummary';
 import initializeDates from 'utils/InitializeDates';
 import { fetchEndpoint } from 'utils/api';
+import promiseAllProperties from 'utils/promiseAllProperties';
 
 export const load: ServerLoad = async ({ fetch, platform, url }) => {
 	const year = url.searchParams.get('year') ? Number(url.searchParams.get('year')) : undefined;
@@ -66,13 +67,11 @@ const loadSeasonData = async ({ fetch, platform, gender, year }: LoadParams) => 
 		return c;
 	});
 
-	return Promise.all([seasons, seasonSummary, upcomingCompetitions]).then(
-		([seasons, seasonSummary, upcomingCompetitions]) => ({
-			seasons,
-			seasonSummary,
-			upcomingCompetitions
-		})
-	);
+	return promiseAllProperties({
+		seasons,
+		seasonSummary,
+		upcomingCompetitions
+	});
 };
 
 const loadAllTimeData = async ({
@@ -102,11 +101,9 @@ const loadAllTimeData = async ({
 	const leagueGroups = fetchEndpoint<LeagueGroup[]>(fetch, platform, '/league_group');
 	const nations = fetchEndpoint<Nation[]>(fetch, platform, '/nation');
 
-	return Promise.all([allTimeSummary, leagueGroups, nations]).then(
-		([allTimeSummary, leagueGroups, nations]) => ({
-			allTimeSummary,
-			leagueGroups,
-			nations
-		})
-	);
+	return promiseAllProperties({
+		allTimeSummary,
+		leagueGroups,
+		nations
+	});
 };
