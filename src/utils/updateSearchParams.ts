@@ -12,5 +12,5 @@ export function updateSearchParams(params: Object): void {
 		}
 		url.searchParams.set(value[0], value[1]);
 	});
-	goto(url.toString(), { keepFocus: true });
+	goto(url.toString(), { keepFocus: true, noScroll: true });
 }

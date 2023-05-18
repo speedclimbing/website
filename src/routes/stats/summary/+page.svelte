@@ -7,10 +7,10 @@
 	import AllTime from './AllTime.svelte';
 
 	export let data: PageData;
-	let { year, gender } = data.params;
+	let { year, gender, leagueGroup, nation, continent } = data.params;
 
 	$: {
-		updateSearchParams({ year, gender });
+		updateSearchParams({ year, gender, leagueGroup, nation, continent });
 	}
 </script>
 
@@ -59,5 +59,5 @@
 {/if}
 
 {#if data.allTimeData}
-	<AllTime allTimeSummary={data.allTimeData.allTimeSummary} />
+	<AllTime bind:leagueGroup bind:nation bind:continent allTimeData={data.allTimeData} />
 {/if}

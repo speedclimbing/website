@@ -1,33 +1,24 @@
 <script lang="ts">
 	import SelectFilter from 'compnonents/shared/inputs/SelectFilter.svelte';
-	import Pagination from 'compnonents/shared/pagination/Pagination.svelte';
 	import FastestCompetitionHistory from 'compnonents/stats/LineChart.svelte';
 	import BoxContainer from 'compnonents/shared/layout/BoxContainer.svelte';
 	import NationMedalsTable from 'compnonents/stats/NationMedalsTable.svelte';
 	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
 	import type { AllTimeSummary } from 'types/StatsSummary';
-	import Table from 'compnonents/shared/Table.svelte';
 	import { formatName } from 'utils/formatName';
 	import PaginatedTable from 'compnonents/shared/pagination/PaginatedTable.svelte';
+	import type { LeagueGroup } from 'types/LeagueGroup';
+	import type { Nation } from 'types/Nation';
 
-	export let allTimeSummary: AllTimeSummary;
+	export let allTimeData: {
+		allTimeSummary: AllTimeSummary;
+		leagueGroups: LeagueGroup[];
+		nations: Nation[];
+	};
 
-	let value = 1;
-
-	const options = [
-		{
-			code: 'World Cup',
-			id: 1
-		},
-		{
-			code: 'Olympic Games',
-			id: 2
-		},
-		{
-			code: 'National Cup',
-			id: 3
-		}
-	];
+	export let leagueGroup: string | undefined;
+	export let nation: string | undefined;
+	export let continent: string | undefined;
 
 	const formatCompetitionName = (name: string) => {
 		// turn IFSC - Climbing World Cup (L,S) - Villars (SUI) 2021 into Villars 2021 using regex
@@ -45,31 +36,30 @@
 		<TitleWithLine titleText="Time Records" lineColor="yellow" lineClasses="mb-0" />
 		<div class="mt-auto mb-auto flex gap-5 flex-wrap">
 			<SelectFilter
-				bind:value
-				{options}
-				textProperty="code"
-				valueProperty="id"
-				defaultText="All Leagues"
+				bind:value={continent}
+				options={['Africa', 'Asia', 'Europe', 'Oceania', 'PanAmerica'].map((c) => {
+					return { name: c };
+				})}
+				textProperty="name"
+				valueProperty="name"
+				defaultText="All Continents"
 			/>
 			<SelectFilter
-				bind:value
-				{options}
-				textProperty="code"
-				valueProperty="id"
-				defaultText="All Leagues"
-			/>
-			<SelectFilter
-				bind:value
-				{options}
-				textProperty="code"
-				valueProperty="id"
-				defaultText="All Leagues"
+				bind:value={nation}
+				options={allTimeData.nations.filter((n) => !continent || n.continent === continent)}
+				textProperty="name"
+				valueProperty="code_ioc"
+				defaultText="All Nations"
+				optgroup={{
+					property: 'continent',
+					defaultText: 'World-wide'
+				}}
 			/>
 		</div>
 	</BoxContainer>
 	<BoxContainer className="flex flex-col gap-5">
 		<PaginatedTable
-			tableObjects={allTimeSummary.ranking_athlete_time.map((a, i) => [
+			tableObjects={allTimeData.allTimeSummary.ranking_athlete_time.map((a, i) => [
 				i + 1,
 				formatName(a),
 				a.nation_code_ioc,
@@ -85,7 +75,7 @@
 	<BoxContainer className="px-[3vw] xl:col-span-5">
 		<h2 class="text-2xl mb-5">World-Record history</h2>
 		<FastestCompetitionHistory
-			data={allTimeSummary.history_world_record
+			data={allTimeData.allTimeSummary.history_world_record
 				.sort((a, b) => b.time - a.time)
 				.map((c) => {
 					return { value: c.time, label: formatCompetitionName(c.competition_name) };
@@ -97,7 +87,7 @@
 		<h2 class="text-2xl mb-5">Final entry time history</h2>
 
 		<FastestCompetitionHistory
-			data={allTimeSummary.history_competition_fet.map((c) => {
+			data={allTimeData.allTimeSummary.history_competition_fet.map((c) => {
 				return { value: c.final_entry_time, label: formatCompetitionName(c.name) };
 			})}
 			name="FET"
@@ -107,18 +97,22 @@
 		<TitleWithLine titleText="Fastest Competitions" lineClasses="mb-0" />
 		<div class="mt-auto mb-auto">
 			<SelectFilter
-				bind:value
-				{options}
-				textProperty="code"
+				bind:value={leagueGroup}
+				options={allTimeData.leagueGroups}
+				textProperty="name"
 				valueProperty="id"
 				defaultText="All Leagues"
+				optgroup={{
+					property: 'continent',
+					defaultText: 'World-wide'
+				}}
 			/>
 		</div>
 	</BoxContainer>
 
 	<BoxContainer className="flex flex-col gap-5">
 		<PaginatedTable
-			tableObjects={allTimeSummary.ranking_competition_fet.map((c, i) => [
+			tableObjects={allTimeData.allTimeSummary.ranking_competition_fet.map((c, i) => [
 				i + 1,
 				c.name,
 				(c.final_entry_time / 1000).toFixed(3),
@@ -130,7 +124,7 @@
 	</BoxContainer>
 
 	<BoxContainer className="xl:col-span-6">
-		<NationMedalsTable data={allTimeSummary.ranking_nation_points_and_medals} />
+		<NationMedalsTable data={allTimeData.allTimeSummary.ranking_nation_points_and_medals} />
 	</BoxContainer>
 
 	<BoxContainer className="xl:col-span-4">

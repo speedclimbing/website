@@ -5,12 +5,13 @@ export const fetchEndpoint = async <T>(
 	fetch: Fetch,
 	platform: Readonly<App.Platform> | undefined,
 	path: string,
-	params?: URLSearchParams | Record<string, string>
+	params?: URLSearchParams | Record<string, string | undefined>
 ): Promise<T> => {
 	if (params instanceof URLSearchParams) {
 		path += `?${params.toString()}`;
 	} else if (params) {
-		path += `?${new URLSearchParams(params).toString()}`;
+		Object.keys(params).forEach((key) => params[key] === undefined && delete params[key]);
+		path += `?${new URLSearchParams(params as Record<string, string>).toString()}`;
 	}
 
 	let headers: Record<string, string> = {

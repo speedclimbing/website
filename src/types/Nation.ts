@@ -1,7 +1,9 @@
 export type Nation = {
 	id: string;
 	name: string;
-	code: string;
+	code_ioc: string;
+	code_alpha2: string;
+	continent: 'Africa' | 'Asia' | 'Europe' | 'Oceania' | 'PanAmerica';
 };
 
 export type NationPointsAndMedalsCount = {
