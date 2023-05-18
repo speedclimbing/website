@@ -6,7 +6,7 @@
 	export let data: string[][];
 </script>
 
-<div class="py-5 flex-grow max-w-[350px]">
+<div class="py-5 flex-grow max-w-full">
 	<h3 class="text-yellow text-xl font-medium">{label}</h3>
 	<hr class="border-grey/10 dark:border-light-grey border-[1px] my-2" />
 
