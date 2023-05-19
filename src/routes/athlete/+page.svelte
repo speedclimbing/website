@@ -76,9 +76,7 @@
 	{:else}
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-5 my-10">
 			{#each data.athletes as athlete, index (index)}
-				<a href="/athlete/{athlete.id}">
-					<AthleteCard {athlete} />
-				</a>
+				<AthleteCard {athlete} />
 			{/each}
 		</div>
 	{/if}

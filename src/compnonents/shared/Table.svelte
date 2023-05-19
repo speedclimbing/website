@@ -1,3 +1,11 @@
+<script context="module" lang="ts">
+	export type TableCellComponent = {
+		type: string;
+		classes: string;
+		value: string | number;
+	};
+</script>
+
 <script lang="ts">
 	import {
 		Table,
@@ -15,12 +23,6 @@
 	export let tableRowClasses = '';
 	export let tableCellClasses = 'px-6 py-4 whitespace-nowrap font-medium';
 	export let divider = true;
-
-	type TableCellComponent = {
-		type: string;
-		classes: string;
-		value: string | number;
-	};
 </script>
 
 <Table noborder divClass="relative overflow-x-auto {tableClasses}">

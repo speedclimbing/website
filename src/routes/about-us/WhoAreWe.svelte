@@ -17,7 +17,8 @@
 		{
 			name: 'Jakob Mayerhofer',
 			roles: ['UI/UX design', 'development'],
-			about: 'I study at the TU Munich blablabalbala .....',
+			about:
+				'I`m a big sports fan and love watching and analysing all kinds of competitions. Originally, I did competitive Judo, where I was in the national team for a few years. These days I, study information systems at the TU Munich. In my free time I love to do sports and work on projects like this.',
 			image: '/images/about-us/jakob.jpg'
 		},
 		{

@@ -6,11 +6,11 @@ export function updateSearchParams(params: Object): void {
 
 	const url = new URL(document.location.toString());
 	Object.entries(params).forEach((value) => {
-		if (value[1] == '') {
+		if (value[1] == '' || value[1] == undefined) {
 			url.searchParams.get(value[0]) && url.searchParams.delete(value[0]);
 			return;
 		}
 		url.searchParams.set(value[0], value[1]);
 	});
-	goto(url.toString(), { keepFocus: true });
+	goto(url.toString(), { keepFocus: true, noScroll: true });
 }

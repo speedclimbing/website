@@ -51,7 +51,12 @@ const config = {
 		'object-right',
 		'object-right-bottom',
 		'object-right-top',
-		'object-top'
+		'object-top',
+		'w-[50%]',
+		'w-[33%]',
+		'left-[50%]',
+		'left-[33%]',
+		'left-[66%]'
 	],
 
 	plugins: [require('flowbite/plugin')],

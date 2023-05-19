@@ -5,16 +5,21 @@ import { fetchEndpoint } from 'utils/api';
 import { MEDIA_URL } from 'utils/constants';
 
 export const load: ServerLoad = async ({ fetch, platform }) => {
-	const dataPromise = fetchEndpoint<HomePageData>(fetch, platform, '/home');
-	const heroImagesPromise = fetch(`${MEDIA_URL}/image/hero/metadata.json`).then(
-		(r) => r.json() as Promise<string[][]>
-	);
-
-	const [data, heroImages] = await Promise.all([dataPromise, heroImagesPromise]);
-
-	initializeDates(data.male_worldranking);
-	initializeDates(data.female_worldranking);
-	initializeDates(data.latest_competitions);
+	const data = fetchEndpoint<HomePageData>(fetch, platform, '/home').then((data) => {
+		initializeDates(data.male_worldranking);
+		initializeDates(data.female_worldranking);
+		initializeDates(data.latest_competitions);
+		return data;
+	});
+	const heroImages = fetch(`${MEDIA_URL}/image/hero/metadata.json`)
+		.then((r) => r.json() as Promise<string[][]>)
+		.then((array) => {
+			for (let i = array.length - 1; i > 0; i--) {
+				const j = Math.floor(Math.random() * (i + 1));
+				[array[i], array[j]] = [array[j], array[i]];
+			}
+			return array;
+		});
 
 	return { data, heroImages };
 };

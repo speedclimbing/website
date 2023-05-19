@@ -9,7 +9,7 @@ import { fetchEndpoint } from 'utils/api';
 export const load: ServerLoad = async ({ fetch, platform, url }) => {
 	const year = Number(url.searchParams.get('year') ?? new Date().getFullYear());
 	const name = url.searchParams.get('name') ?? '';
-	const nation = url.searchParams.get('natino') ?? '';
+	const nation = url.searchParams.get('nation') ?? '';
 	const league_group = url.searchParams.get('league_group') ?? '';
 	const params = {
 		year,
@@ -18,17 +18,19 @@ export const load: ServerLoad = async ({ fetch, platform, url }) => {
 		league_group
 	};
 
-	const competitions: Competition[] = await fetchEndpoint(
+	const competitions = fetchEndpoint<Competition[]>(
 		fetch,
 		platform,
 		'/competition',
 		_paramsToUrlSearchParams(params)
-	);
+	).then((c) => {
+		initializeDates(c);
+		return c;
+	});
 
-	initializeDates(competitions);
-	const nations: Nation[] = await fetchEndpoint(fetch, platform, '/nation');
-	const league_groups: LeagueGroup[] = await fetchEndpoint(fetch, platform, '/league_group');
-	const seasons: Season[] = await fetchEndpoint(fetch, platform, '/season');
+	const nations = fetchEndpoint<Nation[]>(fetch, platform, '/nation');
+	const league_groups = fetchEndpoint<LeagueGroup[]>(fetch, platform, '/league_group');
+	const seasons = fetchEndpoint<Season[]>(fetch, platform, '/season');
 
 	return {
 		competitions,

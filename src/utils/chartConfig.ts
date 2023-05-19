@@ -100,7 +100,7 @@ const configureScales = (darkMode: boolean) => {
 		y: {
 			ticks: {
 				color: ticksColor(darkMode),
-				stepSize: 0.1
+				stepSize: 5
 			},
 			grid: { color: lineColor(darkMode) },
 			border: { color: lineColor(darkMode) }

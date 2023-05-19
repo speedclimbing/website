@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let value: string | number;
+	export let value: string | number | undefined;
 	export let onChange: () => void = () => {};
 	export let textProperty: string;
 	export let valueProperty: string;
@@ -15,7 +15,8 @@
 
 	let groupedOptions: Record<string, typeof options> = {};
 
-	if (optgroup) {
+	$: if (optgroup) {
+		groupedOptions = {};
 		groupedOptions = options.reduce((acc, option) => {
 			const group = option[optgroup!.property] ?? optgroup!.defaultText;
 			if (!acc[group]) {
