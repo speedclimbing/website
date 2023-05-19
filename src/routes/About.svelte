@@ -1,7 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
-	import IconBox from 'compnonents/shared/content/IconBox.svelte';
-	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
+	import IconBox from 'components/shared/content/IconBox.svelte';
+	import TitleWithLine from 'components/shared/content/TitleWithLine.svelte';
 	import { BarsArrowUp, BookOpen, Trophy } from 'svelte-heros-v2';
 </script>
 

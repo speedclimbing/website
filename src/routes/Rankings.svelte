@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { Input } from 'flowbite-svelte';
-	import RankingsTable from 'compnonents/home/RankingsTable.svelte';
-	import SwitchButton from 'compnonents/shared/buttons/SwitchButton.svelte';
-	import PrimaryButton from 'compnonents/shared/buttons/PrimaryButton.svelte';
-	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
+	import RankingsTable from 'components/home/RankingsTable.svelte';
+	import SwitchButton from 'components/shared/buttons/SwitchButton.svelte';
+	import PrimaryButton from 'components/shared/buttons/PrimaryButton.svelte';
+	import TitleWithLine from 'components/shared/content/TitleWithLine.svelte';
 	import type { Gender } from 'types/Gender';
 	import type { AthleteTimeResult } from 'types/Athlete';
 

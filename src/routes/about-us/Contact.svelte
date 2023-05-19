@@ -1,10 +1,10 @@
 <script lang="ts">
-	import PrimaryButton from 'compnonents/shared/buttons/PrimaryButton.svelte';
-	import Alert from 'compnonents/shared/Alert.svelte';
+	import PrimaryButton from 'components/shared/buttons/PrimaryButton.svelte';
+	import Alert from 'components/shared/Alert.svelte';
 	import { Input, Label, P, Textarea } from 'flowbite-svelte';
 	import { Turnstile } from 'svelte-turnstile';
-	import AnchorPoint from 'compnonents/shared/AnchorPoint.svelte';
-	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
+	import AnchorPoint from 'components/shared/AnchorPoint.svelte';
+	import TitleWithLine from 'components/shared/content/TitleWithLine.svelte';
 
 	export let turnstileSiteKey: string | undefined;
 

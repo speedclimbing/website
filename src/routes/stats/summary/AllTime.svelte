@@ -1,12 +1,12 @@
 <script lang="ts">
-	import SelectFilter from 'compnonents/shared/inputs/SelectFilter.svelte';
-	import FastestCompetitionHistory from 'compnonents/stats/LineChart.svelte';
-	import BoxContainer from 'compnonents/shared/layout/BoxContainer.svelte';
-	import NationMedalsTable from 'compnonents/stats/NationMedalsTable.svelte';
-	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
+	import SelectFilter from 'components/shared/inputs/SelectFilter.svelte';
+	import FastestCompetitionHistory from 'components/stats/LineChart.svelte';
+	import BoxContainer from 'components/shared/layout/BoxContainer.svelte';
+	import NationMedalsTable from 'components/stats/NationMedalsTable.svelte';
+	import TitleWithLine from 'components/shared/content/TitleWithLine.svelte';
 	import type { AllTimeSummary } from 'types/StatsSummary';
 	import { formatName } from 'utils/formatName';
-	import PaginatedTable from 'compnonents/shared/pagination/PaginatedTable.svelte';
+	import PaginatedTable from 'components/shared/pagination/PaginatedTable.svelte';
 	import type { LeagueGroup } from 'types/LeagueGroup';
 	import type { Nation } from 'types/Nation';
 

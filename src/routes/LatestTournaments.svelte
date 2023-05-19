@@ -1,9 +1,9 @@
 <script lang="ts">
-	import EventCard from 'compnonents/shared/content/EventCard.svelte';
-	import PrimaryButton from 'compnonents/shared/buttons/PrimaryButton.svelte';
+	import EventCard from 'components/shared/content/EventCard.svelte';
+	import PrimaryButton from 'components/shared/buttons/PrimaryButton.svelte';
 	import type { Competition } from 'types/Competition';
 	import { goto } from '$app/navigation';
-	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
+	import TitleWithLine from 'components/shared/content/TitleWithLine.svelte';
 
 	export let competitions: Competition[];
 </script>

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Carousel from 'compnonents/shared/Carousel.svelte';
-	import CarouselComponent from 'compnonents/home/CarouselComponent.svelte';
+	import Carousel from 'components/shared/Carousel.svelte';
+	import CarouselComponent from 'components/home/CarouselComponent.svelte';
 	import { MEDIA_URL } from 'utils/constants';
 
 	export let heroImages: string[][];

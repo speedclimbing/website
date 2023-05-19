@@ -1,7 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
-	import PrimaryButton from 'compnonents/shared/buttons/PrimaryButton.svelte';
-	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
+	import PrimaryButton from 'components/shared/buttons/PrimaryButton.svelte';
+	import TitleWithLine from 'components/shared/content/TitleWithLine.svelte';
 </script>
 
 <section id="insights" class="py-[100px] flex gap-16 flex-col lg:items-center lg:flex-row">
