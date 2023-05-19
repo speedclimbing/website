@@ -35,19 +35,22 @@
 
 <div class="flex flex-col justify-center gap-0 mx-[10%] mg:px-[15%] h-[100%] w-[80%] mg:w-[70%]">
 	<h1 class="font-Raleway text-[36px] sm:text-[56px] lg:text-[64px] leading-none">
-		<span class="text-white font-light">Welcome to</span><br />
+		<span class="text-black dark:text-white font-light">Welcome to</span><br />
 		<span class="font-bold  text-red">Speedclimbing</span>
 	</h1>
 	<Line length="200px" />
-	<p class="mb-[30px] font-semibold text-white">
+	<p class="mb-[30px] font-semibold text-black dark:text-white">
 		The ultimate race to the top. Full of emotions,<br />adrenalin and sportsmanship. Take a look
 		for yourself!
 	</p>
 	<div class="flex gap-3 flex-col sm:flex-row">
 		<PrimaryButton text="Latest Competitions" onClick={() => goto('/competition')} />
-		<button
-			class={`py-3 w-[200px] border-2 text-white border-white bg-white/10 rounded-[3px] font-semibold`}
-			>Top Climbers</button
-		>
+		<a href="/stats">
+			<button
+				class={`py-3 w-[200px] border-2 text-black dark:text-white border-black dark:border-white bg-white/10 rounded-[3px] font-semibold`}
+			>
+				Statistics
+			</button>
+		</a>
 	</div>
 </div>
