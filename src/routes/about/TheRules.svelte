@@ -1,6 +1,6 @@
 <script>
-	import AnchorPoint from 'compnonents/shared/AnchorPoint.svelte';
-	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
+	import AnchorPoint from 'components/shared/AnchorPoint.svelte';
+	import TitleWithLine from 'components/shared/content/TitleWithLine.svelte';
 </script>
 
 <section class="py-6">

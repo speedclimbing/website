@@ -1,6 +1,6 @@
 <script lang="ts">
-	import PersonCard from 'compnonents/shared/content/PersonCard.svelte';
-	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
+	import PersonCard from 'components/shared/content/PersonCard.svelte';
+	import TitleWithLine from 'components/shared/content/TitleWithLine.svelte';
 	import type { AthleteTimeResult } from 'types/Athlete';
 	import { MEDIA_URL } from 'utils/constants';
 

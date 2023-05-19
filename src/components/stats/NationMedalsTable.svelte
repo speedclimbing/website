@@ -2,8 +2,8 @@
 	import type { NationPointsAndMedalsCount } from 'types/Nation';
 	import { getFlagEmoji } from '../../utils/getFlagEmoji';
 	import type { TableCellComponent } from '../shared/Table.svelte';
-	import PaginatedTable from 'compnonents/shared/pagination/PaginatedTable.svelte';
-	import Pagination from 'compnonents/shared/pagination/Pagination.svelte';
+	import PaginatedTable from 'components/shared/pagination/PaginatedTable.svelte';
+	import Pagination from 'components/shared/pagination/Pagination.svelte';
 
 	export let data: NationPointsAndMedalsCount[];
 

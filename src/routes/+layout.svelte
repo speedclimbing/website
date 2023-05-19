@@ -1,6 +1,6 @@
 <script>
-	import Header from 'compnonents/shared/Header.svelte';
-	import Footer from 'compnonents/shared/Footer.svelte';
+	import Header from 'components/shared/Header.svelte';
+	import Footer from 'components/shared/Footer.svelte';
 	import '../app.postcss';
 	import { navigating } from '$app/stores';
 </script>

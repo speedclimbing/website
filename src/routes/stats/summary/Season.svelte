@@ -1,10 +1,10 @@
 <script lang="ts">
-	import NationMedalsTable from 'compnonents/stats/NationMedalsTable.svelte';
-	import AlternativeButton from '../../../compnonents/shared/buttons/AlternativeButton.svelte';
-	import RankingOverview from '../../../compnonents/stats/RankingOverview.svelte';
-	import BoxContainer from 'compnonents/shared/layout/BoxContainer.svelte';
-	import Pagination from 'compnonents/shared/pagination/Pagination.svelte';
-	import EventCard from 'compnonents/shared/content/EventCard.svelte';
+	import NationMedalsTable from 'components/stats/NationMedalsTable.svelte';
+	import AlternativeButton from '../../../components/shared/buttons/AlternativeButton.svelte';
+	import RankingOverview from '../../../components/stats/RankingOverview.svelte';
+	import BoxContainer from 'components/shared/layout/BoxContainer.svelte';
+	import Pagination from 'components/shared/pagination/Pagination.svelte';
+	import EventCard from 'components/shared/content/EventCard.svelte';
 	import About from './About.svelte';
 	import { goto } from '$app/navigation';
 	import type { AthleteResult } from 'types/Athlete';

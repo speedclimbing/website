@@ -1,5 +1,5 @@
 <script>
-	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
+	import TitleWithLine from 'components/shared/content/TitleWithLine.svelte';
 </script>
 
 <section class="py-6">

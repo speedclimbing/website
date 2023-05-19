@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Accordion, AccordionItem, P } from 'flowbite-svelte';
-	import AnchorPoint from 'compnonents/shared/AnchorPoint.svelte';
-	import TitleWithLine from 'compnonents/shared/content/TitleWithLine.svelte';
+	import AnchorPoint from 'components/shared/AnchorPoint.svelte';
+	import TitleWithLine from 'components/shared/content/TitleWithLine.svelte';
 
 	const faq = [
 		{

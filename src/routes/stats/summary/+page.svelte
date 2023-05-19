@@ -1,6 +1,6 @@
 <script lang="ts">
-	import SwitchButton from 'compnonents/shared/buttons/SwitchButton.svelte';
-	import SelectFilter from 'compnonents/shared/inputs/SelectFilter.svelte';
+	import SwitchButton from 'components/shared/buttons/SwitchButton.svelte';
+	import SelectFilter from 'components/shared/inputs/SelectFilter.svelte';
 	import type { PageData } from './$types';
 	import { updateSearchParams } from 'utils/updateSearchParams';
 	import Season from './Season.svelte';

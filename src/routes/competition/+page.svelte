@@ -3,13 +3,13 @@
 	import { mounted } from 'utils/mounted';
 	import { browser } from '$app/environment';
 	import { updateSearchParams } from 'utils/updateSearchParams';
-	import CompetitionCalendar from 'compnonents/competitions/CompetitionCalendar.svelte';
-	import EventCard from 'compnonents/shared/content/EventCard.svelte';
+	import CompetitionCalendar from 'components/competitions/CompetitionCalendar.svelte';
+	import EventCard from 'components/shared/content/EventCard.svelte';
 	import { Spinner } from 'flowbite-svelte';
 	import { navigating } from '$app/stores';
-	import DebouncedInput from 'compnonents/shared/inputs/DebouncedInput.svelte';
-	import SelectFilter from 'compnonents/shared/inputs/SelectFilter.svelte';
-	import SwitchButton from 'compnonents/shared/buttons/SwitchButton.svelte';
+	import DebouncedInput from 'components/shared/inputs/DebouncedInput.svelte';
+	import SelectFilter from 'components/shared/inputs/SelectFilter.svelte';
+	import SwitchButton from 'components/shared/buttons/SwitchButton.svelte';
 
 	export let data: PageData;
 	let { year, name, nation, league_group } = data.params;
