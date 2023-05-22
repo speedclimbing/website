@@ -213,3 +213,10 @@ const parameterFromList = (
 
 	return encodeURIComponent(value);
 };
+
+export const filterByOptgroup = (
+	options: FilterOption[],
+	optgroup: string | undefined
+): FilterOption[] => {
+	return options.filter((o) => !optgroup || o.optgroup === optgroup);
+};

@@ -8,7 +8,12 @@ import type { Nation } from 'types/Nation';
 import type { Season } from 'types/Season';
 import type { SeasonSummary, AllTimeSummary } from 'types/StatsSummary';
 import initializeDates from 'utils/InitializeDates';
-import { fetchEndpoint, getApplicableFiltersAndParams, getAvailableFilters } from 'utils/api';
+import {
+	fetchEndpoint,
+	filterByOptgroup,
+	getApplicableFiltersAndParams,
+	getAvailableFilters
+} from 'utils/api';
 import promiseAllProperties from 'utils/promiseAllProperties';
 
 export const load: ServerLoad = async ({ fetch, platform, url }) => {
@@ -76,16 +81,10 @@ const loadAllTimeData = async ({ fetch, platform, url }: LoadParams) => {
 			let required = false;
 			let applicableOptions: FilterOption[] = filter.options;
 
-			switch (filter.name) {
-				case 'gender':
-					required = true;
-					break;
-				case 'nation_code_ioc':
-					applicableOptions = filter.options.filter(
-						(o) => !params.continent || o.optgroup === params.continent
-					);
-				default:
-					required = false;
+			if (filter.name === 'gender') {
+				required = true;
+			} else if (filter.name === 'nation_code_ioc') {
+				applicableOptions = filterByOptgroup(filter.options, params.continent);
 			}
 
 			return {

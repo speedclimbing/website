@@ -1,7 +1,12 @@
 import type { ServerLoad } from '@sveltejs/kit';
 import type { Filter, FilterOption } from 'components/shared/inputs/SelectFilter.svelte';
 import initializeDates from 'utils/InitializeDates';
-import { fetchEndpoint, getApplicableFiltersAndParams, getAvailableFilters } from 'utils/api';
+import {
+	fetchEndpoint,
+	filterByOptgroup,
+	getApplicableFiltersAndParams,
+	getAvailableFilters
+} from 'utils/api';
 
 const competetionRankingFilters = {
 	gender: true,
@@ -80,9 +85,7 @@ const getApplicableFilterOptions = (filter: Filter, params: Record<string, strin
 			required = true;
 			break;
 		case 'nation_code_ioc':
-			applicableOptions = filter.options.filter(
-				(o) => !params.continent || o.optgroup === params.continent
-			);
+			applicableOptions = filterByOptgroup(filter.options, params.continent);
 		default:
 			if (!Object.keys(subjectsAndFilters[params.entity][params.subject]).includes(filter.name)) {
 				applicableOptions = [];
