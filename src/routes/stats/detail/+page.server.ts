@@ -2,6 +2,7 @@ import type { ServerLoad } from '@sveltejs/kit';
 import type { LeagueGroup } from 'types/LeagueGroup';
 import type { Nation } from 'types/Nation';
 import type { Season } from 'types/Season';
+import initializeDates from 'utils/InitializeDates';
 import { fetchEndpoint } from 'utils/api';
 
 const competetionRankingFilters = {
@@ -68,7 +69,12 @@ export const load: ServerLoad = async ({ fetch, platform, url }) => {
 		platform,
 		`/stats/ranking/${entity}/${subject}/${filters.gender}`,
 		filters
-	).then((d) => ('error' in d ? [] : d));
+	)
+		.then((d) => ('error' in d ? [] : d))
+		.then((d) => {
+			initializeDates(d);
+			return d;
+		});
 	const leagueGroups = fetchEndpoint<LeagueGroup[]>(fetch, platform, '/league_group');
 	const nations = fetchEndpoint<Nation[]>(fetch, platform, '/nation');
 	const seasons = fetchEndpoint<Season[]>(fetch, platform, '/season');

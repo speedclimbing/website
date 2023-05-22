@@ -8,6 +8,7 @@
 	import PaginatedTable from 'components/shared/pagination/PaginatedTable.svelte';
 	import { updateSearchParams } from 'utils/updateSearchParams';
 	import SmartFilter from './SmartFilter.svelte';
+	import SmartTable from './SmartTable.svelte';
 
 	export let data: PageData;
 
@@ -66,12 +67,6 @@
 	</BoxContainer>
 
 	<BoxContainer className="flex flex-col gap-5">
-		<PaginatedTable
-			tableObjects={data.data.map((e) => {
-				return Object.values(e);
-			})}
-			columnNames={['Rank', 'Full name', 'Nation', 'Time', 'Date', 'Competition']}
-			pageSize={10}
-		/>
+		<SmartTable data={data.data} />
 	</BoxContainer>
 </section>
