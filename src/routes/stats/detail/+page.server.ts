@@ -43,7 +43,7 @@ export const load: ServerLoad = async ({ fetch, platform, url }) => {
 	const { applicableFilters, params } = getApplicableFiltersAndParams(
 		availableFilters,
 		url,
-		filterOptions
+		getApplicableFilterOptions
 	);
 
 	let data = fetchEndpoint<Record<string, string>[]>(
@@ -65,7 +65,7 @@ export const load: ServerLoad = async ({ fetch, platform, url }) => {
 	};
 };
 
-const filterOptions = (filter: Filter, params: Record<string, string>) => {
+const getApplicableFilterOptions = (filter: Filter, params: Record<string, string>) => {
 	let required = false;
 	let applicableOptions: FilterOption[] = filter.options;
 

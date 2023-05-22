@@ -144,13 +144,18 @@ type OptionsFilterCallback = (
 export const getApplicableFiltersAndParams = (
 	filters: Filter[],
 	url: URL,
-	filterOptions: OptionsFilterCallback
+	getApplicableFilterOptions: OptionsFilterCallback
 ): { applicableFilters: Filter[]; params: Record<string, string> } => {
 	let params: Record<string, string> = {};
 	let applicableFilters: Filter[] = [];
 
 	for (const availableFilter of filters) {
-		const { applicableFilter, value } = processFilter(availableFilter, params, url, filterOptions);
+		const { applicableFilter, value } = processFilter(
+			availableFilter,
+			params,
+			url,
+			getApplicableFilterOptions
+		);
 
 		if (!applicableFilter) {
 			continue;
@@ -170,12 +175,12 @@ const processFilter = (
 	availableFilter: Filter,
 	params: Record<string, string>,
 	url: URL,
-	filterOptions: OptionsFilterCallback
+	getApplicableFilterOptions: OptionsFilterCallback
 ): {
 	applicableFilter?: Filter;
 	value?: string;
 } => {
-	const { required, applicableOptions } = filterOptions(availableFilter, params);
+	const { required, applicableOptions } = getApplicableFilterOptions(availableFilter, params);
 
 	if (applicableOptions.length === 0) {
 		return {};
