@@ -1,9 +1,5 @@
 import type { ServerLoad } from '@sveltejs/kit';
 import type { Filter, FilterOption } from 'components/shared/inputs/SelectFilter.svelte';
-import type { Fetch } from 'types/Fetch';
-import type { LeagueGroup } from 'types/LeagueGroup';
-import type { Nation } from 'types/Nation';
-import type { Season } from 'types/Season';
 import initializeDates from 'utils/InitializeDates';
 import { fetchEndpoint, getApplicableFiltersAndParams, getAvailableFilters } from 'utils/api';
 

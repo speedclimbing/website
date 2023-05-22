@@ -1,6 +1,5 @@
 <script lang="ts">
 	import AthleteCard from './AthleteCard.svelte';
-	import type { Gender } from 'types/Gender';
 	import { Select, Spinner } from 'flowbite-svelte';
 	import type { PageData } from './$types';
 	import { browser } from '$app/environment';
@@ -10,22 +9,12 @@
 	import { navigating } from '$app/stores';
 
 	export let data: PageData;
-	let params = data.params;
-
-	const handleSearch = async (
-		name: string,
-		nation: string,
-		gender: Gender | '',
-		personalBest: number | ''
-	) => {
-		updateSearchParams({ name, nation, gender, personalBest });
-	};
 
 	const isMounted = () => $mounted;
 	$: {
 		if (!browser || !isMounted()) break $;
 
-		handleSearch(params.name, params.nation, params.gender, params.personalBest);
+		updateSearchParams(data.params);
 	}
 
 	const genderSelect = [
@@ -50,18 +39,18 @@
 			type="text"
 			placeholder="Name"
 			inputClass="rounded-sm font-Raleway bg-black/5 lg:col-span-2"
-			bind:value={params.name}
+			bind:value={data.params.name}
 		/>
-		<Select bind:value={params.gender} placeholder="">
+		<Select bind:value={data.params.gender} placeholder="">
 			{#each genderSelect as { value, name }}
 				<option {value}>{name}</option>
 			{/each}
 		</Select>
 		<DebouncedInput
 			type="number"
-			placeholder="PB lower than"
+			placeholder="PB lower than (ms)"
 			inputClass="rounded-sm font-Raleway bg-black/5"
-			bind:value={params.personalBest}
+			bind:value={data.params.personalBest}
 		/>
 	</div>
 

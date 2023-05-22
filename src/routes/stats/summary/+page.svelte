@@ -7,10 +7,9 @@
 	import AllTime from './AllTime.svelte';
 
 	export let data: PageData;
-	let { year, gender, leagueGroup, nation, continent } = data.params;
 
 	$: {
-		updateSearchParams({ year, gender, leagueGroup, nation, continent });
+		updateSearchParams(data.params);
 	}
 </script>
 
@@ -22,31 +21,27 @@
 			<button
 				class="cursor-pointer"
 				on:click={() => {
-					year = new Date().getFullYear();
+					data.params.year = new Date().getFullYear().toString();
 				}}>Season Stats</button
 			>
 			<button
 				class="cursor-pointer"
 				on:click={() => {
-					year = undefined;
+					data.params.year = '';
 				}}>All time Stats</button
 			>
 			<div
-				class="bg-red rounded-sm w-[calc(100%/2)] h-1 transition-[left] absolute bottom-[-1px] {year
+				class="bg-red rounded-sm w-[calc(100%/2)] h-1 transition-[left] absolute bottom-[-1px] {data
+					.params.year
 					? 'left-0'
 					: 'left-[calc(100%/2)]'}"
 			/>
 		</div>
 		<div class="flex justify-end gap-2 my-auto order-first lg:order-2 py-3">
-			{#if data.seasonData && year}
-				<SelectFilter
-					bind:value={year}
-					options={data.seasonData.seasons}
-					valueProperty="year"
-					textProperty="year"
-				/>
+			{#if data.seasonData && data.params.year}
+				<SelectFilter bind:value={data.params.year} filter={data.filters[0]} />
 			{/if}
-			<SwitchButton bind:value={gender} options={['Male', 'Female']} />
+			<SwitchButton bind:value={data.params.gender} options={['Male', 'Female']} />
 		</div>
 	</div>
 </section>
@@ -59,5 +54,9 @@
 {/if}
 
 {#if data.allTimeData}
-	<AllTime bind:leagueGroup bind:nation bind:continent allTimeData={data.allTimeData} />
+	<AllTime
+		bind:params={data.params}
+		filters={data.filters}
+		allTimeSummary={data.allTimeData.allTimeSummary}
+	/>
 {/if}

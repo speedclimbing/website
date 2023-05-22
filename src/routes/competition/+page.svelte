@@ -12,7 +12,6 @@
 	import SwitchButton from 'components/shared/buttons/SwitchButton.svelte';
 
 	export let data: PageData;
-	let { year, name, nation, league_group } = data.params;
 	let view: 'List' | 'Calendar' = 'List';
 	let calendarDate: Date | undefined = undefined;
 
@@ -35,16 +34,16 @@
 		if (
 			view !== 'Calendar' ||
 			newCalendarDate === undefined ||
-			year === newCalendarDate.getFullYear().toString()
+			data.params.year === newCalendarDate.getFullYear().toString()
 		) {
 			return;
 		}
 
-		year = newCalendarDate.getFullYear().toString();
+		data.params.year = newCalendarDate.getFullYear().toString();
 	};
 
 	$: {
-		updateCalendarDateOnYearChange(year);
+		updateCalendarDateOnYearChange(data.params.year);
 	}
 
 	$: {
@@ -53,7 +52,7 @@
 
 	$: {
 		if (!browser || !isMounted()) break $;
-		updateSearchParams({ year, name, nation, league_group });
+		updateSearchParams(data.params);
 	}
 </script>
 
@@ -62,48 +61,11 @@
 		type="text"
 		placeholder="Competition Name"
 		inputClass="rounded-sm font-Raleway bg-black/5"
-		bind:value={name}
+		bind:value={data.params.name}
 	/>
-	<SelectFilter
-		bind:value={year}
-		filter={{
-			name: 'year',
-			options: data.seasons.map((s) => ({
-				name: s.year.toString(),
-				value: s.year.toString()
-			}))
-		}}
-	/>
-	<SelectFilter
-		bind:value={league_group}
-		filter={{
-			name: 'league_group',
-			options: data.league_groups.map((lg) => ({
-				name: lg.name,
-				value: lg.id,
-				optgroup: lg.continent
-			})),
-			optgroup: {
-				defaultText: 'World-wide'
-			},
-			defaultText: 'All Leagues'
-		}}
-	/>
-	<SelectFilter
-		bind:value={nation}
-		filter={{
-			name: 'nation',
-			options: data.nations.map((n) => ({
-				name: n.name,
-				value: n.code_ioc,
-				optgroup: n.continent
-			})),
-			optgroup: {
-				defaultText: 'World-wide'
-			},
-			defaultText: 'All Nations'
-		}}
-	/>
+	{#each data.filters as filter}
+		<SelectFilter bind:value={data.params[filter.name]} {filter} />
+	{/each}
 	<SwitchButton
 		options={['List', 'Calendar']}
 		bind:value={view}
