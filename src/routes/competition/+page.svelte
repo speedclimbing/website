@@ -17,17 +17,14 @@
 	let calendarDate: Date | undefined = undefined;
 
 	const isMounted = () => $mounted;
-	const handleSearch = async (year: number, name: string, nation: string, league_group: string) => {
-		updateSearchParams({ year, name, nation, league_group });
-	};
 
-	const updateCalendarDateOnYearChange = (newYear: number) => {
-		if (calendarDate && newYear === calendarDate.getFullYear()) {
+	const updateCalendarDateOnYearChange = (newYear: string) => {
+		if (calendarDate && newYear === calendarDate.getFullYear().toString()) {
 			return;
 		}
 
 		const currentDate = new Date();
-		if (newYear === currentDate.getFullYear()) {
+		if (newYear === currentDate.getFullYear().toString()) {
 			calendarDate = currentDate;
 		} else {
 			calendarDate = undefined;
@@ -38,12 +35,12 @@
 		if (
 			view !== 'Calendar' ||
 			newCalendarDate === undefined ||
-			year === newCalendarDate.getFullYear()
+			year === newCalendarDate.getFullYear().toString()
 		) {
 			return;
 		}
 
-		year = newCalendarDate.getFullYear();
+		year = newCalendarDate.getFullYear().toString();
 	};
 
 	$: {
@@ -56,7 +53,7 @@
 
 	$: {
 		if (!browser || !isMounted()) break $;
-		handleSearch(year, name, nation, league_group);
+		updateSearchParams({ year, name, nation, league_group });
 	}
 </script>
 
@@ -67,33 +64,50 @@
 		inputClass="rounded-sm font-Raleway bg-black/5"
 		bind:value={name}
 	/>
-	<SelectFilter bind:value={year} options={data.seasons} textProperty="year" valueProperty="year" />
+	<SelectFilter
+		bind:value={year}
+		filter={{
+			name: 'year',
+			options: data.seasons.map((s) => ({
+				name: s.year.toString(),
+				value: s.year.toString()
+			}))
+		}}
+	/>
 	<SelectFilter
 		bind:value={league_group}
-		options={data.league_groups}
-		textProperty="name"
-		valueProperty="id"
-		optgroup={{
-			property: 'continent',
-			defaultText: 'World-wide'
+		filter={{
+			name: 'league_group',
+			options: data.league_groups.map((lg) => ({
+				name: lg.name,
+				value: lg.id,
+				optgroup: lg.continent
+			})),
+			optgroup: {
+				defaultText: 'World-wide'
+			},
+			defaultText: 'All Leagues'
 		}}
-		defaultText="All Leagues"
 	/>
 	<SelectFilter
 		bind:value={nation}
-		options={data.nations}
-		textProperty="name"
-		valueProperty="code_ioc"
-		defaultText="All Nations"
-		optgroup={{
-			property: 'continent',
-			defaultText: 'World-wide'
+		filter={{
+			name: 'nation',
+			options: data.nations.map((n) => ({
+				name: n.name,
+				value: n.code_ioc,
+				optgroup: n.continent
+			})),
+			optgroup: {
+				defaultText: 'World-wide'
+			},
+			defaultText: 'All Nations'
 		}}
 	/>
 	<SwitchButton
 		options={['List', 'Calendar']}
 		bind:value={view}
-		style="md:col-span-2 ml-auto xl:col-span-1"
+		class="md:col-span-2 ml-auto xl:col-span-1"
 	/>
 </section>
 

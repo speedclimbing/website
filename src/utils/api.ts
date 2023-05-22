@@ -10,9 +10,9 @@ export const fetchEndpoint = async <T>(
 	if (params instanceof URLSearchParams) {
 		path += `?${params.toString()}`;
 	} else if (params) {
-		Object.keys(params).forEach(
-			(key) => (params[key] === undefined || params[key] === '') && delete params[key]
-		);
+		Object.keys(params).forEach((key) => {
+			if (params[key] === undefined || params[key] === '') delete params[key];
+		});
 		path += `?${new URLSearchParams(params as Record<string, string>).toString()}`;
 	}
 

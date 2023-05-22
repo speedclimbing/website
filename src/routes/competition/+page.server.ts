@@ -7,10 +7,10 @@ import initializeDates from 'utils/InitializeDates';
 import { fetchEndpoint } from 'utils/api';
 
 export const load: ServerLoad = async ({ fetch, platform, url }) => {
-	const year = Number(url.searchParams.get('year') ?? new Date().getFullYear());
-	const name = url.searchParams.get('name') ?? '';
-	const nation = url.searchParams.get('nation') ?? '';
-	const league_group = url.searchParams.get('league_group') ?? '';
+	const year = Number(url.searchParams.get('year') ?? new Date().getFullYear()).toString();
+	const name = url.searchParams.get('name') ?? undefined;
+	const nation = url.searchParams.get('nation') ?? undefined;
+	const league_group = url.searchParams.get('league_group') ?? undefined;
 	const params = {
 		year,
 		name,
@@ -42,16 +42,16 @@ export const load: ServerLoad = async ({ fetch, platform, url }) => {
 };
 
 function _paramsToUrlSearchParams(params: {
-	year: number;
-	name: string;
-	nation: string;
-	league_group: string;
-}): URLSearchParams {
-	return new URLSearchParams({
-		from: new Date(params.year, 0, 1).toISOString().substring(0, 10),
-		to: new Date(params.year, 11, 31).toISOString().substring(0, 10),
+	year: string;
+	name?: string;
+	nation?: string;
+	league_group?: string;
+}) {
+	return {
+		from: new Date(parseInt(params.year), 0, 1).toISOString(),
+		to: new Date(parseInt(params.year), 11, 31).toISOString(),
 		name: params.name,
 		nation: params.nation,
 		league_group: params.league_group
-	});
+	};
 }
