@@ -202,11 +202,7 @@ const parameterFromList = (
 	list: string[],
 	required: boolean
 ): string | undefined => {
-	if (!value) {
-		return required ? list[0] : undefined;
-	}
-
-	if (!list.includes(value)) {
+	if (!value || !list.includes(value)) {
 		return required ? list[0] : undefined;
 	}
 
