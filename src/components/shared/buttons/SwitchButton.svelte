@@ -2,7 +2,9 @@
 	import { uniqueId } from 'utils/uniqueId';
 
 	let box: HTMLElement;
-	export let style: string = '';
+	let clazz: string = '';
+
+	export { clazz as class };
 	export let options = ['A', 'B'];
 	export let value = options[0];
 
@@ -11,7 +13,7 @@
 	const optionWidth = Math.floor(100 / options.length);
 </script>
 
-<div class={`invert ${style}`}>
+<div class={`invert ${clazz}`}>
 	<div
 		class="switch-options rounded-md relative border-[2px] border-[#2268d5]/50 w-[200px] h-[45px] bg-transparent p-[2px]"
 	>

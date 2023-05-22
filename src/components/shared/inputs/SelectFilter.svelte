@@ -10,6 +10,7 @@
 		  }
 		| undefined = undefined;
 	export let defaultText: string | null = null;
+	export let defaultValue: string | undefined = '';
 	export let options: { [key: string]: string | number | null }[];
 	export let disabled: boolean = false;
 
@@ -35,7 +36,7 @@
 	{disabled}
 >
 	{#if defaultText}
-		<option value="">{defaultText}</option>
+		<option value={defaultValue}>{defaultText}</option>
 	{/if}
 
 	{#if optgroup}

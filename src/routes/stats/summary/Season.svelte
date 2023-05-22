@@ -23,6 +23,7 @@
 			<AlternativeButton
 				style="dark:bg-red dark:border-red bg-red border-red !text-white shrink-0"
 				text="More stats"
+				onClick={() => goto('/stats/detail')}
 			/>
 		</div>
 

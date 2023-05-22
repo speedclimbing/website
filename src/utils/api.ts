@@ -10,7 +10,9 @@ export const fetchEndpoint = async <T>(
 	if (params instanceof URLSearchParams) {
 		path += `?${params.toString()}`;
 	} else if (params) {
-		Object.keys(params).forEach((key) => params[key] === undefined && delete params[key]);
+		Object.keys(params).forEach(
+			(key) => (params[key] === undefined || params[key] === '') && delete params[key]
+		);
 		path += `?${new URLSearchParams(params as Record<string, string>).toString()}`;
 	}
 
@@ -23,6 +25,8 @@ export const fetchEndpoint = async <T>(
 	} else if (process.env.API_TOKEN) {
 		headers['Authorization'] = `Bearer ${process.env.API_TOKEN}`;
 	}
+
+	console.log(`${API_URL}/${path}`);
 
 	const response = await fetch(`${API_URL}/${path}`, {
 		headers: headers
