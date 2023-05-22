@@ -45,7 +45,7 @@ const loadSeasonData = async ({ fetch, platform, url }: LoadParams) => {
 	);
 
 	const upcomingCompetitions = fetchEndpoint<Competition[]>(fetch, platform, '/competition', {
-		from: new Date().toISOString().substring(0, 10)
+		from: new Date().toISOString()
 	}).then((c) => {
 		c = c.splice(0, 2);
 		initializeDates(c);
