@@ -69,8 +69,6 @@ const getApplicableFilterOptions = (filter: Filter, params: Record<string, strin
 	let required = false;
 	let applicableOptions: FilterOption[] = filter.options;
 
-	console.log('loading', filter.name, params);
-
 	switch (filter.name) {
 		case 'entity':
 			required = true;
