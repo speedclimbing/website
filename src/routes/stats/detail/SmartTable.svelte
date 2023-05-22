@@ -53,6 +53,6 @@
 
 <PaginatedTable
 	tableObjects={normalizedData.map((e) => e.map((e) => e.value))}
-	columnNames={normalizedData[0].map((e) => e.col_name)}
+	columnNames={normalizedData[0]?.map((e) => e.col_name)}
 	pageSize={10}
 />

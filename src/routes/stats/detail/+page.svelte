@@ -5,14 +5,16 @@
 	import BoxContainer from 'components/shared/layout/BoxContainer.svelte';
 	import { ChevronLeft } from 'flowbite-svelte';
 	import type { PageData } from './$types';
-	import PaginatedTable from 'components/shared/pagination/PaginatedTable.svelte';
 	import { updateSearchParams } from 'utils/updateSearchParams';
-	import SmartFilter from './SmartFilter.svelte';
 	import SmartTable from './SmartTable.svelte';
+	import { browser } from '$app/environment';
 
 	export let data: PageData;
 
-	$: console.log(data.data);
+	$: {
+		if (browser) console.log(data.filters);
+	}
+
 	$: {
 		updateSearchParams(data.params);
 	}
@@ -37,31 +39,8 @@
 	<BoxContainer className="flex justify-between flex-wrap gap-5">
 		<TitleWithLine titleText="Detailed stats" lineColor="yellow" lineClasses="mb-0" />
 		<div class="mt-auto mb-auto flex gap-5 flex-wrap">
-			<SelectFilter
-				bind:value={data.params.entity}
-				options={data.filters.availableEntities.map((e) => {
-					return { name: e };
-				})}
-				textProperty="name"
-				valueProperty="name"
-			/>
-			<SelectFilter
-				bind:value={data.params.subject}
-				options={data.filters.availableSubjects.map((e) => {
-					return { name: e };
-				})}
-				textProperty="name"
-				valueProperty="name"
-			/>
-			{#each Object.entries(data.filters.availableFilters) as [filter, required]}
-				<SmartFilter
-					bind:value={data.params[filter]}
-					{filter}
-					{required}
-					league_groups={data.leagueGroups}
-					seasons={data.seasons}
-					nations={data.nations}
-				/>
+			{#each data.filters as filter}
+				<SelectFilter bind:value={data.params[filter.name]} {filter} />
 			{/each}
 		</div>
 	</BoxContainer>
