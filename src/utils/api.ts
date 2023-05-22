@@ -5,19 +5,27 @@ import type { LeagueGroup } from 'types/LeagueGroup';
 import type { Season } from 'types/Season';
 import type { Nation } from 'types/Nation';
 
+const paramsToUrlSearchParams = (
+	params: URLSearchParams | Record<string, string | undefined>
+): URLSearchParams => {
+	if (params instanceof URLSearchParams) {
+		return params;
+	}
+
+	Object.keys(params).forEach((key) => {
+		if (params[key] === undefined || params[key] === '') delete params[key];
+	});
+	return new URLSearchParams(params as Record<string, string>);
+};
+
 export const fetchEndpoint = async <T>(
 	fetch: Fetch,
 	platform: Readonly<App.Platform> | undefined,
 	path: string,
 	params?: URLSearchParams | Record<string, string | undefined>
 ): Promise<T> => {
-	if (params instanceof URLSearchParams) {
-		path += `?${params.toString()}`;
-	} else if (params) {
-		Object.keys(params).forEach((key) => {
-			if (params[key] === undefined || params[key] === '') delete params[key];
-		});
-		path += `?${new URLSearchParams(params as Record<string, string>).toString()}`;
+	if (params) {
+		path += `?${paramsToUrlSearchParams(params).toString()}`;
 	}
 
 	let headers: Record<string, string> = {
@@ -29,8 +37,6 @@ export const fetchEndpoint = async <T>(
 	} else if (process.env.API_TOKEN) {
 		headers['Authorization'] = `Bearer ${process.env.API_TOKEN}`;
 	}
-
-	console.log(`${API_URL}/${path}`);
 
 	const response = await fetch(`${API_URL}/${path}`, {
 		headers: headers
