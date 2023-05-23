@@ -9,6 +9,9 @@
 	import PaginatedTable from 'components/shared/pagination/PaginatedTable.svelte';
 	import type { LeagueGroup } from 'types/LeagueGroup';
 	import type { Nation } from 'types/Nation';
+	import SmartTable from 'components/stats/SmartTable.svelte';
+	import SecondaryButton from 'components/shared/buttons/SecondaryButton.svelte';
+	import AlternativeButton from 'components/shared/buttons/AlternativeButton.svelte';
 
 	export let allTimeSummary: AllTimeSummary;
 
@@ -36,18 +39,7 @@
 		</div>
 	</BoxContainer>
 	<BoxContainer className="flex flex-col gap-5">
-		<PaginatedTable
-			tableObjects={allTimeSummary.ranking_athlete_time.map((a, i) => [
-				i + 1,
-				formatName(a),
-				a.nation_code_ioc,
-				(a.time / 1000).toFixed(3),
-				a.competition_date.toLocaleDateString(),
-				a.competition_name
-			])}
-			columnNames={['Rank', 'Full name', 'Nation', 'Time', 'Date', 'Competition']}
-			pageSize={10}
-		/>
+		<SmartTable data={allTimeSummary.ranking_athlete_time} pageSize={10} />
 	</BoxContainer>
 
 	<BoxContainer className="px-[3vw] xl:col-span-5">
@@ -81,16 +73,7 @@
 	</BoxContainer>
 
 	<BoxContainer className="flex flex-col gap-5">
-		<PaginatedTable
-			tableObjects={allTimeSummary.ranking_competition_fet.map((c, i) => [
-				i + 1,
-				c.name,
-				(c.final_entry_time / 1000).toFixed(3),
-				c.from.toLocaleDateString()
-			])}
-			columnNames={['rank', 'competition', 'Fet', 'date']}
-			pageSize={10}
-		/>
+		<SmartTable data={allTimeSummary.ranking_competition_fet} pageSize={10} />
 	</BoxContainer>
 
 	<BoxContainer className="xl:col-span-6">
@@ -98,13 +81,24 @@
 	</BoxContainer>
 
 	<BoxContainer className="xl:col-span-4">
-		<h2 class="text-3xl  mb-5">Quick Links/Other Content</h2>
-		<p>
-			Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-			invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-			justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-			ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-			eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+		<h2 class="text-3xl  mb-5">Want to know more?</h2>
+		<p class="pb-4">
+			If you want more filter and options - <b>check out our detailed stats!</b> If that's still not
+			enough for you, feel free to <b>reach out to us</b>. We are happy to hear your ideas and
+			wishes for new and exciting statistics.
 		</p>
+		<div class="flex gap-2">
+			<AlternativeButton
+				style="!bg-red !text-white shrink-0"
+				href="/stats/detail"
+				text="detailed stats"
+			/>
+
+			<AlternativeButton
+				style="dark:!text-yellow dark:border-yellow dark:border-2"
+				href="/about-us#contact"
+				text="contact us"
+			/>
+		</div>
 	</BoxContainer>
 </section>

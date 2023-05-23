@@ -6,14 +6,10 @@
 	import { ChevronLeft } from 'flowbite-svelte';
 	import type { PageData } from './$types';
 	import { updateSearchParams } from 'utils/updateSearchParams';
-	import SmartTable from './SmartTable.svelte';
+	import SmartTable from '../../../components/stats/SmartTable.svelte';
 	import { browser } from '$app/environment';
 
 	export let data: PageData;
-
-	$: {
-		if (browser) console.log(data.filters);
-	}
 
 	$: {
 		updateSearchParams(data.params);
@@ -46,6 +42,13 @@
 	</BoxContainer>
 
 	<BoxContainer className="flex flex-col gap-5">
-		<SmartTable data={data.data} />
+		{#if data.data.length > 0}
+			<SmartTable data={data.data} />
+		{:else}
+			<div class="flex flex-col justify-center items-center my-10">
+				<p class="text-2xl font-semibold">No matching data found</p>
+				<p class="text-md font-semibold">Please adjust your filters</p>
+			</div>
+		{/if}
 	</BoxContainer>
 </section>

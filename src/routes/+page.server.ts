@@ -6,6 +6,7 @@ import { MEDIA_URL } from 'utils/constants';
 
 export const load: ServerLoad = async ({ fetch, platform }) => {
 	const data = fetchEndpoint<HomePageData>(fetch, platform, '/home').then((data) => {
+		data.latest_competitions = data.latest_competitions.splice(0, 4);
 		initializeDates(data.male_worldranking);
 		initializeDates(data.female_worldranking);
 		initializeDates(data.latest_competitions);

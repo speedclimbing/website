@@ -20,7 +20,7 @@
 		<div class="flex justify-between flex-wrap gap-3 mb-6 ">
 			<h2 class="text-3xl shrink-0">Season Leaders</h2>
 			<AlternativeButton
-				style="dark:bg-red dark:border-red bg-red border-red !text-white shrink-0"
+				style="!bg-red !text-white shrink-0"
 				text="More stats"
 				href={'/stats/detail'}
 			/>
@@ -31,31 +31,22 @@
 				label="Worldranking by time"
 				{gender}
 				subject="time"
-				data={seasonSummary.ranking_athlete_time.map((a) => [
-					formatName(a),
-					a.nation_code_ioc,
-					(a.time / 1000).toFixed(3)
-				])}
+				columns={['first_name', 'nation_code_ioc', 'time']}
+				data={seasonSummary.ranking_athlete_time}
 			/>
 			<RankingOverview
 				label="Worldranking by points"
 				{gender}
 				subject="points"
-				data={seasonSummary.ranking_athlete_points.map((a) => [
-					formatName(a),
-					a.nation_code_ioc,
-					a.points.toString()
-				])}
+				columns={['first_name', 'nation_code_ioc', 'points']}
+				data={seasonSummary.ranking_athlete_points}
 			/>
 			<RankingOverview
 				label="Worldranking by average rank"
 				{gender}
 				subject="avg_rank"
-				data={seasonSummary.ranking_athlete_avg_rank.map((a) => [
-					formatName(a),
-					a.nation_code_ioc,
-					a.avg_rank.toFixed(2)
-				])}
+				columns={['first_name', 'nation_code_ioc', 'avg_rank']}
+				data={seasonSummary.ranking_athlete_avg_rank}
 			/>
 		</div>
 	</BoxContainer>

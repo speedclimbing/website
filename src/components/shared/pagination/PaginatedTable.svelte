@@ -20,7 +20,7 @@
 	$: totalPages = Math.ceil(tableObjects.length / pageSize);
 </script>
 
-{#if paginationUi}
+{#if paginationUi && totalPages > 1}
 	<Pagination bind:page {totalPages} />
 {/if}
 <Table
@@ -32,6 +32,6 @@
 	{tableCellClasses}
 	{divider}
 />
-{#if paginationUi}
+{#if paginationUi && totalPages > 1}
 	<Pagination bind:page {totalPages} />
 {/if}
