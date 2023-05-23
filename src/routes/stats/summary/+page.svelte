@@ -48,6 +48,7 @@
 
 {#if data.seasonData}
 	<Season
+		gender={data.params.gender}
 		upcomingCompetitions={data.seasonData.upcomingCompetitions}
 		seasonSummary={data.seasonData.seasonSummary}
 	/>

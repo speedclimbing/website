@@ -3,6 +3,8 @@
 	import Table from '../shared/Table.svelte';
 
 	export let label: string;
+	export let subject: string;
+	export let gender: string;
 	export let data: string[][];
 </script>
 
@@ -15,5 +17,8 @@
 		tableCellClasses="px-2 py-4 whitespace-nowrap font-medium"
 		divider={false}
 	/>
-	<AlternativeButton style="dark:!text-yellow dark:border-yellow dark:border-2 mt-5" />
+	<AlternativeButton
+		href={`/stats/detail?gender=${gender}&entity=athlete&subject=${subject}`}
+		style="dark:!text-yellow dark:border-yellow dark:border-2 mt-5"
+	/>
 </div>

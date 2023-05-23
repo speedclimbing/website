@@ -3,15 +3,14 @@
 	import AlternativeButton from '../../../components/shared/buttons/AlternativeButton.svelte';
 	import RankingOverview from '../../../components/stats/RankingOverview.svelte';
 	import BoxContainer from 'components/shared/layout/BoxContainer.svelte';
-	import Pagination from 'components/shared/pagination/Pagination.svelte';
 	import EventCard from 'components/shared/content/EventCard.svelte';
 	import About from './About.svelte';
 	import { goto } from '$app/navigation';
-	import type { AthleteResult } from 'types/Athlete';
 	import type { Competition } from 'types/Competition';
 	import type { SeasonSummary } from 'types/StatsSummary';
 	import { formatName } from 'utils/formatName';
 
+	export let gender: string;
 	export let upcomingCompetitions: Competition[];
 	export let seasonSummary: SeasonSummary;
 </script>
@@ -23,13 +22,15 @@
 			<AlternativeButton
 				style="dark:bg-red dark:border-red bg-red border-red !text-white shrink-0"
 				text="More stats"
-				onClick={() => goto('/stats/detail')}
+				href={'/stats/detail'}
 			/>
 		</div>
 
 		<div class="flex justify-between flex-wrap gap-[50px]">
 			<RankingOverview
 				label="Worldranking by time"
+				{gender}
+				subject="time"
 				data={seasonSummary.ranking_athlete_time.map((a) => [
 					formatName(a),
 					a.nation_code_ioc,
@@ -38,6 +39,8 @@
 			/>
 			<RankingOverview
 				label="Worldranking by points"
+				{gender}
+				subject="points"
 				data={seasonSummary.ranking_athlete_points.map((a) => [
 					formatName(a),
 					a.nation_code_ioc,
@@ -46,6 +49,8 @@
 			/>
 			<RankingOverview
 				label="Worldranking by average rank"
+				{gender}
+				subject="avg_rank"
 				data={seasonSummary.ranking_athlete_avg_rank.map((a) => [
 					formatName(a),
 					a.nation_code_ioc,
@@ -65,7 +70,7 @@
 			<AlternativeButton
 				style="dark:bg-red dark:border-red bg-red border-red !text-white shrink-0"
 				text="All competitons"
-				onClick={() => goto('/competition')}
+				href={'/competition'}
 			/>
 		</div>
 		<div class="flex flex-col gap-2">
