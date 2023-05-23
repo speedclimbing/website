@@ -78,8 +78,8 @@
 	<BoxContainer className="xl:col-span-4">
 		<h2 class="text-3xl  mb-5">Want to know more?</h2>
 		<p class="pb-4">
-			If you want more filter and options - <b>check out our detailed stats!</b> If that's still not
-			enough for you, feel free to <b>reach out to us</b>. We are happy to hear your ideas and
+			If you want more filters and options - <b>check out our detailed stats!</b> If that's still
+			not enough for you, feel free to <b>reach out to us</b>. We are happy to hear your ideas and
 			wishes for new and exciting statistics.
 		</p>
 		<div class="flex gap-2">
