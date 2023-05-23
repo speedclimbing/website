@@ -5,12 +5,7 @@
 	import NationMedalsTable from 'components/stats/NationMedalsTable.svelte';
 	import TitleWithLine from 'components/shared/content/TitleWithLine.svelte';
 	import type { AllTimeSummary } from 'types/StatsSummary';
-	import { formatName } from 'utils/formatName';
-	import PaginatedTable from 'components/shared/pagination/PaginatedTable.svelte';
-	import type { LeagueGroup } from 'types/LeagueGroup';
-	import type { Nation } from 'types/Nation';
 	import SmartTable from 'components/stats/SmartTable.svelte';
-	import SecondaryButton from 'components/shared/buttons/SecondaryButton.svelte';
 	import AlternativeButton from 'components/shared/buttons/AlternativeButton.svelte';
 
 	export let allTimeSummary: AllTimeSummary;

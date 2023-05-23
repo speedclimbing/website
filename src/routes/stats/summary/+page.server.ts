@@ -2,10 +2,6 @@ import type { ServerLoad } from '@sveltejs/kit';
 import type { Filter, FilterOption } from 'components/shared/inputs/SelectFilter.svelte';
 import type { Competition } from 'types/Competition';
 import type { Fetch } from 'types/Fetch';
-import type { Gender } from 'types/Gender';
-import type { LeagueGroup } from 'types/LeagueGroup';
-import type { Nation } from 'types/Nation';
-import type { Season } from 'types/Season';
 import type { SeasonSummary, AllTimeSummary } from 'types/StatsSummary';
 import initializeDates from 'utils/InitializeDates';
 import {

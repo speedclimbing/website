@@ -7,7 +7,6 @@
 	import type { PageData } from './$types';
 	import { updateSearchParams } from 'utils/updateSearchParams';
 	import SmartTable from '../../../components/stats/SmartTable.svelte';
-	import { browser } from '$app/environment';
 
 	export let data: PageData;
 

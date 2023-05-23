@@ -5,10 +5,8 @@
 	import BoxContainer from 'components/shared/layout/BoxContainer.svelte';
 	import EventCard from 'components/shared/content/EventCard.svelte';
 	import About from './About.svelte';
-	import { goto } from '$app/navigation';
 	import type { Competition } from 'types/Competition';
 	import type { SeasonSummary } from 'types/StatsSummary';
-	import { formatName } from 'utils/formatName';
 
 	export let gender: string;
 	export let upcomingCompetitions: Competition[];
