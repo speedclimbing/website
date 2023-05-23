@@ -29,8 +29,6 @@
 	};
 
 	const getValues = (i: number, n: NationPointsAndMedalsCount) => {
-		let medalClasses =
-			'rounded-[50%] aspect-square h-9 flex items-center justify-center text-white';
 		const flag = {
 			type: 'div',
 			classes: 'text-[25px]',

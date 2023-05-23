@@ -10,7 +10,7 @@ import {
 
 const competetionRankingFilters = {
 	gender: true,
-	league_group: false,
+	league_group: true,
 	year: false
 };
 
