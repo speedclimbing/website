@@ -1,5 +1,4 @@
 <script>
-	import { goto } from '$app/navigation';
 	import IconBox from 'components/shared/content/IconBox.svelte';
 	import TitleWithLine from 'components/shared/content/TitleWithLine.svelte';
 	import { BarsArrowUp, BookOpen, Trophy } from 'svelte-heros-v2';
@@ -14,14 +13,14 @@
 	</p>
 
 	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-		<IconBox title="The sport" onClick={() => goto('/about#the-sport')}>
+		<IconBox title="The sport" href={'/about#the-sport'}>
 			<Trophy slot="icon" size="40" class="text-yellow" />
 			<p slot="text">
 				Speedclimbing is one of the three disciplines in modern sports climbing. The biggest
 				difference to lead or bouldering is the standardized wall - and ofcourse the speed!
 			</p>
 		</IconBox>
-		<IconBox title="The wall" onClick={() => goto('/about#the-wall')}>
+		<IconBox title="The wall" href={'/about#the-wall'}>
 			<BarsArrowUp slot="icon" size="40" class="text-yellow" />
 			<p slot="text">
 				The speedclimbing wall, as it is known today das designed arond 2007 and has not changed
@@ -29,7 +28,7 @@
 				world.
 			</p>
 		</IconBox>
-		<IconBox title="The rules" onClick={() => goto('/about#the-rules')} text="">
+		<IconBox title="The rules" href={'/about#the-rules'} text="">
 			<BookOpen slot="icon" size="40" class="text-yellow" />
 			<p slot="text">
 				A speedclimbing competition consists of two parts:

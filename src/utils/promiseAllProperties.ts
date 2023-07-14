@@ -9,7 +9,7 @@ export type PromisesMap<T extends PlainObj> = {
  * @param  {PromisesMap<T>} promisesMap  the input object with a promise in each property
  * @return {Promise<T>}  a promise that resolved to an object with the same properties containing the resolved values
  */
-export default function promiseAllProperties<T extends PlainObj>(
+export default async function promiseAllProperties<T extends PlainObj>(
 	promisesMap: PromisesMap<T>
 ): Promise<T> {
 	if (

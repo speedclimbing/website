@@ -5,7 +5,7 @@
 	export let title = 'The Sport';
 	export let text =
 		'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At';
-	export let onClick: (() => void) | undefined = undefined;
+	export let href: string | undefined = undefined;
 </script>
 
 <div class="max-w-[350px] flex flex-col gap-5">
@@ -18,7 +18,7 @@
 			{text}
 		</slot>
 	</p>
-	{#if onClick}
-		<AlternativeButton {onClick} text="read more" style="mt-auto" />
+	{#if href}
+		<AlternativeButton {href} text="read more" class="mt-auto" />
 	{/if}
 </div>

@@ -12,22 +12,18 @@
 	import SwitchButton from 'components/shared/buttons/SwitchButton.svelte';
 
 	export let data: PageData;
-	let { year, name, nation, league_group } = data.params;
 	let view: 'List' | 'Calendar' = 'List';
 	let calendarDate: Date | undefined = undefined;
 
 	const isMounted = () => $mounted;
-	const handleSearch = async (year: number, name: string, nation: string, league_group: string) => {
-		updateSearchParams({ year, name, nation, league_group });
-	};
 
-	const updateCalendarDateOnYearChange = (newYear: number) => {
-		if (calendarDate && newYear === calendarDate.getFullYear()) {
+	const updateCalendarDateOnYearChange = (newYear: string) => {
+		if (calendarDate && newYear === calendarDate.getFullYear().toString()) {
 			return;
 		}
 
 		const currentDate = new Date();
-		if (newYear === currentDate.getFullYear()) {
+		if (newYear === currentDate.getFullYear().toString()) {
 			calendarDate = currentDate;
 		} else {
 			calendarDate = undefined;
@@ -38,16 +34,16 @@
 		if (
 			view !== 'Calendar' ||
 			newCalendarDate === undefined ||
-			year === newCalendarDate.getFullYear()
+			data.params.year === newCalendarDate.getFullYear().toString()
 		) {
 			return;
 		}
 
-		year = newCalendarDate.getFullYear();
+		data.params.year = newCalendarDate.getFullYear().toString();
 	};
 
 	$: {
-		updateCalendarDateOnYearChange(year);
+		updateCalendarDateOnYearChange(data.params.year);
 	}
 
 	$: {
@@ -56,7 +52,7 @@
 
 	$: {
 		if (!browser || !isMounted()) break $;
-		handleSearch(year, name, nation, league_group);
+		updateSearchParams(data.params);
 	}
 </script>
 
@@ -65,35 +61,15 @@
 		type="text"
 		placeholder="Competition Name"
 		inputClass="rounded-sm font-Raleway bg-black/5"
-		bind:value={name}
+		bind:value={data.params.name}
 	/>
-	<SelectFilter bind:value={year} options={data.seasons} textProperty="year" valueProperty="year" />
-	<SelectFilter
-		bind:value={league_group}
-		options={data.league_groups}
-		textProperty="name"
-		valueProperty="id"
-		optgroup={{
-			property: 'continent',
-			defaultText: 'World-wide'
-		}}
-		defaultText="All Leagues"
-	/>
-	<SelectFilter
-		bind:value={nation}
-		options={data.nations}
-		textProperty="name"
-		valueProperty="code_ioc"
-		defaultText="All Nations"
-		optgroup={{
-			property: 'continent',
-			defaultText: 'World-wide'
-		}}
-	/>
+	{#each data.filters as filter}
+		<SelectFilter bind:value={data.params[filter.name]} {filter} />
+	{/each}
 	<SwitchButton
 		options={['List', 'Calendar']}
 		bind:value={view}
-		style="md:col-span-2 ml-auto xl:col-span-1"
+		class="md:col-span-2 ml-auto xl:col-span-1"
 	/>
 </section>
 

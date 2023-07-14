@@ -1,8 +1,7 @@
 <script>
 	import AnchorPoint from 'components/shared/AnchorPoint.svelte';
-	import Line from 'components/shared/content/Line.svelte';
 	import TitleWithLine from 'components/shared/content/TitleWithLine.svelte';
-	import { A, Avatar, Badge, Card, P } from 'flowbite-svelte';
+	import { Avatar, Badge, Card } from 'flowbite-svelte';
 
 	const people = [
 		{

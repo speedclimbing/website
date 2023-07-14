@@ -1,28 +1,37 @@
+<script context="module" lang="ts">
+	export interface FilterOption {
+		name: string;
+		value: string;
+		optgroup?: string;
+	}
+	export interface Filter {
+		name: string;
+		order?: number;
+		defaultText?: string;
+		optgroup?: {
+			defaultText?: string;
+		};
+		options: FilterOption[];
+	}
+</script>
+
 <script lang="ts">
 	export let value: string | number | undefined;
 	export let onChange: () => void = () => {};
-	export let textProperty: string;
-	export let valueProperty: string;
-	export let optgroup:
-		| {
-				property: string;
-				defaultText: string;
-		  }
-		| undefined = undefined;
-	export let defaultText: string | null = null;
-	export let options: { [key: string]: string | number | null }[];
+
+	export let filter: Filter;
 	export let disabled: boolean = false;
 
-	let groupedOptions: Record<string, typeof options> = {};
+	let groupedOptions: Record<string, typeof filter.options> = {};
 
-	$: if (optgroup) {
+	$: if (filter.optgroup) {
 		groupedOptions = {};
-		groupedOptions = options.reduce((acc, option) => {
-			const group = option[optgroup!.property] ?? optgroup!.defaultText;
-			if (!acc[group]) {
-				acc[group] = [];
+		groupedOptions = filter.options.reduce((acc, { name, value, optgroup }) => {
+			optgroup = optgroup ?? filter.optgroup?.defaultText ?? '';
+			if (!acc[optgroup]) {
+				acc[optgroup] = [];
 			}
-			acc[group].push(option);
+			acc[optgroup].push({ name, value });
 			return acc;
 		}, groupedOptions);
 	}
@@ -32,23 +41,24 @@
 	bind:value
 	class="block text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-sm py-2.5 px-5 flex-grow disabled:opacity-60"
 	on:change={onChange}
+	name={filter.name}
 	{disabled}
 >
-	{#if defaultText}
-		<option value="">{defaultText}</option>
+	{#if filter.defaultText}
+		<option value={undefined}>{filter.defaultText}</option>
 	{/if}
 
-	{#if optgroup}
+	{#if filter.optgroup}
 		{#each Object.keys(groupedOptions) as group}
 			<optgroup label={group}>
 				{#each groupedOptions[group] as option}
-					<option value={option[valueProperty]}>{option[textProperty]}</option>
+					<option value={option.value}>{option.name}</option>
 				{/each}
 			</optgroup>
 		{/each}
 	{:else}
-		{#each options as option}
-			<option value={option[valueProperty]}>{option[textProperty]}</option>
+		{#each filter.options as option}
+			<option value={option.value}>{option.name}</option>
 		{/each}
 	{/if}
 </select>

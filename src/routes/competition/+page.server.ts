@@ -1,21 +1,31 @@
 import type { ServerLoad } from '@sveltejs/kit';
+import type { Filter } from 'components/shared/inputs/SelectFilter.svelte';
 import type { Competition } from 'types/Competition';
-import type { LeagueGroup } from 'types/LeagueGroup';
-import type { Nation } from 'types/Nation';
-import type { Season } from 'types/Season';
 import initializeDates from 'utils/InitializeDates';
-import { fetchEndpoint } from 'utils/api';
+import { fetchEndpoint, getApplicableFiltersAndParams, getAvailableFilters } from 'utils/api';
 
 export const load: ServerLoad = async ({ fetch, platform, url }) => {
-	const year = Number(url.searchParams.get('year') ?? new Date().getFullYear());
 	const name = url.searchParams.get('name') ?? '';
-	const nation = url.searchParams.get('nation') ?? '';
-	const league_group = url.searchParams.get('league_group') ?? '';
-	const params = {
-		year,
+
+	const availableFilters: Filter[] = await getAvailableFilters(fetch, platform, [
+		'year',
+		'nation_code_ioc',
+		'league_group'
+	]);
+	let { applicableFilters: filters, params } = getApplicableFiltersAndParams(
+		availableFilters,
+		url,
+		(filter: Filter) => {
+			return {
+				required: filter.name === 'year',
+				applicableOptions: filter.options
+			};
+		}
+	);
+
+	params = {
 		name,
-		nation,
-		league_group
+		...params
 	};
 
 	const competitions = fetchEndpoint<Competition[]>(
@@ -28,30 +38,19 @@ export const load: ServerLoad = async ({ fetch, platform, url }) => {
 		return c;
 	});
 
-	const nations = fetchEndpoint<Nation[]>(fetch, platform, '/nation');
-	const league_groups = fetchEndpoint<LeagueGroup[]>(fetch, platform, '/league_group');
-	const seasons = fetchEndpoint<Season[]>(fetch, platform, '/season');
-
 	return {
-		competitions,
-		nations,
-		league_groups,
-		seasons,
-		params
+		filters,
+		params,
+		competitions
 	};
 };
 
-function _paramsToUrlSearchParams(params: {
-	year: number;
-	name: string;
-	nation: string;
-	league_group: string;
-}): URLSearchParams {
-	return new URLSearchParams({
-		from: new Date(params.year, 0, 1).toISOString().substring(0, 10),
-		to: new Date(params.year, 11, 31).toISOString().substring(0, 10),
+function _paramsToUrlSearchParams(params: Record<string, string>) {
+	return {
+		from: new Date(parseInt(params.year), 0, 1).toISOString(),
+		to: new Date(parseInt(params.year), 11, 31).toISOString(),
 		name: params.name,
-		nation: params.nation,
+		nation_code_ioc: params.nation_code_ioc,
 		league_group: params.league_group
-	});
+	};
 }

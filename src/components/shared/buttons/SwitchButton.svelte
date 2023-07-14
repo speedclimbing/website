@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { uniqueId } from 'utils/uniqueId';
 
-	let box: HTMLElement;
-	export let style: string = '';
+	let clazz: string = '';
+
+	export { clazz as class };
 	export let options = ['A', 'B'];
 	export let value = options[0];
 
@@ -11,7 +12,7 @@
 	const optionWidth = Math.floor(100 / options.length);
 </script>
 
-<div class={`invert ${style}`}>
+<div class={`invert ${clazz}`}>
 	<div
 		class="switch-options rounded-md relative border-[2px] border-[#2268d5]/50 w-[200px] h-[45px] bg-transparent p-[2px]"
 	>
@@ -38,7 +39,6 @@
 
 			<div
 				class="selected-option-indicator bg-[#2268d5] w-[{optionWidth}%] h-full ml-[0%] rounded-[3px] transition-[margin-left] duration-500"
-				bind:this={box}
 			/>
 		</div>
 	</div>
