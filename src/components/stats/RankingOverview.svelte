@@ -22,6 +22,6 @@
 
 	<AlternativeButton
 		href={`/stats/detail?gender=${gender}&entity=athlete&subject=${subject}`}
-		style="dark:!text-yellow dark:border-yellow dark:border-2 mt-5"
+		class="dark:!text-yellow dark:border-yellow dark:border-2 mt-5"
 	/>
 </div>

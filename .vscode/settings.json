@@ -2,5 +2,6 @@
 	"editor.formatOnSave": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"ltex.enabled": ["svelte"],
-	"ltex.language": "en-US"
+	"ltex.language": "en-US",
+	"eslint.validate": ["svelte"]
 }

@@ -19,6 +19,6 @@
 		</slot>
 	</p>
 	{#if href}
-		<AlternativeButton {href} text="read more" style="mt-auto" />
+		<AlternativeButton {href} text="read more" class="mt-auto" />
 	{/if}
 </div>

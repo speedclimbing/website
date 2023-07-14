@@ -84,13 +84,13 @@
 		</p>
 		<div class="flex gap-2">
 			<AlternativeButton
-				style="!bg-red !text-white shrink-0"
+				class="!bg-red !text-white shrink-0"
 				href="/stats/detail"
 				text="detailed stats"
 			/>
 
 			<AlternativeButton
-				style="dark:!text-yellow dark:border-yellow dark:border-2"
+				class="dark:!text-yellow dark:border-yellow dark:border-2"
 				href="/about-us#contact"
 				text="contact us"
 			/>

@@ -1,27 +1,26 @@
 <script lang="ts">
 	import { ChevronRight } from 'svelte-heros-v2';
 	export let text: string = 'See more';
-	export let style: string = '';
+	export { clazz as class };
 	export let href: string = '';
 	export let onClick: (() => void) | undefined = undefined;
+
+	let clazz: string = '';
 </script>
 
-{#if onClick}
-	<button
-		class={`py-2 w-[150px] bg-grey/5 text-black rounded-[3px] dark:bg-grey text-[14px] dark:text-white ${style}`}
-		on:click={onClick}
-	>
-		{text}
-		<ChevronRight class="inline-block" size="15" />
-	</button>
-{/if}
-
-{#if href}
-	<a
-		class={`py-2 w-[150px] bg-grey/5 text-black rounded-[3px] dark:bg-grey text-[14px] dark:text-white flex justify-center items-center gap-2 ${style}`}
-		{href}
-	>
-		{text}
-		<ChevronRight class="inline-block" size="15" />
-	</a>
-{/if}
+<button
+	class="w-[150px] bg-grey/5 text-black rounded-[3px] dark:bg-grey text-[14px] dark:text-white {clazz}"
+	on:click={onClick}
+>
+	{#if href}
+		<a class="w-full h-full block py-2 text-inherit" {href}>
+			{text}
+			<ChevronRight class="inline-block" size="15" />
+		</a>
+	{:else}
+		<span class="w-full h-full block py-2 text-inherit">
+			{text}
+			<ChevronRight class="inline-block" size="15" />
+		</span>
+	{/if}
+</button>

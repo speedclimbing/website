@@ -18,7 +18,7 @@
 		<div class="flex justify-between flex-wrap gap-3 mb-6 ">
 			<h2 class="text-3xl shrink-0">Season Leaders</h2>
 			<AlternativeButton
-				style="!bg-red !text-white shrink-0"
+				class="!bg-red !text-white shrink-0"
 				text="More stats"
 				href={'/stats/detail'}
 			/>
@@ -57,7 +57,7 @@
 		<div class="flex justify-between flex-wrap gap-5 mb-5">
 			<h2 class="text-3xl">Upcoming</h2>
 			<AlternativeButton
-				style="dark:bg-red dark:border-red bg-red border-red !text-white shrink-0"
+				class="dark:bg-red dark:border-red bg-red border-red !text-white shrink-0"
 				text="All competitons"
 				href={'/competition'}
 			/>

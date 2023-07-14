@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { uniqueId } from 'utils/uniqueId';
 
-	let box: HTMLElement;
 	let clazz: string = '';
 
 	export { clazz as class };
@@ -40,7 +39,6 @@
 
 			<div
 				class="selected-option-indicator bg-[#2268d5] w-[{optionWidth}%] h-full ml-[0%] rounded-[3px] transition-[margin-left] duration-500"
-				bind:this={box}
 			/>
 		</div>
 	</div>

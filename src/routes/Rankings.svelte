@@ -42,7 +42,7 @@
 		<div class="flex gap-5 justify-between flex-col sm:flex-row">
 			<TitleWithLine titleText="All time World Ranking" lineColor="yellow" />
 			<SwitchButton
-				style="mb-10 mt-[-30px] sm:mt-0"
+				class="mb-10 mt-[-30px] sm:mt-0"
 				options={['Male', 'Female']}
 				bind:value={gender}
 			/>

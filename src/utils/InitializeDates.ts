@@ -1,12 +1,23 @@
-import type { AthleteTimeResult } from 'types/Athlete';
+import type { AthleteAvgRankResult, AthleteTimeResult } from 'types/Athlete';
 import type { Competition, CompetitionFinalEntryTime } from 'types/Competition';
-import type { Ranking } from 'types/Ranking';
 
 export default function initializeDates(
-	entities: Competition[] | Ranking[] | CompetitionFinalEntryTime[] | AthleteTimeResult[]
+	entities:
+		| Competition[]
+		| AthleteAvgRankResult[]
+		| CompetitionFinalEntryTime[]
+		| AthleteTimeResult[]
+		| Record<string, string>[]
 ) {
 	entities.forEach(
-		(entity: Competition | Ranking | CompetitionFinalEntryTime | AthleteTimeResult) => {
+		(
+			entity:
+				| Competition
+				| AthleteAvgRankResult
+				| CompetitionFinalEntryTime
+				| AthleteTimeResult
+				| Record<string, string>
+		) => {
 			if ('from' in entity && 'to' in entity) {
 				entity.from = new Date(entity.from);
 				entity.to = new Date(entity.to);
