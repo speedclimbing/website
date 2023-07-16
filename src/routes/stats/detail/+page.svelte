@@ -15,6 +15,14 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Detailed Statistics</title>
+	<meta
+		name="description"
+		content="Explore our Detailed Statistics page, where you can deep dive into data using our dynamic filters."
+	/>
+</svelte:head>
+
 <section class="bg-white dark:bg-black self flex flex-wrap w-full">
 	<a
 		href="/stats/summary?year={new Date().getFullYear()}"

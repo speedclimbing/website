@@ -8,7 +8,7 @@
 <style>
 	.hero-image {
 		background-image: linear-gradient(0deg, rgba(17, 24, 39, 0.6), rgba(17, 24, 39, 0.6)),
-			url('/images/Hero.jpg');
+			url('/images/Hero.webp');
 		background-position: 50% 10%;
 		background-repeat: no-repeat;
 		background-size: cover;

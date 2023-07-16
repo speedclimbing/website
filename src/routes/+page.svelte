@@ -10,6 +10,15 @@
 	export let data: PageData;
 </script>
 
+<svelte:head>
+	<title>Home of Speedclimbing.org</title>
+	<meta
+		name="description"
+		content="Your Page for the current and past statistics about Speedclimbing. 
+		See everything about the current world records, the latest tournaments and the performance of the athlets."
+	/>
+</svelte:head>
+
 <Hero heroImages={data.heroImages} />
 <WorldRecords
 	worldRecordMale={data.data.male_worldranking[0]}

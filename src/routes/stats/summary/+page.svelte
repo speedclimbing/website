@@ -13,6 +13,15 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Statistics Summary</title>
+	<meta
+		name="description"
+		content="See the summary of the current season and the all time statistics of the speedclimbing world.
+		View who has the most medals and the world records."
+	/>
+</svelte:head>
+
 <section class="bg-white dark:bg-black self ">
 	<div class="grid lg:grid-cols-3">
 		<div

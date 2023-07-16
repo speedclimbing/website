@@ -91,7 +91,7 @@
 		<TimelineItem title="Introduction of the 15m speedwall" date="some date">
 			<Img
 				alt="venue-munich"
-				src="/images/about/venue-munich.jpg"
+				src="/images/about/venue-munich.webp"
 				class="rounded-lg"
 				caption="Venue at the european championships 2022 in Munich"
 			/>
