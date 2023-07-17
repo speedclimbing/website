@@ -15,7 +15,7 @@
 	<meta
 		name="description"
 		content="speedclimbing.org - the platform to get information about speedclimbing for everyone - from newbies to professionals. 
-		See everything about the current world records, the latest tournaments and the performance of the athlets."
+		Get to know everything about the current world records, latest competitions and performance of the athlets."
 	/>
 </svelte:head>
 
