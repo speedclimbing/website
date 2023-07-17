@@ -14,7 +14,7 @@
 	<title>Home of Speedclimbing.org</title>
 	<meta
 		name="description"
-		content="Your Page for the current and past statistics about Speedclimbing. 
+		content="speedclimbing.org - the platform to get information about speedclimbing for everyone - from newbies to professionals. 
 		See everything about the current world records, the latest tournaments and the performance of the athlets."
 	/>
 </svelte:head>
