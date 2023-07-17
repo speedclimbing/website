@@ -57,7 +57,7 @@
 </script>
 
 <svelte:head>
-	<title>Competetions - Overview</title>
+	<title>Competitions - Overview</title>
 	<meta
 		name="description"
 		content="Everything about the last and upcoming competitions. See the results, the records and the calendar of the speedclimbing world."
