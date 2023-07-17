@@ -8,7 +8,7 @@
 	<title>Everything about Speedclimbing</title>
 	<meta
 		name="description"
-		content="See the rules, the wall and the sport. Learn about the qualifications, the competitions and everything about it."
+		content="You have never heard of speedclimbing? This is the perfect place to get up to speed and learn more about the sport!"
 	/>
 </svelte:head>
 
