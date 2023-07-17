@@ -17,7 +17,7 @@
 	<title>Statistics Summary</title>
 	<meta
 		name="description"
-		content="See the summary of the current season and the all time statistics of the speedclimbing world.
+		content="The latest and most relevant speedclimbing statistics at a glance.
 		View who has the most medals and the world records."
 	/>
 </svelte:head>
