@@ -41,16 +41,6 @@ export async function GET() {
                 <priority>0.80</priority>
             </url>
             <url>
-                <loc>https://speedclimbing.org/stats/summary?gender=Male&year=2023</loc>
-                <lastmod>2023-07-14T12:37:37+00:00</lastmod>
-                <priority>0.80</priority>
-            </url>
-            <url>
-                <loc>https://speedclimbing.org/stats/summary?gender=Male</loc>
-                <lastmod>2023-07-14T12:37:37+00:00</lastmod>
-                <priority>0.80</priority>
-            </url>
-            <url>
                 <loc>https://speedclimbing.org/stats/detail</loc>
                 <lastmod>2023-07-14T12:37:37+00:00</lastmod>
                 <priority>0.80</priority>
