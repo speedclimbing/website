@@ -60,7 +60,7 @@
 	<title>Competitions - Overview</title>
 	<meta
 		name="description"
-		content="Everything about the last and upcoming competitions. See the results, the records and the calendar of the speedclimbing world."
+		content="Everything about past and upcoming competitions. Get an overview of the whole schedule of speedclimbing events!"
 	/>
 </svelte:head>
 
