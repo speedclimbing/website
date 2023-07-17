@@ -37,7 +37,7 @@
 	<title>Athlete Search</title>
 	<meta
 		name="description"
-		content="Detailed statistics of all athletes in the database. See their personal bests, competitions and more."
+		content="Detailed statistics of all your favorite athletes. Find out their personal bests, competition results and more!"
 	/>
 </svelte:head>
 
