@@ -18,7 +18,7 @@
 	<meta
 		name="description"
 		content="The latest and most relevant speedclimbing statistics at a glance.
-		View who has the most medals and the world records."
+		Find out who has won most medals and get to know the fastest climbers in the world!"
 	/>
 </svelte:head>
 
