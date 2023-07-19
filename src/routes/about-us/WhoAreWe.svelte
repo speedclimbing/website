@@ -34,6 +34,10 @@
 		{
 			username: '16flotho',
 			name: '16flotho'
+		},
+		{
+			username: 'allesklardy',
+			name: 'allesklardy'
 		}
 	];
 </script>
