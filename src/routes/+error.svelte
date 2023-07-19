@@ -2,6 +2,10 @@
 	import { page } from '$app/stores';
 </script>
 
+<svelte:head>
+	<title>{$page.status} - {$page.error?.message}</title>
+</svelte:head>
+
 <section id="world-records" class="py-[100px]">
 	<div class="relative mx-auto w-64">
 		<img src="/favicon.png" alt="logo">

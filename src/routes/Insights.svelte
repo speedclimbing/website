@@ -5,7 +5,7 @@
 </script>
 
 <section id="insights" class="py-[100px] flex gap-16 flex-col lg:items-center lg:flex-row">
-	<img src="/images/Charts.png" alt="some statistics" class=" lg:w-[350px] xl:w-[500px]" />
+	<img src="/images/Charts.webp" alt="some statistics" class=" lg:w-[350px] xl:w-[500px]" />
 	<div>
 		<TitleWithLine titleText="Statistics" />
 		<p class="mb-10 text-lg">

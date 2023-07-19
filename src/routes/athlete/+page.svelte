@@ -33,6 +33,14 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Athlete Search</title>
+	<meta
+		name="description"
+		content="Detailed statistics of all your favorite athletes. Find out their personal bests, competition results and more!"
+	/>
+</svelte:head>
+
 <section id="athletes">
 	<div class="grid grid-cols-1 lg:grid-cols-2 grid-rows-3 lg:grid-rows-2 gap-5 my-10">
 		<DebouncedInput

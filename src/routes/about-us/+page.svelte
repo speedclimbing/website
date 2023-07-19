@@ -8,6 +8,15 @@
 	export let data: PageData;
 </script>
 
+<svelte:head>
+	<title>About our Team</title>
+	<meta
+		name="description"
+		content="Meet the Team behind Speedclimbing.org! 
+		Contact us if you have any questions or suggestions."
+	/>
+</svelte:head>
+
 <WhoAreWe />
 <Contact turnstileSiteKey={data.turnstileSiteKey} />
 <Imprint />

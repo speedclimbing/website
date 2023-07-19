@@ -56,6 +56,14 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Competitions - Overview</title>
+	<meta
+		name="description"
+		content="Everything about past and upcoming competitions. Get an overview of the whole schedule of speedclimbing events!"
+	/>
+</svelte:head>
+
 <section id="competition-filter" class="xl:grid-cols-5 md:grid-cols-2 grid gap-[10px] mt-10">
 	<DebouncedInput
 		type="text"

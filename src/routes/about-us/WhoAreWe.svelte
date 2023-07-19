@@ -11,14 +11,14 @@
                 When I'm not climbing, I study computer science at the TU Munich and build software like this website. 
 				You may have heard of the 'Speedclimbing Stopwatch'-App - another project of mine.`,
 			website: 'https://dorian.im',
-			image: '/images/about-us/dorian.jpg'
+			image: '/images/about-us/dorian.webp'
 		},
 		{
 			name: 'Jakob Mayerhofer',
 			roles: ['UI/UX design', 'development'],
 			about:
 				'I`m a big sports fan and love watching and analysing all kinds of competitions. Originally, I did competitive Judo, where I was in the national team for a few years. These days I, study information systems at the TU Munich. In my free time I love to do sports and work on projects like this.',
-			image: '/images/about-us/jakob.jpg'
+			image: '/images/about-us/jakob.webp'
 		},
 		{
 			name: 'Peter Schnabel',
@@ -26,7 +26,7 @@
 			about: `I'm the national coach of the German speedclimbing team and totally nuts about speed climbing. 
 			Even though I originally come from track and field, I've been trying to transfer my knowledge to climbing since 2021, 
 			and I'm getting a little bit better every day.`,
-			image: '/images/about-us/peter.jpg'
+			image: '/images/about-us/peter.webp'
 		}
 	];
 
@@ -34,6 +34,10 @@
 		{
 			username: '16flotho',
 			name: '16flotho'
+		},
+		{
+			username: 'allesklardy',
+			name: 'allesklardy'
 		}
 	];
 </script>
@@ -91,7 +95,7 @@
 				href={`https://github.com/${contributor.username}`}
 			>
 				<div class="pl-[2px]">
-					<Avatar src={`/images/about-us/contributors/${contributor.username}.png`} />
+					<Avatar src={`/images/about-us/contributors/${contributor.username}.webp`} />
 				</div>
 				<span class="pl-2  text-lg">{contributor.name}</span>
 			</Badge>
