@@ -51,7 +51,7 @@ export const load: ServerLoad = async ({ fetch, platform, url }) => {
 		getApplicableFilterOptions
 	);
 
-	let data = fetchEndpoint<Record<string, string>[]>(
+	let data = await fetchEndpoint<Record<string, string>[]>(
 		fetch,
 		platform,
 		`/stats/ranking/${params.entity}/${params.subject}/${params.gender}`,

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Action } from 'svelte/types/runtime/action';
+	import type { Action } from 'svelte/action';
 
 	export let image: string;
 	export let color: string = '#dd972a';
