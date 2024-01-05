@@ -28,7 +28,7 @@ export const load: ServerLoad = async ({ fetch, platform, url }) => {
 		...params
 	};
 
-	const competitions = fetchEndpoint<Competition[]>(
+	const competitions = await fetchEndpoint<Competition[]>(
 		fetch,
 		platform,
 		'/competition',

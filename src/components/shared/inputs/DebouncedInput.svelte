@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Input } from 'flowbite-svelte';
+	import { Input, type InputType } from 'flowbite-svelte';
 	import { debounce } from 'utils/debounce';
 
-	export let type: string | undefined;
+	export let type: InputType | undefined;
 	export let placeholder: string | undefined;
 	export let value: string | number | undefined;
 	export let inputClass: string | undefined;

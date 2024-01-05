@@ -32,7 +32,6 @@
 		color="none"
 		class="text-black dark:text-dark-white {transparent &&
 			'text-dark-white'} border-gray-100 dark:border-gray-700 py-2.5 w-full px-0 sm:px-0"
-		navDivClass="mx-0 flex flex-wrap justify-between items-center  container"
 	>
 		<NavBrand id="logo" href="/">
 			<img src="/favicon.png" class="mr-3 h-6 sm:h-9" alt="Logo" />

@@ -14,9 +14,9 @@ import promiseAllProperties from 'utils/promiseAllProperties';
 
 export const load: ServerLoad = async ({ fetch, platform, url }) => {
 	if (url.searchParams.has('year')) {
-		return loadSeasonData({ fetch, platform, url });
+		return await loadSeasonData({ fetch, platform, url });
 	} else {
-		return loadAllTimeData({ fetch, platform, url });
+		return await loadAllTimeData({ fetch, platform, url });
 	}
 };
 
@@ -56,7 +56,7 @@ const loadSeasonData = async ({ fetch, platform, url }: LoadParams) => {
 	return {
 		filters,
 		params,
-		seasonData: promiseAllProperties({
+		seasonData: await promiseAllProperties({
 			seasonSummary,
 			upcomingCompetitions
 		})
@@ -109,7 +109,7 @@ const loadAllTimeData = async ({ fetch, platform, url }: LoadParams) => {
 	return {
 		filters,
 		params,
-		allTimeData: promiseAllProperties({
+		allTimeData: await promiseAllProperties({
 			allTimeSummary
 		})
 	};

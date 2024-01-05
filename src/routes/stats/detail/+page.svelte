@@ -3,7 +3,7 @@
 	import TitleWithLine from 'components/shared/content/TitleWithLine.svelte';
 	import SelectFilter from 'components/shared/inputs/SelectFilter.svelte';
 	import BoxContainer from 'components/shared/layout/BoxContainer.svelte';
-	import { ChevronLeft } from 'flowbite-svelte';
+	import { ChevronLeft } from 'svelte-heros-v2';
 	import type { PageData } from './$types';
 	import { updateSearchParams } from 'utils/updateSearchParams';
 	import SmartTable from '../../../components/stats/SmartTable.svelte';
