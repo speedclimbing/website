@@ -36,4 +36,4 @@
 	}
 </script>
 
-<canvas bind:this={canvas} class="my-auto" />
+<canvas bind:this={canvas} class="my-auto"></canvas>

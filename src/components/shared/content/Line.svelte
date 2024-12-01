@@ -4,4 +4,4 @@
 	export let style: string = '';
 </script>
 
-<div id="line" class={`bg-${color} rounded-sm w-[${length}] h-1 mt-5 mb-10 ${style}`} />
+<div id="line" class={`bg-${color} rounded-sm w-[${length}] h-1 mt-5 mb-10 ${style}`}></div>

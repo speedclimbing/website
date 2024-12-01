@@ -22,7 +22,7 @@
 	/>
 </svelte:head>
 
-<section class="bg-white dark:bg-black self ">
+<section class="bg-white dark:bg-black self">
 	<div class="grid lg:grid-cols-3">
 		<div
 			class="grid grid-cols-2 lg:col-span-2 items-center justify-items-center text-xl dark:text-white py-5 relative"
@@ -44,7 +44,7 @@
 					.params.year
 					? 'left-0'
 					: 'left-[calc(100%/2)]'}"
-			/>
+			></div>
 		</div>
 		<div class="flex justify-end gap-2 my-auto order-first lg:order-2 py-3">
 			{#if data.seasonData && data.params.year}

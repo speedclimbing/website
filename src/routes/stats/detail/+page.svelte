@@ -30,7 +30,7 @@
 	>
 		<ChevronLeft class="text-red font-bold" size="20" /> Back to summary
 	</a>
-	<div class="grow" />
+	<div class="grow"></div>
 	<SwitchButton
 		class="py-4 justify-self-end"
 		bind:value={data.params.gender}
