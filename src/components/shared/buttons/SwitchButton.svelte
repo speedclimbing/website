@@ -39,7 +39,7 @@
 
 			<div
 				class="selected-option-indicator bg-[#2268d5] w-[{optionWidth}%] h-full ml-[0%] rounded-[3px] transition-[margin-left] duration-500"
-			/>
+			></div>
 		</div>
 	</div>
 </div>

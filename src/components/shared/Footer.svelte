@@ -10,7 +10,7 @@
 			<img src="/favicon.png" class="mr-3 h-6 sm:h-9" alt="Logo" />
 			<p class="font-bold text-red dark:text-red text-xl">speedclimbing.org</p>
 		</NavBrand>
-		<div class="bg-red rounded-sm w-[100px] h-1" />
+		<div class="bg-red rounded-sm w-[100px] h-1"></div>
 		<p class="w-[300px] mt-[20px]">
 			Speedclimbing.org is developed and provided by
 			<a href="https://github.com/speedclimbing/website"> the community </a>. It is not affiliated

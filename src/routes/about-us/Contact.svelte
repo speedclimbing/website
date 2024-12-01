@@ -95,7 +95,7 @@
 
 		<div class="col-span-2">
 			<Label for="message" class="bloack mb-2">Your message</Label>
-			<Textarea id="message" name="message" rows="4" required disabled={loading} />
+			<Textarea id="message" name="message" rows={4} required disabled={loading} />
 		</div>
 
 		{#if turnstileSiteKey}

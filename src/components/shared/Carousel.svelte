@@ -81,7 +81,7 @@
 					for="{id}-{i}"
 					class="px-2 py-4 cursor-pointer opacity-50 flex justify-center items-center"
 				>
-					<div class="block w-[50px] h-[2px] bg-white" />
+					<div class="block w-[50px] h-[2px] bg-white"></div>
 				</label>
 			{/each}
 		</div>
