@@ -145,7 +145,7 @@ const entityFilter = {
 	options: [
 		{ name: 'Athletes', value: 'athlete' },
 		{ name: 'Competitions', value: 'competition' },
-		{ name: 'Naions', value: 'nation' }
+		{ name: 'Nations', value: 'nation' }
 	]
 };
 
