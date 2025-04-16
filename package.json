@@ -19,7 +19,7 @@
 		"@playwright/test": "^1.40.1",
 		"@popperjs/core": "^2.11.8",
 		"@sveltejs/adapter-auto": "^3.3.1",
-		"@sveltejs/kit": "^2.9.0",
+		"@sveltejs/kit": "^2.20.6",
 		"@types/chart.js": "^2.9.41",
 		"@typescript-eslint/eslint-plugin": "^8.16.0",
 		"@typescript-eslint/parser": "^8.16.0",
