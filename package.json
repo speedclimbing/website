@@ -16,7 +16,7 @@
 		"tail": "wrangler pages deployment tail --project-name speedclimbing --environment preview"
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.40.1",
+		"@playwright/test": "^1.56.1",
 		"@popperjs/core": "^2.11.8",
 		"@sveltejs/adapter-auto": "^3.3.1",
 		"@sveltejs/kit": "^2.20.6",
