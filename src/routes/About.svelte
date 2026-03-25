@@ -17,23 +17,22 @@
 			<Trophy slot="icon" size="40" class="text-yellow" />
 			<p slot="text">
 				Speedclimbing is one of the three disciplines in modern sports climbing. The biggest
-				difference to lead or bouldering is the standardized wall - and ofcourse the speed!
+				difference to lead or bouldering is the standardized wall&mdash;and of course the speed!
 			</p>
 		</IconBox>
 		<IconBox title="The wall" href={'/about#the-wall'}>
 			<BarsArrowUp slot="icon" size="40" class="text-yellow" />
 			<p slot="text">
-				The speedclimbing wall, as it is known today das designed arond 2007 and has not changed
-				since. Everything about it is precisely normed - it is exactly the same all around the
-				world.
+				The speedclimbing wall, as it is known today, was designed around 2007 and has not changed
+				since. Every aspect is precisely standardized&mdash;it is the same all around the world.
 			</p>
 		</IconBox>
 		<IconBox title="The rules" href={'/about#the-rules'} text="">
 			<BookOpen slot="icon" size="40" class="text-yellow" />
 			<p slot="text">
-				A speedclimbing competition consists of two parts:
+				A speedclimbing competition consists of three parts:
 				<b>training</b>,
-				<b>qualification</b>
+				<b>qualification</b>,
 				and
 				<b>final</b>. Every athlete starts with training and qualification and eventually proceeds
 				to the finals.
