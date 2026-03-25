@@ -15,12 +15,12 @@
 
 	const id = uniqueId();
 
-	let timeout: NodeJS.Timeout;
+	let timeout: number;
 	let currentIndex = 0;
 
 	const restartTimeout = (_: number) => {
 		clearTimeout(timeout);
-		timeout = setTimeout(() => {
+		timeout = window.setTimeout(() => {
 			currentIndex = mod(currentIndex + 1, items.length);
 		}, 5000);
 	};

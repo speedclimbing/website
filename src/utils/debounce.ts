@@ -1,4 +1,4 @@
-let timer: NodeJS.Timeout | undefined = undefined;
+let timer: number | undefined = undefined;
 let previousResolve: ((res: boolean) => void) | undefined = undefined;
 
 export async function debounce(): Promise<boolean> {
@@ -10,7 +10,7 @@ export async function debounce(): Promise<boolean> {
 
 		previousResolve = resolve;
 
-		timer = setTimeout(() => {
+		timer = window.setTimeout(() => {
 			resolve(true);
 		}, 500);
 	});

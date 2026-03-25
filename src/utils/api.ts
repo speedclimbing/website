@@ -4,6 +4,7 @@ import type { Filter, FilterOption } from 'components/shared/inputs/SelectFilter
 import type { LeagueGroup } from 'types/LeagueGroup';
 import type { Season } from 'types/Season';
 import type { Nation } from 'types/Nation';
+import { env } from '$env/dynamic/private';
 
 const paramsToUrlSearchParams = (
 	params: URLSearchParams | Record<string, string | undefined>
@@ -34,8 +35,8 @@ export const fetchEndpoint = async <T>(
 
 	if (platform?.env?.API_TOKEN) {
 		headers['Authorization'] = `Bearer ${platform.env.API_TOKEN}`;
-	} else if (process.env.API_TOKEN) {
-		headers['Authorization'] = `Bearer ${process.env.API_TOKEN}`;
+	} else if (env.API_TOKEN) {
+		headers['Authorization'] = `Bearer ${env.API_TOKEN}`;
 	}
 
 	const response = await fetch(`${API_URL}/${path}`, {
