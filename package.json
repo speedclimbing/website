@@ -38,7 +38,7 @@
 		"postcss-load-config": "^5.0.2",
 		"prettier": "^3.8.1",
 		"prettier-plugin-svelte": "^3.5.1",
-		"svelte": "^5.55.0",
+		"svelte": "^5.55.7",
 		"svelte-check": "^4.4.5",
 		"svelte-heros-v2": "^2.0.1",
 		"svelte-turnstile": "^0.11.0",
